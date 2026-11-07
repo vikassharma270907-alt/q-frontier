@@ -107,6 +107,11 @@ docker compose up --build
 ```
 Builds the multi-stage image (Node.js Vite frontend + Python 3.11 backend) and exposes the dashboard at `http://localhost:8000`.
 
+### 4. Cloud Production Deployments
+- **Vercel (Frontend & Serverless API):** Live production dashboard at [https://q-frontier.vercel.app](https://q-frontier.vercel.app)
+- **Render (Fullstack Docker Blueprint):** Deploy with 1-click on Render via Infrastructure-as-Code Blueprint (`render.yaml`) connecting `https://github.com/vikassharma270907-alt/q-frontier`.
+
+
 ---
 
 ## 3. Standardized REST API Reference

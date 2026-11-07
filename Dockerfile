@@ -28,6 +28,8 @@ COPY pytest.ini /app/pytest.ini
 COPY --from=frontend-builder /app/frontend/dist /app/frontend/dist
 
 ENV PYTHONPATH=/app/backend
-EXPOSE 8000
+ENV PYTHONUNBUFFERED=1
+ENV PORT=10000
+EXPOSE 10000 8000
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-10000}"]

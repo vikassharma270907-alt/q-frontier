@@ -3,8 +3,8 @@
 **Project Name:** Q-FRONTIER: Context-Aware Counterdiabatic Quantum Portfolio Optimization & Volumetric Hardware Benchmarking  
 **Tagline:** A hybrid quantum-classical portfolio optimization platform combining RMT spectral clustering, 4-qubit QCL rough-volatility sensing, and Constrained Counterdiabatic QAOA (CCD-QAOA).  
 **Target Tracks:** Fintech & Real-Data Optimization, Quantum Machine Learning, Hardware Benchmarking  
-**GitHub Repository:** https://github.com/your-team/Q-FRONTIER  
-**Live Demo:** http://localhost:8000/ (or hosted Vercel/Render URL)  
+**GitHub Repository:** https://github.com/vikassharma270907-alt/q-frontier  
+**Live Demo:** https://q-frontier.vercel.app (Render Blueprint: render.yaml)  
 
 ---
 
