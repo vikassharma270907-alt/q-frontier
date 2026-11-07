@@ -9,7 +9,7 @@ import re
 import time
 import pandas as pd
 
-from app.data.synthetic import generate_synthetic_prices, PRESET_UNIVERSES
+from app.data.synthetic import generate_synthetic_prices, generate_crisis_prices, PRESET_UNIVERSES
 
 
 class DatasetManager:
@@ -53,6 +53,24 @@ class DatasetManager:
                 "observations": 180,
                 "description": "4-asset subuniverse for near-instant quantum circuit evaluation and statevector verification.",
             },
+            {
+                "id": "synthetic_crisis_2026",
+                "name": "🚨 2026 Liquidity Crisis Shock (Stress Scenario)",
+                "type": "stress_scenario",
+                "assets": PRESET_UNIVERSES["CRISIS_2026"],
+                "asset_count": len(PRESET_UNIVERSES["CRISIS_2026"]),
+                "observations": 180,
+                "description": "High-stress regime with systemic correlation breakdown (rho -> 0.85) and rough-volatility spikes.",
+            },
+            {
+                "id": "synthetic_flash_crash",
+                "name": "⚡ Flash Crash & Sector Dispersion (Stress Scenario)",
+                "type": "stress_scenario",
+                "assets": PRESET_UNIVERSES["FLASH_CRASH_8"],
+                "asset_count": len(PRESET_UNIVERSES["FLASH_CRASH_8"]),
+                "observations": 180,
+                "description": "Acute liquidity vacuum shock testing instantaneous QCL risk detection and CCD-QAOA drawdown limits.",
+            },
         ]
 
         for custom_id, df in self._custom_datasets.items():
@@ -76,6 +94,10 @@ class DatasetManager:
             return generate_synthetic_prices(PRESET_UNIVERSES["NASDAQ_8"], days=days, seed=42)
         elif dataset_id == "synthetic_tech_4":
             return generate_synthetic_prices(PRESET_UNIVERSES["TECH_4"], days=days, seed=42)
+        elif dataset_id == "synthetic_crisis_2026":
+            return generate_crisis_prices("CRISIS_2026_LIQUIDITY", tickers=PRESET_UNIVERSES["CRISIS_2026"], days=days, seed=42)
+        elif dataset_id == "synthetic_flash_crash":
+            return generate_crisis_prices("CRISIS_FLASH_CRASH", tickers=PRESET_UNIVERSES["FLASH_CRASH_8"], days=days, seed=42)
         elif dataset_id in self._custom_datasets:
             return self._custom_datasets[dataset_id]
         else:

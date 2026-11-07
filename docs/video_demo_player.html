@@ -253,12 +253,6 @@
       color: #e4e4e7;
       font-weight: 500;
     }
-    .spoken-text span.highlight {
-      color: #38bdf8;
-      background: rgba(56, 189, 248, 0.12);
-      padding: 1px 4px;
-      border-radius: 4px;
-    }
 
     /* Player Controls Bar */
     .controls-bar {
@@ -334,14 +328,13 @@
       color: #38bdf8;
       border-color: #06b6d4;
     }
-    .voice-toggle-btn {
-      background: #18181b;
-      border: 1px solid #3f3f46;
-      color: #e4e4e7;
+    .audio-badge {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
       font-size: 12px;
       padding: 6px 14px;
       border-radius: 8px;
-      cursor: pointer;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -350,6 +343,9 @@
   </style>
 </head>
 <body>
+
+  <!-- Audio Element for Neural Voice Track -->
+  <audio id="audio-player" preload="auto"></audio>
 
   <!-- Header -->
   <header>
@@ -362,7 +358,7 @@
     </div>
     <div class="timer-badge">
       <div class="pulse-dot"></div>
-      <span id="time-display">0:00 / 2:45</span>
+      <span id="time-display">0:00 / 2:46</span>
     </div>
   </header>
 
@@ -640,11 +636,11 @@
     <!-- Teleprompter / Narration Box -->
     <div class="teleprompter-box">
       <div class="voiceover-header">
-        <span>Wispr Flow Voiceover Narration (Voice: Marcus — Crisp Studio Technical)</span>
-        <span id="scene-tag">Scene 1 / 5 [0:00 - 0:25]</span>
+        <span>Wispr Flow Studio Neural Narration (Marcus / ChristopherNeural — 138 WPM)</span>
+        <span id="scene-tag">Scene 1 / 5 [0:00 - 0:29]</span>
       </div>
       <div class="spoken-text" id="teleprompter-text">
-        Loading voiceover track...
+        Click Play to start the animated video demo and audio presentation...
       </div>
     </div>
 
@@ -660,74 +656,78 @@
         </div>
         <div class="scenes-nav">
           <button class="scene-pill-btn active" onclick="jumpToScene(0)">1. Context (0:00)</button>
-          <button class="scene-pill-btn" onclick="jumpToScene(1)">2. RMT Denoising (0:25)</button>
-          <button class="scene-pill-btn" onclick="jumpToScene(2)">3. CCD-QAOA & QCL (0:55)</button>
-          <button class="scene-pill-btn" onclick="jumpToScene(3)">4. SLSQP Backtest (1:40)</button>
-          <button class="scene-pill-btn" onclick="jumpToScene(4)">5. Sandia & Hardware (2:15)</button>
+          <button class="scene-pill-btn" onclick="jumpToScene(1)">2. RMT Denoising (0:29)</button>
+          <button class="scene-pill-btn" onclick="jumpToScene(2)">3. CCD-QAOA & QCL (0:57)</button>
+          <button class="scene-pill-btn" onclick="jumpToScene(3)">4. SLSQP Backtest (1:45)</button>
+          <button class="scene-pill-btn" onclick="jumpToScene(4)">5. Sandia & Hardware (2:14)</button>
         </div>
       </div>
 
-      <button class="voice-toggle-btn" id="voice-btn" onclick="toggleSpeech()">
-        <span id="voice-status-dot" style="width: 8px; height: 8px; background: #10b981; border-radius: 50%;"></span>
-        <span>Voice TTS: ON</span>
-      </button>
+      <div class="audio-badge">
+        <span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%;"></span>
+        <span>Studio Audio Ready</span>
+      </div>
     </div>
   </div>
 
   <script>
-    // Timeline Data: Exactly 165 seconds (2:45)
+    // Precise Scene Timestamps from Synthesized Studio Audio Tracks:
+    // Total Runtime: 166.05 seconds (2:46) - Strictly under 3:00 minutes!
     const SCENES = [
       {
         id: 0,
         startSec: 0,
-        endSec: 25,
+        endSec: 29.35,
+        audioFile: "audio/scene1.mp3",
         title: "Introduction & Competition Context",
-        tag: "Scene 1 / 5 [0:00 - 0:25]",
+        tag: "Scene 1 / 5 [0:00 - 0:29]",
         script: "Welcome to Q-FRONTIER, our submission for the 2026 Intermountain Quantum Competition at Brigham Young University. When solving cardinality-constrained portfolio optimization for Nasdaq equities, NISQ algorithms face a critical bottleneck: quadratic penalties leak measurement shots, static clustering ignores cross-cluster risk, and unconstrained rebalancing destroys capital through fees. Q-FRONTIER eliminates all three challenges in a single auditable workbench."
       },
       {
         id: 1,
-        startSec: 25,
-        endSec: 55,
+        startSec: 29.35,
+        endSec: 57.33,
+        audioFile: "audio/scene2.mp3",
         title: "Stage 1: RMT Spectral Denoising & Clustering",
-        tag: "Scene 2 / 5 [0:25 - 0:55]",
-        script: "We start with real Nasdaq-12 market data. We compute the Ledoit-Wolf shrinkage covariance and apply Random Matrix Theory Marchenko-Pastur filtering. All eigenvalues below lambda-plus represent empirical noise and are filtered out, preserving genuine economic signal. Our hardware-aware clustering algorithm then partitions the 12-asset universe into 3 clusters of at most 4 qubits each—ideally sized for near-term quantum processors."
+        tag: "Scene 2 / 5 [0:29 - 0:57]",
+        script: "We start with real Nasdaq-12 market data. We compute the Ledoit-Wolf shrinkage covariance and apply Random Matrix Theory Marchenko-Pastur filtering. All eigenvalues below lambda-plus represent empirical noise and are filtered out, preserving genuine economic signal. Our hardware-aware clustering algorithm then partitions the 12-asset universe into 3 clusters of at most 4 qubits each, ideally sized for near-term quantum processors."
       },
       {
         id: 2,
-        startSec: 55,
-        endSec: 100,
+        startSec: 57.33,
+        endSec: 104.54,
+        audioFile: "audio/scene3.mp3",
         title: "Stages 2 & 3: QCL Sensor & CCD-QAOA Engine",
-        tag: "Scene 3 / 5 [0:55 - 1:40]",
+        tag: "Scene 3 / 5 [0:57 - 1:45]",
         script: "In Stage 2, our 4-qubit data-reuploading QCL sensor encodes four primitive market signals and dynamically calibrates portfolio risk aversion q_t. In Stage 3, we execute our Constrained Counterdiabatic QAOA solver. Look closely at this comparison: standard Penalty-QAOA leaks over 26% of all shots into illegal portfolio sizes. By initializing registers in exact Dicke states with complete-graph XY mixers, Q-FRONTIER mathematically guarantees 100% feasibility with zero leakage. Adding 3-body Adiabatic Gauge Potential driving boosts the approximation ratio to 95.7% at single depth, and over 99.7% at depth two."
       },
       {
         id: 3,
-        startSec: 100,
-        endSec: 135,
+        startSec: 104.54,
+        endSec: 134.06,
+        audioFile: "audio/scene4.mp3",
         title: "Stage 4: SLSQP Continuous Weights & Net Backtest",
-        tag: "Scene 4 / 5 [1:40 - 2:15]",
+        tag: "Scene 4 / 5 [1:45 - 2:14]",
         script: "Stage 4 takes the quantum-selected asset subset and optimizes continuous weights for maximum Sharpe ratio using SLSQP. In our monthly walk-forward simulation, all returns are evaluated strictly net of five basis points transaction costs. By incorporating our turnover continuity parameter kappa, Q-FRONTIER suppresses costly portfolio churning, outperforming the benchmark by over 24% cumulative return with less than half the maximum drawdown."
       },
       {
         id: 4,
-        startSec: 135,
-        endSec: 165,
+        startSec: 134.06,
+        endSec: 166.05,
+        audioFile: "audio/scene5.mp3",
         title: "Hardware Topologies & Sandia Volumetric Heatmap",
-        tag: "Scene 5 / 5 [2:15 - 2:45]",
+        tag: "Scene 5 / 5 [2:14 - 2:46]",
         script: "Finally, we benchmark physical hardware topologies. On IonQ's trapped-ion architecture, all-to-all connectivity compiles our complete-graph mixers with zero routing SWAPs, while heavy-hex grids require 18 additional SWAPs. Following Sandia National Laboratories' volumetric benchmarking framework, our 2D heatmap maps circuit capability under noise. Q-FRONTIER is fully verifiable, backed by 43 automated tests and one-click reproducibility. Thank you!"
       }
     ];
 
-    const TOTAL_DURATION = 165; // seconds (2:45)
+    const TOTAL_DURATION = 166.05; // 2:46
     let currentTime = 0;
     let isPlaying = false;
-    let speechEnabled = true;
     let playInterval = null;
     let currentSceneIndex = 0;
-    let synth = window.speechSynthesis;
-    let currentUtterance = null;
 
+    const audioElement = document.getElementById('audio-player');
     const playPauseBtn = document.getElementById('play-pause-btn');
     const playIcon = document.getElementById('play-icon');
     const timeDisplay = document.getElementById('time-display');
@@ -736,8 +736,6 @@
     const teleprompterText = document.getElementById('teleprompter-text');
     const sceneTag = document.getElementById('scene-tag');
     const sceneButtons = document.querySelectorAll('.scene-pill-btn');
-    const voiceStatusDot = document.getElementById('voice-status-dot');
-    const voiceBtn = document.getElementById('voice-btn');
 
     function formatTime(seconds) {
       const mins = Math.floor(seconds / 60);
@@ -752,45 +750,39 @@
 
       if (sceneIndex !== currentSceneIndex) {
         currentSceneIndex = sceneIndex;
-        // Switch active DOM scene
+        // Switch DOM scene
         document.querySelectorAll('.scene').forEach((el, idx) => {
           el.classList.toggle('active', idx === currentSceneIndex);
         });
         sceneButtons.forEach((btn, idx) => {
           btn.classList.toggle('active', idx === currentSceneIndex);
         });
-        
-        // Speak scene script if speech enabled
-        if (isPlaying && speechEnabled) {
-          speakScene(scene);
+
+        // Switch Audio Track if playing
+        if (isPlaying) {
+          playSceneAudio(currentSceneIndex, currentTime - scene.startSec);
         }
       }
 
-      // Update text and tag
+      // Update teleprompter & status tag
       sceneTag.innerText = scene.tag;
       teleprompterText.innerHTML = scene.script;
 
-      // Update time and scrubber
-      timeDisplay.innerText = `${formatTime(currentTime)} / 2:45`;
+      // Update timer & scrubber
+      timeDisplay.innerText = `${formatTime(currentTime)} / 2:46`;
       const pct = (currentTime / TOTAL_DURATION) * 100;
       scrubberFill.style.width = `${pct}%`;
     }
 
-    function speakScene(scene) {
-      if (!synth) return;
-      synth.cancel();
-
-      const utter = new SpeechSynthesisUtterance(scene.script);
-      utter.rate = 1.02; // ~138 WPM matching Wispr Flow
-      utter.pitch = 1.0;
-
-      // Select natural English voice if available
-      const voices = synth.getVoices();
-      const naturalVoice = voices.find(v => v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('David') || v.lang === 'en-US');
-      if (naturalVoice) utter.voice = naturalVoice;
-
-      currentUtterance = utter;
-      synth.speak(utter);
+    function playSceneAudio(sceneIdx, offsetSec = 0) {
+      const scene = SCENES[sceneIdx];
+      if (audioElement.src !== location.origin + '/' + scene.audioFile && !audioElement.src.endsWith(scene.audioFile)) {
+        audioElement.src = scene.audioFile;
+      }
+      audioElement.currentTime = Math.max(0, offsetSec);
+      audioElement.play().catch(err => {
+        console.warn("Audio autoplay policy fallback:", err);
+      });
     }
 
     function togglePlay() {
@@ -809,9 +801,7 @@
       playIcon.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
 
       const activeScene = SCENES[currentSceneIndex];
-      if (speechEnabled) {
-        speakScene(activeScene);
-      }
+      playSceneAudio(currentSceneIndex, currentTime - activeScene.startSec);
 
       playInterval = setInterval(() => {
         currentTime += 0.25;
@@ -827,28 +817,15 @@
       isPlaying = false;
       playIcon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
       clearInterval(playInterval);
-      if (synth) synth.cancel();
+      audioElement.pause();
     }
 
     function jumpToScene(index) {
       currentSceneIndex = index;
       currentTime = SCENES[index].startSec;
       updateView();
-      if (isPlaying && speechEnabled) {
-        speakScene(SCENES[index]);
-      }
-    }
-
-    function toggleSpeech() {
-      speechEnabled = !speechEnabled;
-      if (speechEnabled) {
-        voiceStatusDot.style.background = '#10b981';
-        voiceBtn.querySelector('span:last-child').innerText = 'Voice TTS: ON';
-        if (isPlaying) speakScene(SCENES[currentSceneIndex]);
-      } else {
-        voiceStatusDot.style.background = '#71717a';
-        voiceBtn.querySelector('span:last-child').innerText = 'Voice TTS: OFF';
-        if (synth) synth.cancel();
+      if (isPlaying) {
+        playSceneAudio(index, 0);
       }
     }
 
@@ -859,8 +836,9 @@
       const ratio = clickX / rect.width;
       currentTime = ratio * TOTAL_DURATION;
       updateView();
-      if (isPlaying && speechEnabled) {
-        speakScene(SCENES[currentSceneIndex]);
+      if (isPlaying) {
+        const scene = SCENES[currentSceneIndex];
+        playSceneAudio(currentSceneIndex, currentTime - scene.startSec);
       }
     });
 
