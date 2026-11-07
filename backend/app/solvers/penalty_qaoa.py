@@ -67,23 +67,27 @@ class PenaltyQAOASolver:
         e_range = max(e_max - e_min, 1e-8)
         opt_idx = feasible_indices[np.argmin(feasible_energies)]
 
-        h_pen_mat = np.diag(h_pen_vec).astype(complex)
+        # Exact transverse field mixer unitary: exp(-i*beta*sum X_i) = kron_{i=1}^n (cos(beta)*I - i*sin(beta)*X)
+        beta = 0.5
+        gamma = 0.5
+        u1 = np.array([
+            [np.cos(beta), -1j * np.sin(beta)],
+            [-1j * np.sin(beta), np.cos(beta)]
+        ], dtype=complex)
 
-        # Transverse field mixer H_M^X = sum_i X_i
-        h_m_x = np.zeros((dim, dim), dtype=complex)
-        for i in range(n):
-            h_m_x += create_n_qubit_operator({i: X}, n)
+        u_m = u1
+        for _ in range(n - 1):
+            u_m = np.kron(u_m, u1)
 
         # Initial state |+>^N
         psi = np.ones(dim, dtype=complex) / np.sqrt(dim)
 
         # Evolution at fixed shallow angle
-        gamma = 0.5
-        beta = 0.5
         for _ in range(depth):
-            u_c = expm(-1j * gamma * h_pen_mat)
-            u_m = expm(-1j * beta * h_m_x)
-            psi = u_m @ (u_c @ psi)
+            # Diagonal phase rotation O(dim)
+            psi = np.exp(-1j * gamma * h_pen_vec) * psi
+            # Transverse mixer evolution O(dim^2)
+            psi = u_m @ psi
 
         probs = np.abs(psi) ** 2
         feasibility_rate = float(np.sum(probs[feasible_mask]))

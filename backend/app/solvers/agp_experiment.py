@@ -114,7 +114,8 @@ class CounterdiabaticQAOASolver:
             return float(np.dot(probs, energy_vec))
 
         init_params = np.array(gamma_init + beta_init + alpha_init)
-        res = minimize(loss_fn, init_params, method="COBYLA", options={"maxiter": 60})
+        max_iter = 25 if n >= 8 else 50
+        res = minimize(loss_fn, init_params, method="COBYLA", options={"maxiter": max_iter})
 
         opt_params = res.x
         psi_final = dicke_state.copy()

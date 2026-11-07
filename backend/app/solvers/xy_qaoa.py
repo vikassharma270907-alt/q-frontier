@@ -135,11 +135,12 @@ class XYQAOASolver:
             probs = np.abs(psi) ** 2
             return float(np.dot(probs, energy_vec))
 
+        max_iter = 20 if n >= 8 else 40
         res = minimize(
             loss_fn,
             np.array(gamma_init + beta_init),
             method="COBYLA",
-            options={"maxiter": 40}
+            options={"maxiter": max_iter}
         )
 
         opt_params = res.x

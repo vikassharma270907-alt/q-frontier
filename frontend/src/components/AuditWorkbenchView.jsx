@@ -10,14 +10,14 @@ import {
 
 export default function AuditWorkbenchView({ onExportSuccess }) {
   const [datasets, setDatasets] = useState([]);
-  const [selectedDatasetId, setSelectedDatasetId] = useState('synthetic_nasdaq_8');
-  const [assetCount, setAssetCount] = useState(8);
-  const [kCardinality, setKCardinality] = useState(3);
+  const [selectedDatasetId, setSelectedDatasetId] = useState('synthetic_tech_4');
+  const [assetCount, setAssetCount] = useState(4);
+  const [kCardinality, setKCardinality] = useState(2);
   const [lambdaRisk, setLambdaRisk] = useState(0.5);
   const [covarianceMethod, setCovarianceMethod] = useState('ledoit_wolf');
   const [circuitDepth, setCircuitDepth] = useState(1);
   const [selectedSolvers, setSelectedSolvers] = useState(['exact', 'annealing', 'xy_qaoa', 'ccd_qaoa', 'penalty_qaoa']);
-  const [seeds, setSeeds] = useState('42, 101, 777');
+  const [seeds, setSeeds] = useState('42, 101');
   const [transactionCostBps, setTransactionCostBps] = useState(5.0);
 
   const [isRunning, setIsRunning] = useState(false);

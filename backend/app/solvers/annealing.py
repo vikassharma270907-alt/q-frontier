@@ -20,9 +20,9 @@ class SimulatedAnnealingSolver:
     def __init__(
         self,
         name: str = "Simulated Annealing Heuristic",
-        max_iterations: int = 1000,
+        max_iterations: int = 350,
         initial_temp: float = 1.0,
-        cooling_rate: float = 0.995
+        cooling_rate: float = 0.99
     ):
         self.name = name
         self.max_iterations = max_iterations
