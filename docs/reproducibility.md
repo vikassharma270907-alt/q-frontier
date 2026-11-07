@@ -150,7 +150,20 @@ curl -X POST "http://localhost:8000/api/runs" \
   }'
 ```
 
-### 4. Download Export Bundle
+### 4. Direct QPU Hardware Execution via cURL
+```bash
+curl -X POST "http://localhost:8000/api/hardware/execute-qpu" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "backend_target": "ionq",
+    "n_qubits": 4,
+    "k_cardinality": 2,
+    "circuit_depth": 1,
+    "shots": 1024
+  }'
+```
+
+### 5. Download Export Bundle
 ```bash
 curl "http://localhost:8000/api/runs/{run_id}/export" -o reproducibility_bundle.json
 ```

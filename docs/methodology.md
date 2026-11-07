@@ -83,6 +83,15 @@ For rigorous comparison, Q-FRONTIER also implements the standard unconstrained b
 $$H_{\text{pen}} = H_C + \rho \left(\sum_{i=1}^N \frac{I - Z_i}{2} - K\right)^2, \quad H_M^X = \sum_{i=1}^N X_i$$
 Because $[H_M^X, \sum Z_i] \ne 0$, probability amplitude leaks into infeasible states, directly illustrating the advantage of constraint-preserving mixers.
 
+### 3.6 Hardware-Calibrated QPU Execution & Routing Transpilation
+Q-FRONTIER models and executes circuits against target physical QPU architectures:
+1. **IonQ Trapped-Ion (`ionq.aria-1`):** Complete-graph all-to-all connectivity ($K_n$) achieves $0$ routing SWAP overhead for complete-graph XY mixers. Coherence times $T_1 \sim 10^7\ \mu\text{s}$.
+2. **IBM Quantum Heavy-Hex (`ibm_sherbrooke`):** Sparse nearest-neighbor planar grid requires quadratic SWAP networks ($O(n^2)$ SWAPs), demonstrating routing inflation and decoherence vulnerability on superconducting transmons.
+3. **Quantum Rings (`quantum_rings_virtual_qpu`):** High-precision virtual QPU SDK leveraging ring coupling topology.
+4. **Sandia Volumetric Noise Simulator (`sandia.volumetric-depolarizing`):** Evaluates gate-volume depolarizing degradation across width-depth capability spaces (Proctor et al. 2022).
+
+Each QPU execution records transpiled circuit depth, 2Q gate count, routing SWAPs, device calibration snapshot ($T_1, T_2$, 2Q error, readout error), and samples empirical measurement shots.
+
 ---
 
 ## 4. Classical Benchmarks

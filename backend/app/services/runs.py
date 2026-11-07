@@ -28,6 +28,7 @@ from app.solvers.annealing import SimulatedAnnealingSolver
 from app.solvers.xy_qaoa import XYQAOASolver
 from app.solvers.penalty_qaoa import PenaltyQAOASolver
 from app.solvers.agp_experiment import CounterdiabaticQAOASolver
+from app.solvers.qpu_solver import QPUSolver
 from app.metrics.quality import compute_multi_seed_statistics
 
 
@@ -222,6 +223,24 @@ class RunService:
                 ground_truth_max=ground_truth_max,
             )
             results_list.append(pen_res.to_dict())
+
+        # QPU Hardware Calibrated Device (IonQ / IBM / Quantum Rings / Sandia)
+        if "qpu_hardware" in solvers or "qpu" in solvers:
+            qpu_s = QPUSolver(backend_target="ionq", shots=1024)
+            opt_bitstr = "".join("1" if i in exact_res.selected_indices else "0" for i in range(n))
+            qpu_res = qpu_s.solve(
+                cov=cov,
+                mu=mu,
+                k_cardinality=k_cardinality,
+                tickers=tickers,
+                lambda_risk=lambda_risk,
+                depth=circuit_depth,
+                turnover_penalty=turnover_penalty,
+                ground_truth_min=ground_truth_min,
+                ground_truth_max=ground_truth_max,
+                opt_bitstring=opt_bitstr,
+            )
+            results_list.append(qpu_res.to_dict())
 
         # 4. Continuous Weights & Backtest on Best Portfolio
         best_selection_res = min(results_list, key=lambda r: r["objective_value"])

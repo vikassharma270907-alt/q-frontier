@@ -13,6 +13,7 @@ from app.solvers.agp_experiment import (
     CounterdiabaticQAOASolver,
     build_agp_counterdiabatic_matrix,
 )
+from app.solvers.qpu_solver import QPUSolver
 
 __all__ = [
     "SolverResult",
@@ -21,6 +22,7 @@ __all__ = [
     "XYQAOASolver",
     "PenaltyQAOASolver",
     "CounterdiabaticQAOASolver",
+    "QPUSolver",
     "prepare_dicke_statevector",
     "build_xy_mixer_matrix",
     "build_agp_counterdiabatic_matrix",

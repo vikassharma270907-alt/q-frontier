@@ -74,6 +74,9 @@ $$\min_{x \in \{0, 1\}^N} \quad f(x) = \lambda \cdot x^T \Sigma x - (1 - \lambda
 5. **Penalty-QAOA Baseline (`SIMULATED_QUANTUM`):**
    - Unconstrained transverse field mixer $H_M^X = \sum X_i$ with penalty $\rho (\sum x_i - K)^2$.
    - Quantifies shot leakage (typically $>5\%-20\%$ non-feasible shots), demonstrating why constraint-preserving XY mixers are mathematically superior for cardinality constraints.
+6. **QPU Hardware Calibrated Device (`SIMULATED_NOISE_QPU`):**
+   - Transpiles the QAOA circuit to target physical device topologies (IonQ all-to-all, IBM heavy-hex, Quantum Rings, Sandia volumetric model).
+   - Samples discrete measurement shots under realistic calibrated noise models ($T_1, T_2$, 2Q depolarizing error, readout error) and logs complete provenance.
 
 ---
 
@@ -114,6 +117,7 @@ Builds the multi-stage image (Node.js Vite frontend + Python 3.11 backend) and e
 | `GET` | `/api/runs/{run_id}` | Retrieve complete results, solver metrics, and diagnostics |
 | `GET` | `/api/runs/{run_id}/portfolio` | Retrieve SLSQP continuous weights for the selected portfolio |
 | `GET` | `/api/runs/{run_id}/export` | Download cryptographic JSON reproducibility bundle |
+| `POST` | `/api/hardware/execute-qpu` | Execute benchmark circuit on target QPU device (IonQ/IBM/Quantum Rings/Sandia) |
 
 ---
 

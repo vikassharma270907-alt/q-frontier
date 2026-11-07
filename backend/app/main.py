@@ -9,11 +9,13 @@ from pathlib import Path
 from typing import Dict, Any, List, Optional
 import numpy as np
 
-from fastapi import FastAPI, HTTPException, UploadFile, File, Query
+from fastapi import FastAPI, HTTPException, UploadFile, File, Query, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from app.schemas import RunRequest, CSVValidateRequest, OptimizationRequest
+from app.hardware.models import QPUExecuteRequest
+from app.hardware.driver import qpu_driver
 from app.data.loader import dataset_manager
 from app.data.validation import parse_and_validate_csv
 from app.services.runs import run_service
@@ -277,7 +279,7 @@ def run_optimization(req: OptimizationRequest) -> Dict[str, Any]:
 
 
 @app.get("/api/hardware/benchmarks")
-def get_hardware_benchmarks(n_qubits: int = Query(4, ge=2, le=12, description="Number of qubits (2 to 12)")) -> Dict[str, Any]:
+def get_hardware_benchmarks(n_qubits: int = Query(4, ge=2, le=12)) -> Dict[str, Any]:
     """Returns IonQ all-to-all vs IBM heavy-hex SWAP routing and Sandia 2D volumetric grid."""
     try:
         hw_comp = generate_hardware_comparison(n_qubits=n_qubits)
@@ -288,6 +290,30 @@ def get_hardware_benchmarks(n_qubits: int = Query(4, ge=2, le=12, description="N
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/hardware/execute-qpu")
+def execute_qpu_job(req: QPUExecuteRequest) -> Dict[str, Any]:
+    """
+    Submits circuit to target QPU architecture (IonQ, IBM, Quantum Rings, Sandia).
+    Transpiles, samples measurement shots under device noise models, and logs calibration snapshot.
+    """
+    try:
+        prices = fetch_nasdaq_history(DEFAULT_TICKERS[:req.n_qubits], lookback_days=90)
+        mu, cov, _ = compute_expected_returns_and_covariance(prices)
+
+        record = qpu_driver.execute_on_qpu(
+            cov=cov,
+            mu=mu,
+            k_cardinality=req.k_cardinality,
+            backend_target=req.backend_target,
+            circuit_depth=req.circuit_depth,
+            shots=req.shots,
+            api_token=req.api_token
+        )
+        return record.to_dict()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"QPU execution failed: {str(e)}")
 
 
 # ---------------------------------------------------------------------------

@@ -429,7 +429,7 @@ export default function AuditWorkbenchView({ onExportSuccess }) {
             </div>
 
             <label className="text-xs font-semibold text-slate-300 block mb-1">
-              Solvers Active ({selectedSolvers.length}/5)
+              Solvers Active ({selectedSolvers.length}/6)
             </label>
             <div className="flex flex-wrap gap-1">
               {[
@@ -437,7 +437,8 @@ export default function AuditWorkbenchView({ onExportSuccess }) {
                 { id: 'annealing', label: 'Annealing' },
                 { id: 'xy_qaoa', label: 'XY-QAOA' },
                 { id: 'ccd_qaoa', label: 'CCD-QAOA' },
-                { id: 'penalty_qaoa', label: 'Penalty' }
+                { id: 'penalty_qaoa', label: 'Penalty' },
+                { id: 'qpu_hardware', label: 'QPU Hardware' }
               ].map((s) => (
                 <button
                   key={s.id}
