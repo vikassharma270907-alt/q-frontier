@@ -46,3 +46,10 @@ class OptimizationRequest(BaseModel):
     depth: int = Field(1, ge=1, le=2, description="Circuit depth p.")
     use_qcl_sensor: bool = Field(True, description="Whether to tune risk aversion via QCL.")
     transaction_cost_bps: float = Field(5.0, ge=0.0, le=50.0, description="Transaction fee in basis points.")
+
+
+class StressTestRequest(BaseModel):
+    scenario: str = Field("CRISIS_2026_LIQUIDITY", description="Stress test scenario ID: 'CRISIS_2026_LIQUIDITY', 'CRISIS_FLASH_CRASH', or 'CRISIS_TECH_ROTATION'.")
+    k_cardinality: int = Field(3, ge=1, le=11, description="Number of assets to select K.")
+    asset_count: int = Field(8, ge=4, le=12, description="Asset universe size N.")
+    transaction_cost_bps: float = Field(5.0, ge=0.0, le=50.0, description="Transaction fees in bps.")

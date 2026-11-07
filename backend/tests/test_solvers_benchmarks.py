@@ -10,6 +10,7 @@ from app.solvers.annealing import SimulatedAnnealingSolver
 from app.solvers.xy_qaoa import XYQAOASolver
 from app.solvers.penalty_qaoa import PenaltyQAOASolver
 from app.solvers.agp_experiment import CounterdiabaticQAOASolver
+from app.solvers.gnn_mixer import GNNSparseXYQAOASolver, compute_gnn_sparse_edges
 
 
 @pytest.fixture
@@ -94,3 +95,24 @@ def test_penalty_qaoa_shot_leakage(toy_problem):
     # Unconstrained mixer exhibits shot leakage (feasibility < 100%)
     assert pen_res.feasibility_rate < 0.95
     assert pen_res.metadata["shot_leakage_pct"] > 5.0
+
+
+def test_gnn_sparse_xy_qaoa_solver(toy_problem):
+    """Verify GNN sparsified XY mixer preserves 100% feasibility and cuts gate count."""
+    cov, mu, tickers = toy_problem
+    exact_res = ExactEnumerationSolver().solve(cov, mu, k_cardinality=2, tickers=tickers)
+
+    gnn_solver = GNNSparseXYQAOASolver()
+    res = gnn_solver.solve(
+        cov, mu, k_cardinality=2, tickers=tickers, depth=1,
+        ground_truth_min=exact_res.objective_value,
+        ground_truth_max=exact_res.metadata["e_max"]
+    )
+
+    assert res.solver_type == "SIMULATED_QUANTUM"
+    assert res.feasibility_rate == pytest.approx(1.0)
+    assert res.metadata["subspace_preserved"] is True
+    assert res.metadata["commutation_error"] < 1e-10
+    assert res.metadata["cnot_reduction_pct"] > 0
+    assert res.approximation_ratio >= 0.60
+

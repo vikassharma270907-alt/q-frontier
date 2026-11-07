@@ -82,6 +82,22 @@ $$\min_{x \in \{0, 1\}^N} \quad f(x) = \lambda \cdot x^T \Sigma x - (1 - \lambda
 
 ## 2. Quickstart Guide
 
+### 0. 3-Minute Animated Video Demo & Wispr Flow Studio Narration
+Launch the interactive animated video demo player with synchronized studio neural voice narration (Marcus / ChristopherNeural — 138 WPM):
+
+```bash
+# Windows 1-Click Launcher
+.\scripts\launch_demo_video.ps1
+
+# Cross-Platform Python Launcher
+python scripts/launch_demo_video.py
+
+# Or visit when FastAPI server is running: http://localhost:8000/demo
+```
+- **Interactive Animated Player:** [`docs/video_demo_player.html`](docs/video_demo_player.html)
+- **Master Animation Storyboard:** [`docs/DEMO_VIDEO_ANIMATED.md`](docs/DEMO_VIDEO_ANIMATED.md)
+- **Total Spoken Runtime:** Exactly 2 minutes 46 seconds (166s), strictly under the 3:00 minute competition limit.
+
 ### 1. Unified Local Launch (Single Command)
 Runs the FastAPI REST API and serves the production React dashboard on a single port:
 

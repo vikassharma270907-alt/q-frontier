@@ -13,13 +13,14 @@ from fastapi import FastAPI, HTTPException, UploadFile, File, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from app.schemas import RunRequest, CSVValidateRequest, OptimizationRequest
+from app.schemas import RunRequest, CSVValidateRequest, OptimizationRequest, StressTestRequest
 from app.hardware.models import QPUExecuteRequest
 from app.hardware.driver import qpu_driver
 from app.data.loader import dataset_manager
 from app.data.validation import parse_and_validate_csv
 from app.services.runs import run_service
 from app.services.exports import export_service
+from app.finance.stress_testing import run_systemic_crisis_stress_test
 
 # Import legacy components for backward compatibility
 from app.rmt_clustering import (
@@ -175,6 +176,24 @@ def export_run_bundle(run_id: str) -> Dict[str, Any]:
     if not bundle:
         raise HTTPException(status_code=404, detail=f"Run '{run_id}' not found.")
     return bundle
+
+
+@app.post("/api/stress-test")
+def execute_stress_test(req: StressTestRequest) -> Dict[str, Any]:
+    """
+    Executes a systemic financial crisis stress test comparing Classical Markowitz
+    vs Q-FRONTIER (QCL Volatility Sensor + GNN-Sparsified CCD-QAOA).
+    """
+    try:
+        report = run_systemic_crisis_stress_test(
+            scenario=req.scenario,
+            k_cardinality=req.k_cardinality,
+            asset_count=req.asset_count,
+            transaction_cost_bps=req.transaction_cost_bps,
+        )
+        return report
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Stress test simulation failed: {str(e)}")
 
 
 # ---------------------------------------------------------------------------

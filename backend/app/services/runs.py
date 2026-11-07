@@ -30,8 +30,10 @@ from app.solvers.annealing import SimulatedAnnealingSolver
 from app.solvers.xy_qaoa import XYQAOASolver
 from app.solvers.penalty_qaoa import PenaltyQAOASolver
 from app.solvers.agp_experiment import CounterdiabaticQAOASolver
+from app.solvers.gnn_mixer import GNNSparseXYQAOASolver
 from app.solvers.qpu_solver import QPUSolver
 from app.metrics.quality import compute_multi_seed_statistics
+from app.metrics.conformal import compute_conformal_portfolio_bounds
 
 
 def sanitize_for_json(obj: Any) -> Any:
@@ -210,6 +212,22 @@ class RunService:
             )
             results_list.append(ccd_res.to_dict())
 
+        # GNN-Sparse XY-QAOA (Geometric Quantum ML, Simulated)
+        if "gnn_xy_qaoa" in solvers or "gnn_mixer" in solvers or "gnn" in solvers:
+            gnn_solver = GNNSparseXYQAOASolver()
+            gnn_res = gnn_solver.solve(
+                cov=cov,
+                mu=mu,
+                k_cardinality=k_cardinality,
+                tickers=tickers,
+                lambda_risk=lambda_risk,
+                depth=circuit_depth,
+                turnover_penalty=turnover_penalty,
+                ground_truth_min=ground_truth_min,
+                ground_truth_max=ground_truth_max,
+            )
+            results_list.append(gnn_res.to_dict())
+
         # Penalty-QAOA (Simulated)
         if "penalty_qaoa" in solvers:
             pen_solver = PenaltyQAOASolver()
@@ -251,6 +269,14 @@ class RunService:
 
         continuous_weights, sharpe = optimize_continuous_weights_slsqp(
             selected_indices, mu, cov
+        )
+
+        conformal_bounds = compute_conformal_portfolio_bounds(
+            returns_df=returns,
+            weights=continuous_weights,
+            selected_indices=selected_indices,
+            shots=1024,
+            alpha=0.05
         )
 
         backtest = run_walk_forward_backtest(
@@ -300,6 +326,7 @@ class RunService:
                 "expected_return_pct": round(float(np.dot(continuous_weights, mu)) * 100.0, 2),
                 "annualized_vol_pct": round(float(np.sqrt(continuous_weights @ cov @ continuous_weights)) * 100.0, 2),
                 "theoretical_sharpe": round(sharpe, 2),
+                "conformal_uncertainty_95": conformal_bounds,
             },
             "diagnostics": {
                 "expected_returns": [round(float(x), 4) for x in mu],
