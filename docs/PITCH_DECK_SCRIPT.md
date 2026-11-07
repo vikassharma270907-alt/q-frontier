@@ -84,6 +84,11 @@
 ## Slide 10: Conclusion & Deliverables Summary (4:50 - 5:00)
 - **Slide Title:** Summary of Deliverables & Live Workbench
 - **Visuals:** QR code to GitHub repo; 52/52 tests passing badge; single-port UI screenshot; notebook link.
+- **Key Project Links:**
+  - **Live Production App:** [https://q-frontier.onrender.com](https://q-frontier.onrender.com)
+  - **System Health & Diagnostic Monitor:** [https://q-frontier.onrender.com/api/health](https://q-frontier.onrender.com/api/health)
+  - **Interactive Presentation Player:** [https://q-frontier.onrender.com/demo](https://q-frontier.onrender.com/demo)
+  - **GitHub Repository:** [https://github.com/vikassharma270907-alt/q-frontier](https://github.com/vikassharma270907-alt/q-frontier)
 - **Presenter Script:**
   > *"In summary, Q-FRONTIER delivers a production-grade workbench: 52 passing tests, GNN-sparsified mixers, conformal uncertainty quantification, institutional crisis stress-testing, multi-sponsor SDK integration with Quantum Rings and Qiskit Aer, a standalone Jupyter reproduction notebook, and an interactive React dashboard. Thank you, and we welcome your questions."*
 

@@ -65,9 +65,12 @@ When solving cardinality-constrained portfolio optimization for Nasdaq equities,
 2:14 - Hardware Transpilation Audit, Sandia Volumetric Heatmap & Wrap-Up
 
 🔗 PROJECT LINKS & REPOSITORIES:
-• Live Web Dashboard: https://q-frontier.vercel.app
-• Devpost Submission: https://devpost.com/software/q-frontier
+• Live Production App: https://q-frontier.onrender.com
+• System Health & Diagnostics: https://q-frontier.onrender.com/api/health
+• Interactive Demo Video Player: https://q-frontier.onrender.com/demo
 • GitHub Repository: https://github.com/vikassharma270907-alt/q-frontier
+• Vercel Mirror: https://q-frontier.vercel.app
+• Devpost Submission: https://devpost.com/software/q-frontier
 • Competition Portal: https://intermountainquantum.org/
 
 🔬 SCIENTIFIC & FINANCIAL GUARDRAILS DISCLOSURE:

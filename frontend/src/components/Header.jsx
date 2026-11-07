@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cpu, ShieldCheck } from 'lucide-react';
+import { Cpu, ShieldCheck, Play, Activity, Github } from 'lucide-react';
 
 export default function Header({ status }) {
   const sponsors = [
@@ -40,16 +40,35 @@ export default function Header({ status }) {
           </div>
         </div>
 
-        {/* Sponsor Badges & System Status */}
-        <div className="flex flex-col items-start md:items-end gap-2">
-          <div className="flex items-center gap-2">
-            <span className="flex h-2 w-2 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-zinc-300 opacity-60"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-zinc-100"></span>
-            </span>
-            <span className="text-[11px] font-mono text-zinc-300 font-medium">
-              Quantum Backend: Active (QuantumRingsLib / Aer)
-            </span>
+        {/* Action Links & Sponsor Badges */}
+        <div className="flex flex-col items-start md:items-end gap-2.5">
+          <div className="flex items-center gap-2.5">
+            <a
+              href="/demo"
+              className="text-[11px] font-mono font-semibold px-2.5 py-1 rounded-lg bg-zinc-900 border border-zinc-700/80 text-zinc-300 hover:text-white hover:border-zinc-500 transition-all flex items-center gap-1.5"
+              title="Open 3-Minute Video Presentation Player"
+            >
+              <Play className="h-3 w-3 fill-current text-zinc-400" />
+              <span>Video Demo</span>
+            </a>
+            <a
+              href="/api/health"
+              className="text-[11px] font-mono font-semibold px-2.5 py-1 rounded-lg bg-zinc-900 border border-zinc-700/80 text-zinc-300 hover:text-white hover:border-zinc-500 transition-all flex items-center gap-1.5"
+              title="Open Diagnostic & Health Monitor"
+            >
+              <Activity className="h-3 w-3 text-emerald-400" />
+              <span>Diagnostics</span>
+            </a>
+            <a
+              href="https://github.com/vikassharma270907-alt/q-frontier"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[11px] font-mono font-semibold px-2.5 py-1 rounded-lg bg-zinc-800 text-white hover:bg-zinc-700 border border-zinc-600 transition-all flex items-center gap-1.5"
+              title="View Source on GitHub"
+            >
+              <Github className="h-3.5 w-3.5" />
+              <span>GitHub</span>
+            </a>
           </div>
 
           <div className="flex flex-wrap gap-1.5 items-center">

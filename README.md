@@ -3,10 +3,28 @@
 > **Auditable Hybrid Optimization Research Workbench for Cardinality-Constrained Portfolio Selection**  
 > Developed for the **Intermountain Quantum Competition (IQC) 2026** (Brigham Young University).
 
-[![Tests](https://img.shields.io/badge/pytest-52%20passed-emerald)](file:///backend/tests)
+[![Live App](https://img.shields.io/badge/Render-Live%20Production-10b981?logo=render&logoColor=white)](https://q-frontier.onrender.com/)
+[![System Health](https://img.shields.io/badge/System-Healthy%20200%20OK-emerald)](https://q-frontier.onrender.com/api/health)
+[![Demo Player](https://img.shields.io/badge/Demo-Interactive%20Video-blue)](https://q-frontier.onrender.com/demo)
+[![Tests](https://img.shields.io/badge/pytest-52%20passed-emerald)](backend/tests)
 [![Python](https://img.shields.io/badge/Python-3.11%20%7C%203.14-blue)](https://www.python.org/)
 [![Qiskit](https://img.shields.io/badge/Qiskit-Aer%20Simulated-cyan)](https://qiskit.org/)
 [![License](https://img.shields.io/badge/License-Apache--2.0-slate)](LICENSE)
+
+---
+
+## 🚀 Live Cloud Deployment & Direct Project Links
+
+Explore the live, zero-downtime production deployment running on Render:
+
+| Destination | Live URL | Description |
+| :--- | :--- | :--- |
+| **🌐 Production Web Workbench** | **[https://q-frontier.onrender.com/](https://q-frontier.onrender.com/)** | Full hybrid quantum portfolio optimization dashboard (React 18 + FastAPI) |
+| **🩺 Health & Diagnostic Monitor** | **[https://q-frontier.onrender.com/api/health](https://q-frontier.onrender.com/api/health)** | Live system diagnostics, Qiskit Aer status, and hardware transpilation readiness |
+| **🎬 Interactive 3-Min Video Demo** | **[https://q-frontier.onrender.com/demo](https://q-frontier.onrender.com/demo)** | In-browser animated presentation with synchronized studio neural voiceover |
+| **📺 YouTube Video Walkthrough** | **[https://youtu.be/lFh2yWlSShY](https://youtu.be/lFh2yWlSShY)** | 2:46 Full HD narration strictly under the 3-minute competition limit |
+| **💻 GitHub Repository** | **[https://github.com/vikassharma270907-alt/q-frontier](https://github.com/vikassharma270907-alt/q-frontier)** | Complete open-source codebase, test suites, and documentation |
+| **📦 Submission Package (ZIP)** | **[`dist/Q-FRONTIER-Submission-IQC2026.zip`](dist/Q-FRONTIER-Submission-IQC2026.zip)** | Pre-packaged zero-bloat archive ready for Devpost & Aqora upload |
 
 ---
 
@@ -126,7 +144,7 @@ Open **[http://localhost:8000](http://localhost:8000)** in your browser.
 ```bash
 pytest
 ```
-Executes all 37 unit and integration tests across data validation, covariance estimators, objective correctness, Dicke state properties, XY mixer commutation, QPU device calibration, and REST API endpoints.
+Executes all 52 unit and integration tests across data validation, covariance estimators, objective correctness, Dicke state properties, XY mixer commutation, GNN sparsification, conformal prediction, QPU device calibration, and REST API endpoints.
 
 ### 3. Docker Compose Deployment
 ```bash
@@ -135,8 +153,11 @@ docker compose up --build
 Builds the multi-stage image (Node.js Vite frontend + Python 3.11 backend) and exposes the dashboard at `http://localhost:8000`.
 
 ### 4. Cloud Production Deployments
-- **Vercel (Frontend & Serverless API):** Live production dashboard at [https://q-frontier.vercel.app](https://q-frontier.vercel.app)
-- **Render (Fullstack Docker Blueprint):** Deploy with 1-click on Render via Infrastructure-as-Code Blueprint (`render.yaml`) connecting `https://github.com/vikassharma270907-alt/q-frontier`.
+- **Render Live Production Application:** **[https://q-frontier.onrender.com](https://q-frontier.onrender.com)** (Zero-downtime containerized single-port deployment of FastAPI + React SPA).
+- **System Health & Diagnostic Monitor:** **[https://q-frontier.onrender.com/api/health](https://q-frontier.onrender.com/api/health)** (Interactive browser dashboard & JSON API with content negotiation).
+- **Interactive Presentation Video Demo:** **[https://q-frontier.onrender.com/demo](https://q-frontier.onrender.com/demo)** (In-browser animated presentation with synchronized neural voiceover narration).
+- **Vercel Serverless Mirror:** [https://q-frontier.vercel.app](https://q-frontier.vercel.app)
+- **Infrastructure-as-Code Blueprint:** Automated Render deployment defined in [`render.yaml`](render.yaml).
 
 
 ---
