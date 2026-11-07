@@ -39,7 +39,9 @@ def optimize_continuous_weights_slsqp(
         return -(port_ret - risk_free_rate) / port_vol
 
     init_w = np.ones(k) / float(k)
-    bounds = [(min_weight, max_weight) for _ in range(k)]
+    effective_min = min(min_weight, 1.0 / k)
+    effective_max = max(max_weight, 1.0 / k)
+    bounds = [(effective_min, effective_max) for _ in range(k)]
     constraints = [{"type": "eq", "fun": lambda w: np.sum(w) - 1.0}]
 
     res = minimize(
@@ -91,10 +93,12 @@ def run_walk_forward_backtest(
         selected_indices, mu_init, cov_init
     )
 
+    format_date = lambda d: d.strftime("%Y-%m-%d") if hasattr(d, "strftime") else str(d)[:10]
+
     q_daily_rets = []
     ew_curve = [100.0]
     q_curve = [100.0]
-    dates_str = [dates[0].strftime("%Y-%m-%d")]
+    dates_str = [format_date(dates[0])]
 
     prev_weights = np.zeros(n_assets)
     cum_turnover = 0.0
@@ -118,7 +122,7 @@ def run_walk_forward_backtest(
 
         q_curve.append(float(q_val))
         ew_curve.append(float(ew_val))
-        dates_str.append(dates[t].strftime("%Y-%m-%d"))
+        dates_str.append(format_date(dates[t]))
 
     q_rets_arr = np.array(q_daily_rets)
     ann_ret = float(np.mean(q_rets_arr) * 252.0)

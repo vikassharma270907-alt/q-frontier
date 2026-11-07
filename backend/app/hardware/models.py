@@ -3,9 +3,9 @@ Data contracts and provenance records for QPU hardware execution.
 """
 
 from __future__ import annotations
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Optional, Union
 from dataclasses import dataclass, asdict
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
 
 
 @dataclass
@@ -59,4 +59,4 @@ class QPUExecuteRequest(BaseModel):
     k_cardinality: int = Field(2, ge=1, le=11, description="Excitation cardinality constraint.")
     circuit_depth: int = Field(1, ge=1, le=2, description="QAOA Trotter depth p.")
     shots: int = Field(1024, ge=100, le=10000, description="Measurement shot count.")
-    api_token: Optional[str] = Field(None, description="Optional live cloud QPU provider API token.")
+    api_token: Optional[Union[SecretStr, str]] = Field(None, description="Optional live cloud QPU provider API token.")

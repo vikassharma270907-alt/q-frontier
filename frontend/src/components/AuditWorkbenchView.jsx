@@ -140,19 +140,20 @@ export default function AuditWorkbenchView({ onExportSuccess }) {
     }
   };
 
-  // Prepare chart comparison data
+  // Prepare chart comparison data with NaN and null guardrails
   const solverChartData = runResult?.solver_results?.map((s) => ({
     name: s.solver_name.replace(' (Simulated)', '').replace(' (Transverse Mixer)', '').replace(' Classical', ''),
     objective: roundVal(s.objective_value, 4),
-    ar_pct: Math.round(s.approximation_ratio * 100),
-    feasibility_pct: Math.round(s.feasibility_rate * 100),
-    runtime_ms: s.runtime_ms,
+    ar_pct: Math.round((s.approximation_ratio ?? 0) * 100) || 0,
+    feasibility_pct: Math.round((s.feasibility_rate ?? 0) * 100) || 0,
+    runtime_ms: s.runtime_ms ?? 0,
     isExact: s.solver_type === 'CLASSICAL_EXACT',
     type: s.solver_type
   })) || [];
 
   function roundVal(v, digits = 4) {
-    return typeof v === 'number' ? parseFloat(v.toFixed(digits)) : 0;
+    if (typeof v !== 'number' || isNaN(v) || !isFinite(v)) return 0;
+    return parseFloat(v.toFixed(digits));
   }
 
   return (

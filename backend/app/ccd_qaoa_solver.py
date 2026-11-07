@@ -175,6 +175,12 @@ class CCDQAOASolver:
         opt_bitstring = bin(opt_idx)[2:].zfill(self.n_qubits)
         opt_selection = [int(c) for c in opt_bitstring]
 
+        # Precompute spectral decompositions to eliminate O(2^3N) matrix exponentials
+        w_m, v_m = np.linalg.eigh(self.h_m_xy)
+        v_m_dag = v_m.conj().T
+        w_cd, v_cd = np.linalg.eigh(h_cd)
+        v_cd_dag = v_cd.conj().T
+
         # 1. CCD-QAOA Statevector Evolution
         # Warm-start Trotter schedule: gamma_l = l/p * dt, beta_l = (1 - l/p) * dt
         dt = 0.8
@@ -189,10 +195,9 @@ class CCDQAOASolver:
             
             psi = self.dicke_state.copy()
             for l in range(depth):
-                u_c = expm(-1j * g[l] * h_c)
-                u_m = expm(-1j * b[l] * self.h_m_xy)
-                u_cd = expm(-1j * a[l] * h_cd)
-                psi = u_cd @ (u_m @ (u_c @ psi))
+                psi = np.exp(-1j * g[l] * energy_vec) * psi
+                psi = v_m @ (np.exp(-1j * b[l] * w_m) * (v_m_dag @ psi))
+                psi = v_cd @ (np.exp(-1j * a[l] * w_cd) * (v_cd_dag @ psi))
                 
             probs = np.abs(psi) ** 2
             return float(np.dot(probs, energy_vec))
@@ -204,10 +209,9 @@ class CCDQAOASolver:
         p_opt = res_ccd.x
         psi_ccd = self.dicke_state.copy()
         for l in range(depth):
-            u_c = expm(-1j * p_opt[l] * h_c)
-            u_m = expm(-1j * p_opt[depth + l] * self.h_m_xy)
-            u_cd = expm(-1j * p_opt[2 * depth + l] * h_cd)
-            psi_ccd = u_cd @ (u_m @ (u_c @ psi_ccd))
+            psi_ccd = np.exp(-1j * p_opt[l] * energy_vec) * psi_ccd
+            psi_ccd = v_m @ (np.exp(-1j * p_opt[depth + l] * w_m) * (v_m_dag @ psi_ccd))
+            psi_ccd = v_cd @ (np.exp(-1j * p_opt[2 * depth + l] * w_cd) * (v_cd_dag @ psi_ccd))
             
         probs_ccd = np.abs(psi_ccd) ** 2
         exp_ccd = float(np.dot(probs_ccd, energy_vec))
@@ -221,18 +225,16 @@ class CCDQAOASolver:
             b = params[depth:]
             psi = self.dicke_state.copy()
             for l in range(depth):
-                u_c = expm(-1j * g[l] * h_c)
-                u_m = expm(-1j * b[l] * self.h_m_xy)
-                psi = u_m @ (u_c @ psi)
+                psi = np.exp(-1j * g[l] * energy_vec) * psi
+                psi = v_m @ (np.exp(-1j * b[l] * w_m) * (v_m_dag @ psi))
             probs = np.abs(psi) ** 2
             return float(np.dot(probs, energy_vec))
             
         res_xy = minimize(xy_loss, np.array(gamma_init + beta_init), method="COBYLA", options={"maxiter": 40})
         psi_xy = self.dicke_state.copy()
         for l in range(depth):
-            u_c = expm(-1j * res_xy.x[l] * h_c)
-            u_m = expm(-1j * res_xy.x[depth + l] * self.h_m_xy)
-            psi_xy = u_m @ (u_c @ psi_xy)
+            psi_xy = np.exp(-1j * res_xy.x[l] * energy_vec) * psi_xy
+            psi_xy = v_m @ (np.exp(-1j * res_xy.x[depth + l] * w_m) * (v_m_dag @ psi_xy))
         probs_xy = np.abs(psi_xy) ** 2
         exp_xy = float(np.dot(probs_xy, energy_vec))
         ar_xy = float(np.clip((e_max - exp_xy) / e_range, 0.0, 1.0))

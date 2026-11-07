@@ -87,6 +87,12 @@ class CounterdiabaticQAOASolver:
         beta_init = [(1.0 - (l / depth)) * dt for l in range(1, depth + 1)]
         alpha_init = [0.25 / depth] * depth
 
+        # Precompute spectral decompositions to eliminate O(2^3N) matrix exponentials
+        w_m, v_m = np.linalg.eigh(h_m_xy)
+        v_m_dag = v_m.conj().T
+        w_cd, v_cd = np.linalg.eigh(h_cd)
+        v_cd_dag = v_cd.conj().T
+
         eval_count = 0
 
         def loss_fn(params):
@@ -98,10 +104,11 @@ class CounterdiabaticQAOASolver:
 
             psi = dicke_state.copy()
             for l in range(depth):
-                u_c = expm(-1j * g[l] * h_c)
-                u_m = expm(-1j * b[l] * h_m_xy)
-                u_cd = expm(-1j * a[l] * h_cd)
-                psi = u_cd @ (u_m @ (u_c @ psi))
+                # Diagonal phase rotation O(dim)
+                psi = np.exp(-1j * g[l] * energy_vec) * psi
+                # Precomputed spectral evolutions O(dim^2)
+                psi = v_m @ (np.exp(-1j * b[l] * w_m) * (v_m_dag @ psi))
+                psi = v_cd @ (np.exp(-1j * a[l] * w_cd) * (v_cd_dag @ psi))
 
             probs = np.abs(psi) ** 2
             return float(np.dot(probs, energy_vec))
@@ -112,10 +119,9 @@ class CounterdiabaticQAOASolver:
         opt_params = res.x
         psi_final = dicke_state.copy()
         for l in range(depth):
-            u_c = expm(-1j * opt_params[l] * h_c)
-            u_m = expm(-1j * opt_params[depth + l] * h_m_xy)
-            u_cd = expm(-1j * opt_params[2 * depth + l] * h_cd)
-            psi_final = u_cd @ (u_m @ (u_c @ psi_final))
+            psi_final = np.exp(-1j * opt_params[l] * energy_vec) * psi_final
+            psi_final = v_m @ (np.exp(-1j * opt_params[depth + l] * w_m) * (v_m_dag @ psi_final))
+            psi_final = v_cd @ (np.exp(-1j * opt_params[2 * depth + l] * w_cd) * (v_cd_dag @ psi_final))
 
         probs = np.abs(psi_final) ** 2
         exp_energy = float(np.dot(probs, energy_vec))

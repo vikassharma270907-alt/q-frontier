@@ -4,7 +4,7 @@ Pydantic schemas and data transfer objects for Q-FRONTIER REST API.
 
 from __future__ import annotations
 from typing import List, Dict, Any, Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 
 class RunRequest(BaseModel):
@@ -25,9 +25,17 @@ class RunRequest(BaseModel):
     transaction_cost_bps: float = Field(5.0, ge=0.0, le=50.0, description="Transaction fee in basis points.")
     turnover_penalty: float = Field(0.05, ge=0.0, le=0.5, description="Turnover continuity bonus.")
 
+    @model_validator(mode="after")
+    def validate_cardinality(self) -> RunRequest:
+        if self.k_cardinality >= self.asset_count:
+            raise ValueError(
+                f"k_cardinality ({self.k_cardinality}) must be strictly less than asset_count ({self.asset_count})."
+            )
+        return self
+
 
 class CSVValidateRequest(BaseModel):
-    csv_content: str = Field(..., description="Raw CSV string with date and price columns.")
+    csv_content: str = Field(..., max_length=5_000_000, description="Raw CSV string with date and price columns.")
     dataset_id: Optional[str] = Field(None, description="Optional unique identifier to save the dataset under.")
 
 

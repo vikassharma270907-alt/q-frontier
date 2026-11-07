@@ -1,11 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import Header from './components/Header';
 import AuditWorkbenchView from './components/AuditWorkbenchView';
 import RmtClusterView from './components/RmtClusterView';
 import QaoaBenchmarkView from './components/QaoaBenchmarkView';
 import EquityCurveView from './components/EquityCurveView';
 import VolumetricView from './components/VolumetricView';
-import { Layers, Zap, TrendingUp, Cpu, SlidersHorizontal, Check, ShieldAlert } from 'lucide-react';
+import { Layers, Zap, TrendingUp, Cpu, SlidersHorizontal, Check, ShieldAlert, RefreshCw } from 'lucide-react';
+
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error("View rendering error caught by boundary:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="bg-zinc-950 border border-zinc-800 rounded-2xl p-8 text-center space-y-4">
+          <ShieldAlert className="h-10 w-10 text-zinc-400 mx-auto" />
+          <h3 className="text-sm font-bold text-white uppercase font-mono">Module Visualization Recovery</h3>
+          <p className="text-xs text-zinc-400 max-w-md mx-auto">
+            A non-critical rendering exception occurred in this module view. The underlying quantum-classical engine remains healthy.
+          </p>
+          <button
+            onClick={() => this.setState({ hasError: false, error: null })}
+            className="px-4 py-2 rounded-xl text-xs font-bold bg-white text-black hover:bg-zinc-200 transition-colors inline-flex items-center gap-2"
+          >
+            <RefreshCw className="h-3.5 w-3.5" /> Reload View
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('workbench');
@@ -114,25 +150,27 @@ export default function App() {
 
         {/* Animated Tab Content Panes */}
         <div className="animate-fade-in">
-          {activeTab === 'workbench' && (
-            <AuditWorkbenchView onExportSuccess={handleExportSuccess} />
-          )}
+          <ErrorBoundary>
+            {activeTab === 'workbench' && (
+              <AuditWorkbenchView onExportSuccess={handleExportSuccess} />
+            )}
 
-          {activeTab === 'qaoa' && (
-            <QaoaBenchmarkView
-              optimizationResult={optimizationResult}
-              loading={loading}
-              onRunOptimization={runOptimization}
-              params={params}
-              setParams={setParams}
-            />
-          )}
+            {activeTab === 'qaoa' && (
+              <QaoaBenchmarkView
+                optimizationResult={optimizationResult}
+                loading={loading}
+                onRunOptimization={runOptimization}
+                params={params}
+                setParams={setParams}
+              />
+            )}
 
-          {activeTab === 'rmt' && <RmtClusterView marketData={marketData} />}
+            {activeTab === 'rmt' && <RmtClusterView marketData={marketData} />}
 
-          {activeTab === 'backtest' && <EquityCurveView optimizationResult={optimizationResult} />}
+            {activeTab === 'backtest' && <EquityCurveView optimizationResult={optimizationResult} />}
 
-          {activeTab === 'hardware' && <VolumetricView />}
+            {activeTab === 'hardware' && <VolumetricView />}
+          </ErrorBoundary>
         </div>
       </main>
 
