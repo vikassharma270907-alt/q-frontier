@@ -5,6 +5,8 @@ Data loader service managing synthetic presets and custom cached CSV datasets.
 from __future__ import annotations
 from typing import Dict, Any, List, Optional
 from pathlib import Path
+import re
+import time
 import pandas as pd
 
 from app.data.synthetic import generate_synthetic_prices, PRESET_UNIVERSES
@@ -80,14 +82,19 @@ class DatasetManager:
             # Default fallback to synthetic nasdaq 12
             return generate_synthetic_prices(PRESET_UNIVERSES["NASDAQ_12"], days=days, seed=42)
 
-    def store_custom_dataset(self, dataset_id: str, df: pd.DataFrame) -> None:
-        """Stores custom validated dataset in memory and persistent cache."""
-        self._custom_datasets[dataset_id] = df
+    def store_custom_dataset(self, dataset_id: str, df: pd.DataFrame) -> str:
+        """Stores custom validated dataset in memory and persistent cache securely."""
+        clean_id = re.sub(r"[^a-zA-Z0-9_-]", "", dataset_id)
+        if not clean_id:
+            clean_id = f"custom_{int(time.time())}"
+        self._custom_datasets[clean_id] = df
         try:
-            cache_file = self.cache_dir / f"{dataset_id}.csv"
-            df.to_csv(cache_file)
+            cache_file = (self.cache_dir / f"{clean_id}.csv").resolve()
+            if cache_file.is_relative_to(self.cache_dir.resolve()):
+                df.to_csv(cache_file)
         except Exception:
             pass
+        return clean_id
 
 
 dataset_manager = DatasetManager()

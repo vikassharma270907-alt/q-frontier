@@ -35,6 +35,11 @@ def validate_price_dataframe(df: pd.DataFrame) -> Dict[str, Any]:
     numeric_df = df.select_dtypes(include=[np.number])
     asset_cols = list(numeric_df.columns)
 
+    non_date_cols = [c for c in df.columns if c not in date_cols]
+    dropped_cols = [c for c in non_date_cols if c not in asset_cols]
+    if dropped_cols:
+        warnings.append(f"Excluded non-numeric column(s): {dropped_cols}")
+
     if len(asset_cols) < 2:
         errors.append(f"Dataset must contain at least 2 numeric asset price columns. Found: {len(asset_cols)}")
 

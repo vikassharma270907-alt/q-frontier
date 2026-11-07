@@ -8,6 +8,8 @@ import uuid
 import hashlib
 import time
 import json
+import re
+import os
 from datetime import datetime
 from typing import Dict, Any, List, Optional
 from pathlib import Path
@@ -315,32 +317,46 @@ class RunService:
             self._runs.popitem(last=False)
 
         try:
-            run_file = self.storage_dir / f"{run_id}.json"
-            with open(run_file, "w") as f:
-                json.dump(run_record, f, indent=2)
+            run_file = (self.storage_dir / f"{run_id}.json").resolve()
+            if run_file.is_relative_to(self.storage_dir.resolve()):
+                with open(run_file, "w") as f:
+                    json.dump(run_record, f, indent=2)
+            # Prune old disk files if count > 100
+            json_files = sorted(self.storage_dir.glob("run_*.json"), key=os.path.getmtime)
+            if len(json_files) > 100:
+                for old_f in json_files[:-100]:
+                    try:
+                        old_f.unlink()
+                    except Exception:
+                        pass
         except Exception:
             pass
 
         return run_record
 
     def get_run(self, run_id: str) -> Optional[Dict[str, Any]]:
-        """Retrieves run record by ID."""
+        """Retrieves run record by ID securely with path traversal protection."""
+        if not re.match(r"^run_[0-9a-zA-Z_-]+$", run_id):
+            return None
+
         if run_id in self._runs:
             self._runs.move_to_end(run_id)
             return self._runs[run_id]
 
-        run_file = self.storage_dir / f"{run_id}.json"
-        if run_file.exists():
-            try:
-                with open(run_file, "r") as f:
-                    data = json.load(f)
-                    self._runs[run_id] = data
-                    self._runs.move_to_end(run_id)
-                    if len(self._runs) > self.max_cached_runs:
-                        self._runs.popitem(last=False)
-                    return data
-            except Exception:
-                pass
+        try:
+            run_file = (self.storage_dir / f"{run_id}.json").resolve()
+            if not run_file.is_relative_to(self.storage_dir.resolve()) or not run_file.exists():
+                return None
+
+            with open(run_file, "r") as f:
+                data = json.load(f)
+                self._runs[run_id] = data
+                self._runs.move_to_end(run_id)
+                if len(self._runs) > self.max_cached_runs:
+                    self._runs.popitem(last=False)
+                return data
+        except Exception:
+            pass
         return None
 
     def list_runs(self) -> List[Dict[str, Any]]:

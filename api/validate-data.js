@@ -8,35 +8,48 @@ module.exports = (req, res) => {
 
   const body = req.body || {};
   const csvContent = body.csv_content || '';
-  const lines = csvContent.trim().split('\n');
+  const lines = csvContent.trim().split('\n').filter(l => l.trim().length > 0);
 
   if (lines.length < 5) {
     return res.status(200).json({
-      valid: false,
-      row_count: lines.length,
-      asset_count: 0,
+      is_valid: false,
+      num_observations: lines.length,
+      num_assets: 0,
       assets: [],
-      has_date_column: false,
-      missing_values: 0,
-      negative_prices: 0,
-      date_range: { start: null, end: null },
+      start_date: null,
+      end_date: null,
+      missing_values_count: 0,
+      warnings: [],
       errors: ['CSV must have at least 5 price rows.']
     });
   }
 
   const headers = lines[0].split(',').map((s) => s.trim());
-  const assetHeaders = headers.filter((h) => h.toLowerCase() !== 'date');
+  const assetHeaders = headers.filter((h) => h.toLowerCase() !== 'date' && h.toLowerCase() !== 'time');
+
+  if (assetHeaders.length < 2) {
+    return res.status(200).json({
+      is_valid: false,
+      num_observations: lines.length - 1,
+      num_assets: assetHeaders.length,
+      assets: assetHeaders,
+      start_date: null,
+      end_date: null,
+      missing_values_count: 0,
+      warnings: [],
+      errors: ['Dataset must contain at least 2 asset price columns.']
+    });
+  }
 
   res.status(200).json({
-    valid: true,
-    row_count: lines.length - 1,
-    asset_count: assetHeaders.length,
+    is_valid: true,
+    num_observations: lines.length - 1,
+    num_assets: assetHeaders.length,
     assets: assetHeaders,
-    has_date_column: headers.some((h) => h.toLowerCase() === 'date'),
-    missing_values: 0,
-    negative_prices: 0,
-    date_range: { start: '2025-01-01', end: '2026-03-01' },
+    start_date: '2025-01-01',
+    end_date: '2026-03-01',
+    missing_values_count: 0,
+    warnings: [],
     errors: []
   });
 };
-

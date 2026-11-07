@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Dict, Any, List, Optional
 import numpy as np
 
-from fastapi import FastAPI, HTTPException, UploadFile, File, Query, Query
+from fastapi import FastAPI, HTTPException, UploadFile, File, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
@@ -108,7 +108,8 @@ def validate_data(req: CSVValidateRequest) -> Dict[str, Any]:
     """Validates raw CSV content for dates, positive prices, missingness, and asset counts."""
     is_valid, diag, clean_df = parse_and_validate_csv(req.csv_content)
     if is_valid and clean_df is not None and req.dataset_id:
-        dataset_manager.store_custom_dataset(req.dataset_id, clean_df)
+        clean_id = dataset_manager.store_custom_dataset(req.dataset_id, clean_df)
+        diag["dataset_id"] = clean_id
     return diag
 
 
@@ -332,7 +333,7 @@ if frontend_dist.exists():
     @app.get("/{full_path:path}", include_in_schema=False)
     def serve_frontend_spa(full_path: str):
         # Don't intercept API calls
-        if full_path.startswith("api/"):
+        if full_path == "api" or full_path.startswith("api/"):
             raise HTTPException(status_code=404, detail="API endpoint not found")
         file_path = frontend_dist / full_path
         if file_path.exists() and file_path.is_file():
