@@ -72,6 +72,13 @@ def health_check() -> Dict[str, Any]:
     except ImportError:
         pass
 
+    aer_available = False
+    try:
+        from app.hardware.driver import AER_AVAILABLE
+        aer_available = AER_AVAILABLE
+    except Exception:
+        pass
+
     return {
         "status": "healthy",
         "workbench": "Q-FRONTIER",
@@ -82,7 +89,7 @@ def health_check() -> Dict[str, Any]:
             "IBM Quantum", "Classiq", "qBraid", "Aqora", "BYU Physics"
         ],
         "backends": {
-            "qiskit_aer": True,
+            "qiskit_aer": aer_available,
             "quantum_rings_lib": qr_available,
             "ionq_transpiler": True
         },

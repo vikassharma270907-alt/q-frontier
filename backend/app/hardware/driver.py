@@ -12,13 +12,23 @@ import numpy as np
 
 from qiskit import QuantumCircuit, transpile
 from qiskit.transpiler import CouplingMap
-from qiskit_aer import AerSimulator
-from qiskit_aer.noise import (
-    NoiseModel,
-    depolarizing_error,
-    thermal_relaxation_error,
-    ReadoutError,
-)
+
+try:
+    from qiskit_aer import AerSimulator
+    from qiskit_aer.noise import (
+        NoiseModel,
+        depolarizing_error,
+        thermal_relaxation_error,
+        ReadoutError,
+    )
+    AER_AVAILABLE = True
+except (ImportError, Exception):
+    AerSimulator = None
+    NoiseModel = None
+    depolarizing_error = None
+    thermal_relaxation_error = None
+    ReadoutError = None
+    AER_AVAILABLE = False
 
 from app.hardware.models import CalibrationSnapshot, QPUExecutionRecord
 from app.finance.objective import (
@@ -97,8 +107,11 @@ class QPUDriver:
             timestamp=datetime.now().isoformat()
         )
 
-    def build_hardware_noise_model(self, cal: CalibrationSnapshot) -> NoiseModel:
-        """Constructs a Qiskit Aer NoiseModel calibrated to the target device."""
+    def build_hardware_noise_model(self, cal: CalibrationSnapshot) -> Optional[Any]:
+        """Constructs a Qiskit Aer NoiseModel calibrated to the target device if available."""
+        if not AER_AVAILABLE or NoiseModel is None:
+            return None
+
         noise_model = NoiseModel()
 
         # 1-qubit depolarizing error
@@ -219,11 +232,17 @@ class QPUDriver:
         cx_count = ops_count.get("cx", 0)
         swap_count = ops_count.get("swap", 0)
 
-        # Execute on Aer calibrated simulator
-        sim = AerSimulator(noise_model=noise_model)
-        job = sim.run(transpiled_qc, shots=shots)
-        result = job.result()
-        raw_counts = result.get_counts()
+        # Execute on Aer calibrated simulator or pure Qiskit Statevector fallback
+        if AER_AVAILABLE and AerSimulator is not None:
+            sim = AerSimulator(noise_model=noise_model) if noise_model else AerSimulator()
+            job = sim.run(transpiled_qc, shots=shots)
+            result = job.result()
+            raw_counts = result.get_counts()
+        else:
+            from qiskit.quantum_info import Statevector
+            qc_no_meas = qc.remove_final_measurements(inplace=False)
+            sv = Statevector.from_instruction(qc_no_meas)
+            raw_counts = {str(k): int(v) for k, v in sv.sample_counts(shots).items()}
 
         # Compute energies and feasibility
         energy_vec, all_bitstrings = compute_all_bitstring_energies(cov, mu, lambda_risk)
