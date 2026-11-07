@@ -1,0 +1,13 @@
+{
+  "name": "q-frontier",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Auditable Hybrid-Optimization Research Workbench for Cardinality-Constrained Portfolio Selection (IQC 2026)",
+  "scripts": {
+    "build": "npm --prefix frontend run build",
+    "start": "python scripts/run_app.py",
+    "test": "pytest -v",
+    "test:all": "python scripts/verify_all.py"
+  },
+  "devDependencies": {}
+}

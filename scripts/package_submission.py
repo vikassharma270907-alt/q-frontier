@@ -50,3 +50,4 @@ with zipfile.ZipFile(zip_filename, "w", zipfile.ZIP_DEFLATED) as zipf:
 
 size_mb = zip_filename.stat().st_size / (1024 * 1024)
 print(f"Successfully created: {zip_filename} ({size_mb:.2f} MB)")
+

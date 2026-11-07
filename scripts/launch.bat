@@ -5,3 +5,4 @@ echo  Launching Q-FRONTIER Hybrid Quantum Portfolio Optimization Workbench...
 echo ========================================================================
 python scripts/run_demo.py
 pause
+

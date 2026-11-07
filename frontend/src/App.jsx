@@ -5,7 +5,7 @@ import RmtClusterView from './components/RmtClusterView';
 import QaoaBenchmarkView from './components/QaoaBenchmarkView';
 import EquityCurveView from './components/EquityCurveView';
 import VolumetricView from './components/VolumetricView';
-import { Layers, Zap, TrendingUp, Cpu, SlidersHorizontal, Check } from 'lucide-react';
+import { Layers, Zap, TrendingUp, Cpu, SlidersHorizontal, Check, ShieldAlert } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('workbench');
@@ -60,25 +60,38 @@ export default function App() {
     { id: 'qaoa', label: 'CCD-QAOA & QCL Engine', icon: Zap },
     { id: 'rmt', label: 'RMT Spectral Denoising', icon: Layers },
     { id: 'backtest', label: 'Walk-Forward Backtest', icon: TrendingUp },
-    { id: 'hardware', label: 'Sandia & IonQ Hardware', icon: Cpu }
+    { id: 'hardware', label: 'Sandia & IonQ Benchmarks', icon: Cpu }
   ];
 
   return (
-    <div className="min-h-screen bg-[#080c14] text-slate-100 flex flex-col">
+    <div className="min-h-screen bg-[#050505] text-zinc-100 flex flex-col font-sans selection:bg-zinc-700 selection:text-white">
       <Header />
 
-      {/* Floating Notification */}
-      {notification && (
-        <div className="fixed bottom-6 right-6 z-50 bg-emerald-950 border border-emerald-700 text-emerald-200 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2 text-xs font-semibold animate-bounce">
-          <Check className="h-4 w-4 text-emerald-400" />
-          {notification}
+      {/* Scientific Transparency Alert Banner */}
+      <div className="bg-zinc-950 border-b border-zinc-800/80 px-6 py-2">
+        <div className="max-w-7xl mx-auto flex items-center justify-between text-[11px] text-zinc-400 font-mono">
+          <div className="flex items-center gap-2">
+            <ShieldAlert className="h-3.5 w-3.5 text-zinc-400" />
+            <span>RESEARCH PROTOTYPE ONLY — NOT INVESTMENT ADVICE. NO QUANTUM ADVANTAGE CLAIMED.</span>
+          </div>
+          <span className="hidden sm:inline text-zinc-500">
+            SIMULATED BENCHMARK PARITY &bull; REPRODUCIBILITY GUARANTEED
+          </span>
         </div>
-      )}
+      </div>
 
       {/* Main Container */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-6 py-6 space-y-6">
-        {/* Navigation Tabs */}
-        <div className="flex border-b border-slate-800 space-x-2 overflow-x-auto">
+        {/* Toast Notification */}
+        {notification && (
+          <div className="fixed bottom-6 right-6 z-50 bg-zinc-900 border border-zinc-700 text-zinc-100 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 animate-slide-up">
+            <Check className="h-4 w-4 text-white" />
+            <span className="text-xs font-mono font-medium">{notification}</span>
+          </div>
+        )}
+
+        {/* Animated Navigation Tabs */}
+        <div className="flex border-b border-zinc-800/80 space-x-1 overflow-x-auto pb-px">
           {tabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -86,51 +99,50 @@ export default function App() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-4 py-3 text-xs md:text-sm font-semibold border-b-2 transition-all whitespace-nowrap ${
+                className={`flex items-center gap-2 px-4 py-3 text-xs font-semibold rounded-t-lg transition-all duration-200 border-b-2 whitespace-nowrap ${
                   isActive
-                    ? 'border-cyan-400 text-cyan-400 bg-cyan-950/20'
-                    : 'border-transparent text-slate-400 hover:text-slate-200 hover:border-slate-700'
+                    ? 'border-white text-white bg-zinc-900/70 shadow-sm'
+                    : 'border-transparent text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900/30'
                 }`}
               >
-                <Icon className="h-4 w-4" />
+                <Icon className={`h-4 w-4 transition-transform duration-200 ${isActive ? 'scale-110 text-white' : 'text-zinc-500'}`} />
                 {tab.label}
               </button>
             );
           })}
         </div>
 
-        {/* Tab Content Panes */}
-        {activeTab === 'workbench' && (
-          <AuditWorkbenchView onExportSuccess={handleExportSuccess} />
-        )}
+        {/* Animated Tab Content Panes */}
+        <div className="animate-fade-in">
+          {activeTab === 'workbench' && (
+            <AuditWorkbenchView onExportSuccess={handleExportSuccess} />
+          )}
 
-        {activeTab === 'qaoa' && (
-          <QaoaBenchmarkView
-            optimizationResult={optimizationResult}
-            loading={loading}
-            onRunOptimization={runOptimization}
-            params={params}
-            setParams={setParams}
-          />
-        )}
+          {activeTab === 'qaoa' && (
+            <QaoaBenchmarkView
+              optimizationResult={optimizationResult}
+              loading={loading}
+              onRunOptimization={runOptimization}
+              params={params}
+              setParams={setParams}
+            />
+          )}
 
-        {activeTab === 'rmt' && <RmtClusterView marketData={marketData} />}
+          {activeTab === 'rmt' && <RmtClusterView marketData={marketData} />}
 
-        {activeTab === 'backtest' && <EquityCurveView optimizationResult={optimizationResult} />}
+          {activeTab === 'backtest' && <EquityCurveView optimizationResult={optimizationResult} />}
 
-        {activeTab === 'hardware' && <VolumetricView />}
+          {activeTab === 'hardware' && <VolumetricView />}
+        </div>
       </main>
 
-      {/* Footer with Academic Citations & Integrity Disclaimers */}
-      <footer className="border-t border-slate-800/80 bg-[#0a0f1d] py-6 px-6 text-xs text-slate-500 text-center">
+      {/* Footer with Academic Citations & Devpost Info */}
+      <footer className="border-t border-zinc-800/80 bg-[#09090b] py-6 px-6 text-xs text-zinc-500 text-center">
         <p>
-          Q-FRONTIER: Auditable Hybrid Optimization Research Workbench • <b>Intermountain Quantum Competition 2026</b>
+          Q-FRONTIER: Submitted to the <b className="text-zinc-300">Intermountain Quantum Competition 2026</b> (Brigham Young University).
         </p>
-        <p className="mt-1 text-[11px] text-slate-600">
+        <p className="mt-1 text-[11px] text-zinc-600 font-mono">
           Formulation grounded in Falla & Safro (arXiv:2605.06858), Cadavid et al. (arXiv:2602.23976), Yang et al. (arXiv:2609.15708), and Proctor et al. (Sandia National Laboratories, Nature Physics 2022).
-        </p>
-        <p className="mt-1 text-[10px] text-slate-600">
-          DISCLAIMER: All quantum calculations are executed via exact numerical simulation. This software is an academic prototype for research and educational purposes and does not constitute financial or investment advice.
         </p>
       </footer>
     </div>

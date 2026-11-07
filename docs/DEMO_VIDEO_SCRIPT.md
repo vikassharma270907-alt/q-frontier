@@ -45,3 +45,4 @@
 - **Visuals:** Shows IonQ Trapped-Ion (0 routing SWAPs) vs IBM Heavy-Hex (+18 SWAPs) and the full 2D Sandia Volumetric Benchmarking heatmap across Width ($w \in \{4, 6, 8, 12\}$) and Depth ($d \in \{1..5\}$).
 - **Voiceover:**
   > *"Finally, we benchmark physical hardware topologies. On IonQ's trapped-ion architecture, all-to-all connectivity executes complete-graph mixers with zero routing SWAPs, while heavy-hex superconducting grids require up to 18 additional SWAPs. Following the methodology of Timothy Proctor and the team at Sandia National Laboratories, our 2D Volumetric Heatmap evaluates circuit capability across width and depth under noise. Q-FRONTIER is fully tested with 32 passing unit tests and a single-click Jupyter notebook. Thank you!"*
+

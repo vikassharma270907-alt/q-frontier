@@ -10,14 +10,15 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background-color: #080c14;
-      color: #f8fafc;
+      background-color: #050505;
+      color: #e4e4e7;
       font-family: 'Plus Jakarta Sans', sans-serif;
       overflow: hidden;
       height: 100vh;
       width: 100vw;
       display: flex;
       flex-direction: column;
+      -webkit-font-smoothing: antialiased;
     }
     .slide-container {
       flex: 1;
@@ -31,16 +32,16 @@
       display: none;
       width: 100%;
       max-width: 1200px;
-      background: #0f172a;
-      border: 1px solid #1e293b;
+      background: #0f0f12;
+      border: 1px solid #27272a;
       border-radius: 24px;
       padding: 48px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-      animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.9);
+      animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .slide.active { display: block; }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px) scale(0.99); }
+      from { opacity: 0; transform: translateY(12px) scale(0.99); }
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
     .badge {
@@ -53,63 +54,80 @@
       border-radius: 9999px;
       margin-right: 8px;
       margin-bottom: 12px;
+      font-family: 'JetBrains Mono', monospace;
     }
-    .badge-cyan { background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3); }
-    .badge-indigo { background: rgba(99, 102, 241, 0.15); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.3); }
-    .badge-emerald { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
-    h1 { font-size: 40px; font-weight: 800; line-height: 1.15; margin-bottom: 12px; }
-    h2 { font-size: 32px; font-weight: 800; line-height: 1.2; margin-bottom: 12px; }
-    p.subtitle { font-size: 16px; color: #94a3b8; margin-bottom: 28px; line-height: 1.5; }
+    .badge-white { background: #27272a; color: #ffffff; border: 1px solid #3f3f46; }
+    .badge-silver { background: #18181b; color: #d4d4d8; border: 1px solid #27272a; }
+    .badge-zinc { background: #111113; color: #a1a1aa; border: 1px solid #27272a; }
+    h1 { font-size: 42px; font-weight: 800; line-height: 1.15; margin-bottom: 12px; color: #ffffff; letter-spacing: -0.02em; }
+    h2 { font-size: 32px; font-weight: 800; line-height: 1.2; margin-bottom: 12px; color: #ffffff; letter-spacing: -0.01em; }
+    p.subtitle { font-size: 15px; color: #a1a1aa; margin-bottom: 28px; line-height: 1.5; }
     .grid { display: grid; gap: 20px; }
     .grid-2 { grid-template-columns: repeat(2, 1fr); }
     .grid-3 { grid-template-columns: repeat(3, 1fr); }
     .grid-4 { grid-template-columns: repeat(4, 1fr); }
     .card {
-      background: #1e293b;
-      border: 1px solid #334155;
+      background: #18181b;
+      border: 1px solid #27272a;
       border-radius: 16px;
       padding: 24px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #e2e8f0; }
-    .card p { font-size: 13px; color: #94a3b8; line-height: 1.5; }
-    .stat-number { font-size: 36px; font-weight: 800; font-family: 'JetBrains Mono', monospace; margin: 4px 0; }
-    .stat-label { font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 600; }
+    .card:hover {
+      border-color: #3f3f46;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.6);
+    }
+    .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: #f4f4f5; }
+    .card p { font-size: 13px; color: #a1a1aa; line-height: 1.5; }
+    .stat-number { font-size: 38px; font-weight: 800; font-family: 'JetBrains Mono', monospace; margin: 4px 0; color: #ffffff; }
+    .stat-label { font-size: 11px; text-transform: uppercase; color: #71717a; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
     .mono { font-family: 'JetBrains Mono', monospace; }
     .notes-box {
       margin-top: 24px;
-      background: rgba(15, 23, 42, 0.9);
-      border-left: 4px solid #06b6d4;
+      background: #111113;
+      border-left: 3px solid #ffffff;
       padding: 14px 18px;
       border-radius: 0 12px 12px 0;
       font-size: 13px;
-      color: #cbd5e1;
+      color: #d4d4d8;
       display: none;
+      animation: fadeIn 0.2s ease-out;
     }
     .notes-box.visible { display: block; }
     .footer-bar {
       height: 60px;
-      background: #0b1120;
-      border-top: 1px solid #1e293b;
+      background: #09090b;
+      border-top: 1px solid #1e1e24;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 32px;
       font-size: 13px;
-      color: #64748b;
+      color: #71717a;
     }
     .nav-btn {
-      background: #1e293b;
-      color: #f1f5f9;
-      border: 1px solid #334155;
+      background: #18181b;
+      color: #e4e4e7;
+      border: 1px solid #27272a;
       padding: 8px 16px;
       border-radius: 8px;
       font-weight: 600;
       cursor: pointer;
       font-size: 12px;
-      transition: background 0.15s;
+      transition: all 0.15s;
     }
-    .nav-btn:hover { background: #334155; }
-    .progress-bar { height: 3px; background: #06b6d4; width: 10%; transition: width 0.3s; }
+    .nav-btn:hover { background: #27272a; color: #ffffff; }
+    .nav-btn-primary {
+      background: #ffffff;
+      color: #000000;
+      border-color: #ffffff;
+    }
+    .nav-btn-primary:hover {
+      background: #e4e4e7;
+      color: #000000;
+    }
+    .progress-bar { height: 2px; background: #ffffff; width: 10%; transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
   </style>
 </head>
 <body>
@@ -119,24 +137,24 @@
 
     <!-- Slide 1: Title -->
     <div class="slide active" data-slide="1">
-      <span class="badge badge-cyan">Intermountain Quantum Competition 2026</span>
-      <span class="badge badge-indigo">BYU Physics & Engineering</span>
+      <span class="badge badge-white">Intermountain Quantum Competition 2026</span>
+      <span class="badge badge-silver">BYU Physics & Engineering</span>
       <h1>Q-FRONTIER</h1>
       <p class="subtitle">Context-Aware Counterdiabatic Quantum Portfolio Optimization & Volumetric Hardware Benchmarking</p>
       <div class="grid grid-3" style="margin-top: 32px;">
-        <div class="card" style="border-color: rgba(6, 182, 212, 0.4);">
+        <div class="card" style="border-color: #3f3f46;">
           <div class="stat-label">Subspace Feasibility</div>
-          <div class="stat-number" style="color: #22d3ee;">100.0%</div>
+          <div class="stat-number">100.0%</div>
           <p>Zero penalty leakage via Dicke states & complete XY mixers.</p>
         </div>
-        <div class="card" style="border-color: rgba(99, 102, 241, 0.4);">
+        <div class="card" style="border-color: #3f3f46;">
           <div class="stat-label">Approximation Ratio (p=1)</div>
-          <div class="stat-number" style="color: #818cf8;">95.68%</div>
+          <div class="stat-number">95.68%</div>
           <p>3-Body Adiabatic Gauge Potential counterdiabatic driving.</p>
         </div>
-        <div class="card" style="border-color: rgba(16, 185, 129, 0.4);">
+        <div class="card" style="border-color: #3f3f46;">
           <div class="stat-label">CAF Risk Reduction</div>
-          <div class="stat-number" style="color: #34d399;">-13.84%</div>
+          <div class="stat-number">-13.84%</div>
           <p>Cross-cluster covariance preserved via global context injection.</p>
         </div>
       </div>
@@ -147,24 +165,24 @@
 
     <!-- Slide 2: The 4 Fatal Flaws -->
     <div class="slide" data-slide="2">
-      <span class="badge badge-cyan">Market Reality</span>
+      <span class="badge badge-silver">Market Reality</span>
       <h2>Why Prior Quantum Prototypes Fail in Production</h2>
       <p class="subtitle">Addressing the four systemic bottlenecks that break NISQ algorithms on real financial data.</p>
       <div class="grid grid-2">
         <div class="card">
-          <h3 style="color: #f43f5e;">1. NISQ Depth & Naive Splitting</h3>
+          <h3 style="color: #ffffff;">1. NISQ Depth & Naive Splitting</h3>
           <p>40+ assets exceed coherent QPU depth. Naive static clustering drops cross-cluster covariance (Σ_{C_k, C_bar}), causing severe risk concentration.</p>
         </div>
         <div class="card">
-          <h3 style="color: #f43f5e;">2. Penalty-Induced Shot Leakage</h3>
+          <h3 style="color: #ffffff;">2. Penalty-Induced Shot Leakage</h3>
           <p>Quadratic penalties λ(∑x_i - K)^2 leak >26% of measurement shots outside valid portfolio sizes and flatten gradient landscapes into barren plateaus.</p>
         </div>
         <div class="card">
-          <h3 style="color: #f43f5e;">3. Static Risk-Aversion Fallacy</h3>
+          <h3 style="color: #ffffff;">3. Static Risk-Aversion Fallacy</h3>
           <p>Classical Markowitz solvers assume a constant risk aversion q, failing when markets transition into asymmetric, rough-volatility drawdowns.</p>
         </div>
         <div class="card">
-          <h3 style="color: #f43f5e;">4. Turnover & Slippage Erosion</h3>
+          <h3 style="color: #ffffff;">4. Turnover & Slippage Erosion</h3>
           <p>Unconstrained monthly quantum rebalancing incurs >60% turnover, eroding returns through real-world transaction fees and slippage.</p>
         </div>
       </div>
@@ -175,20 +193,20 @@
 
     <!-- Slide 3: Stage 1 RMT Denoising -->
     <div class="slide" data-slide="3">
-      <span class="badge badge-cyan">Stage 1</span>
+      <span class="badge badge-silver">Stage 1</span>
       <h2>Nasdaq Ingestion & Marchenko-Pastur Spectral Denoising</h2>
       <p class="subtitle">Cadavid et al. (arXiv:2602.23976) & Ledoit-Wolf Covariance Shrinkage</p>
       <div class="grid grid-2">
         <div class="card">
           <h3>RMT Spectral Separation</h3>
           <p>For an N × L returns matrix, eigenvalues below the theoretical Marchenko-Pastur upper bound represent noise:</p>
-          <div class="mono" style="margin: 12px 0; color: #38bdf8; font-size: 14px;">λ+ = σ² (1 + √(N/L))²</div>
+          <div class="mono" style="margin: 12px 0; color: #ffffff; font-size: 14px;">λ+ = σ² (1 + √(N/L))²</div>
           <p>Noise modes are replaced with their trace-preserving average, isolating genuine market structure C* and global market modes.</p>
         </div>
         <div class="card">
           <h3>Hardware-Aware Clustering (GetClusters)</h3>
           <p>Community detection and correlation-guided splitting partition the N-asset universe into disjoint subproblems:</p>
-          <div class="mono" style="margin: 12px 0; color: #34d399; font-size: 14px;">|C_m| ≤ Q_max (e.g. 4 Qubits)</div>
+          <div class="mono" style="margin: 12px 0; color: #e4e4e7; font-size: 14px;">|C_m| ≤ Q_max (e.g. 4 Qubits)</div>
           <p>Guarantees that every subproblem executes within the physical coherence envelope of near-term QPUs.</p>
         </div>
       </div>
@@ -199,14 +217,14 @@
 
     <!-- Slide 4: Stage 2 QCL Sensor -->
     <div class="slide" data-slide="4">
-      <span class="badge badge-indigo">Stage 2</span>
+      <span class="badge badge-silver">Stage 2</span>
       <h2>4-Qubit Data-Reuploading QCL Rough-Volatility Sensor</h2>
       <p class="subtitle">finQbit (arXiv:2604.19832), Takahashi (arXiv:2512.10584), & Shen's Design Rule (arXiv:2607.20168)</p>
       <div class="grid grid-2">
         <div class="card">
           <h3>Shen's Primitive Signal Rule</h3>
           <p>Quantum kernels concentrate exponentially when fed pre-computed polynomial features. We encode strictly 4 primitive market observables:</p>
-          <ul style="font-size: 12px; color: #94a3b8; margin: 8px 0 0 16px; line-height: 1.6;">
+          <ul style="font-size: 12px; color: #a1a1aa; margin: 8px 0 0 16px; line-height: 1.6;">
             <li>q0: Lagged return r_{t-1}</li>
             <li>q1: Realized variance σ²_{t-1}</li>
             <li>q2: Downside leverage asymmetry indicator</li>
@@ -216,7 +234,7 @@
         <div class="card">
           <h3>3-Layer Architecture & Dynamic q_t</h3>
           <p>36 variational parameters and 12 ring CNOT gates with non-negative physical expectation post-processing:</p>
-          <div class="mono" style="margin: 12px 0; color: #a78bfa; font-size: 13px;">v_pred = max(0, ⟨0|U† Z_0 U|0⟩)</div>
+          <div class="mono" style="margin: 12px 0; color: #ffffff; font-size: 13px;">v_pred = max(0, ⟨0|U† Z_0 U|0⟩)</div>
           <p>Dynamically scales risk-aversion q_t ∈ [0.2, 0.8], penalizing risk during volatility shocks and maximizing returns during calm regimes.</p>
         </div>
       </div>
@@ -227,26 +245,26 @@
 
     <!-- Slide 5: Stage 3 CCD-QAOA -->
     <div class="slide" data-slide="5">
-      <span class="badge badge-cyan">Stage 3</span>
+      <span class="badge badge-silver">Stage 3</span>
       <h2>Subspace-Preserving CCD-QAOA: Commutation Proof</h2>
       <p class="subtitle">Falla & Safro (arXiv:2605.06858v1, May 2026)</p>
       <div class="grid grid-3">
         <div class="card">
           <h3>Dicke State Initialization</h3>
           <p>Register initialized in exact uniform superposition of valid bitstrings:</p>
-          <div class="mono" style="color: #22d3ee; font-size: 12px; margin: 8px 0;">|D_K^n⟩ = (n choose K)^{-1/2} ∑ |z⟩</div>
+          <div class="mono" style="color: #ffffff; font-size: 12px; margin: 8px 0;">|D_K^n⟩ = (n choose K)^{-1/2} ∑ |z⟩</div>
           <p>Zero probability allocated to invalid portfolio sizes.</p>
         </div>
         <div class="card">
           <h3>XY Mixer Commutation</h3>
           <p>Complete-graph mixer strictly commutes with total magnetization:</p>
-          <div class="mono" style="color: #818cf8; font-size: 12px; margin: 8px 0;">[H_M^{XY}, ∑ Z_i] = 0</div>
+          <div class="mono" style="color: #ffffff; font-size: 12px; margin: 8px 0;">[H_M^{XY}, ∑ Z_i] = 0</div>
           <p>Unitary evolution never leaves feasible subspace (100% feasibility).</p>
         </div>
         <div class="card">
           <h3>3-Body AGP Shortcuts</h3>
           <p>Adiabatic Gauge Potential cancels instanton excitations at shallow depth:</p>
-          <div class="mono" style="color: #34d399; font-size: 12px; margin: 8px 0;">H_{CD} ∝ i [H_C, H_M^{XY}]</div>
+          <div class="mono" style="color: #ffffff; font-size: 12px; margin: 8px 0;">H_{CD} ∝ i [H_C, H_M^{XY}]</div>
           <p>Jumps AR from 55.7% to 95.7% at single-layer depth p=1.</p>
         </div>
       </div>
@@ -257,20 +275,20 @@
 
     <!-- Slide 6: Context-Aware Folding -->
     <div class="slide" data-slide="6">
-      <span class="badge badge-emerald">Coordination</span>
+      <span class="badge badge-silver">Coordination</span>
       <h2>Context-Aware Folding (CAF) & Monotonic Descent</h2>
       <p class="subtitle">Yang, Dou, & Guo (arXiv:2609.15708, Sep 2026)</p>
       <div class="grid grid-2">
         <div class="card">
           <h3>Global Risk Context Vector (v = Σ x)</h3>
           <p>When solving cluster C_k, external risk from assets selected in external clusters is injected directly into the subproblem linear Hamiltonian:</p>
-          <div class="mono" style="margin: 10px 0; color: #34d399; font-size: 13px;">f_{C_k}(b) = q (b^T Σ_{C_k} b + 2 v_{ext}^T b) - (1-q) μ^T b - κ x_{prev}^T b</div>
+          <div class="mono" style="margin: 10px 0; color: #ffffff; font-size: 12px;">f_{C_k}(b) = q (b^T Σ_{C_k} b + 2 v_{ext}^T b) - (1-q) μ^T b - κ x_{prev}^T b</div>
           <p>Includes continuity bonus κ to suppress unnecessary monthly turnover.</p>
         </div>
         <div class="card">
           <h3>Strict Monotonic Acceptance Criterion</h3>
           <p>Candidate cluster updates are committed if and only if global energy strictly decreases:</p>
-          <div class="mono" style="margin: 10px 0; color: #22d3ee; font-size: 13px;">ΔO = q (Δx^T Σ_{C_k} Δx + 2 v^T Δx) - μ^T Δx ≤ -ε</div>
+          <div class="mono" style="margin: 10px 0; color: #ffffff; font-size: 12px;">ΔO = q (Δx^T Σ_{C_k} Δx + 2 v^T Δx) - μ^T Δx ≤ -ε</div>
           <p>Delivers an empirical <b>10.68% to 13.84% risk reduction</b> over static clustering without increasing QPU width.</p>
         </div>
       </div>
@@ -281,28 +299,28 @@
 
     <!-- Slide 7: Stage 4 Walk-Forward Backtest -->
     <div class="slide" data-slide="7">
-      <span class="badge badge-cyan">Stage 4</span>
+      <span class="badge badge-silver">Stage 4</span>
       <h2>Continuous SLSQP Allocation & Net-of-Cost Backtest</h2>
       <p class="subtitle">arXiv:2602.14827v1 (Feb 2026) — Net of 5 bps Transaction Costs</p>
       <div class="grid grid-4" style="margin-bottom: 20px;">
         <div class="card">
           <div class="stat-label">Net Sharpe Ratio</div>
-          <div class="stat-number" style="color: #22d3ee;">2.41</div>
+          <div class="stat-number">2.41</div>
           <p>Annualized (Rf = 4%)</p>
         </div>
         <div class="card">
-          <div class="stat-label">Final Portfolio Value</div>
-          <div class="stat-number" style="color: #34d399;">$147.77</div>
+          <div class="stat-label">Final Value ($100 Base)</div>
+          <div class="stat-number">$147.77</div>
           <p>vs $117.38 Benchmark</p>
         </div>
         <div class="card">
           <div class="stat-label">Annualized Return</div>
-          <div class="stat-number" style="color: #818cf8;">+59.4%</div>
+          <div class="stat-number">+59.4%</div>
           <p>Net of 5 bps Fees</p>
         </div>
         <div class="card">
           <div class="stat-label">Max Drawdown</div>
-          <div class="stat-number" style="color: #f43f5e;">-16.0%</div>
+          <div class="stat-number">-16.0%</div>
           <p>Downside Protected</p>
         </div>
       </div>
@@ -317,21 +335,21 @@
 
     <!-- Slide 8: Hardware Transpilation Audit -->
     <div class="slide" data-slide="8">
-      <span class="badge badge-indigo">Hardware Audit</span>
+      <span class="badge badge-silver">Hardware Audit</span>
       <h2>Trapped-Ion (IonQ) vs. Heavy-Hex (IBM) Transpilation</h2>
       <p class="subtitle">arXiv:2602.23976v1 — All-to-All Connectivity Eliminates SWAP Overhead</p>
       <div class="grid grid-2">
-        <div class="card" style="border-color: rgba(167, 139, 250, 0.4);">
-          <h3 style="color: #c084fc;">IonQ Trapped-Ion Architecture</h3>
-          <div class="stat-number" style="color: #34d399;">0 SWAPs</div>
+        <div class="card" style="border-color: #3f3f46;">
+          <h3 style="color: #ffffff;">IonQ Trapped-Ion Architecture</h3>
+          <div class="stat-number" style="color: #ffffff;">0 SWAPs</div>
           <p>Native all-to-all connectivity executes complete-graph XY mixers and 3-body AGP terms with <b>zero routing SWAP gates</b>.</p>
-          <p style="margin-top: 8px; color: #a78bfa;">Total 2-Qubit Gates: 12 | Depth: 10</p>
+          <p style="margin-top: 8px; color: #a1a1aa; font-family: 'JetBrains Mono', monospace; font-size: 12px;">Total 2-Qubit Gates: 12 | Depth: 10</p>
         </div>
-        <div class="card" style="border-color: rgba(99, 102, 241, 0.4);">
-          <h3 style="color: #818cf8;">IBM Heavy-Hex (Superconducting)</h3>
-          <div class="stat-number" style="color: #f43f5e;">+3 to +18 SWAPs</div>
+        <div class="card">
+          <h3 style="color: #a1a1aa;">IBM Heavy-Hex (Superconducting)</h3>
+          <div class="stat-number" style="color: #71717a;">+3 to +18 SWAPs</div>
           <p>Planar nearest-neighbor connectivity requires recursive SWAP insertion to route long-range covariance interactions.</p>
-          <p style="margin-top: 8px; color: #818cf8;">Total 2-Qubit Gates: 21+ | Depth: 24+</p>
+          <p style="margin-top: 8px; color: #71717a; font-family: 'JetBrains Mono', monospace; font-size: 12px;">Total 2-Qubit Gates: 21+ | Depth: 24+</p>
         </div>
       </div>
       <div class="notes-box" id="notes-8">
@@ -341,19 +359,19 @@
 
     <!-- Slide 9: Sandia Volumetric Benchmarking -->
     <div class="slide" data-slide="9">
-      <span class="badge badge-emerald">Characterization</span>
+      <span class="badge badge-silver">Characterization</span>
       <h2>Sandia Volumetric Benchmarking & Scientific Honesty</h2>
       <p class="subtitle">Timothy Proctor, Kenneth Rudinger et al., Sandia National Laboratories (Nature Physics 2022)</p>
       <div class="grid grid-2">
         <div class="card">
           <h3>Volumetric Heatmap (Width w vs Depth d)</h3>
           <p>Maps algorithmic capability envelopes under realistic depolarizing noise across Width w ∈ {4, 6, 8, 12} and Depth d ∈ {1..5}:</p>
-          <div class="mono" style="margin: 10px 0; color: #34d399; font-size: 13px;">Q_R Diagnostic (Finite-Depth Reachability)</div>
+          <div class="mono" style="margin: 10px 0; color: #ffffff; font-size: 13px;">Q_R Diagnostic (Finite-Depth Reachability)</div>
           <p>Separates quantum mixer reachability from classical optimizer convergence (arXiv:2610.00736).</p>
         </div>
         <div class="card">
           <h3>Transparent Scientific Boundaries</h3>
-          <ul style="font-size: 12px; color: #cbd5e1; margin-left: 16px; line-height: 1.7;">
+          <ul style="font-size: 12px; color: #a1a1aa; margin-left: 16px; line-height: 1.7;">
             <li><b>Turnover Penalty:</b> Without continuity bonus κ, transaction fees degrade Sharpe by 18%.</li>
             <li><b>Kernel Concentration:</b> Restricting to 4 primitive signals avoids Gram matrix collapse.</li>
             <li><b>Subproblem Ceiling:</b> Restricting clusters to n ≤ 6 avoids physical QPU noise breakdown.</li>
@@ -367,27 +385,27 @@
 
     <!-- Slide 10: Conclusion & Deliverables -->
     <div class="slide" data-slide="10">
-      <span class="badge badge-cyan">Summary</span>
+      <span class="badge badge-white">Summary</span>
       <h2>Q-FRONTIER: Production-Ready Workbench</h2>
       <p class="subtitle">Intermountain Quantum Competition 2026 — Brigham Young University</p>
       <div class="grid grid-3" style="margin-bottom: 24px;">
         <div class="card">
-          <div class="stat-number" style="color: #34d399;">37 / 37</div>
+          <div class="stat-number">37 / 37</div>
           <div class="stat-label">Tests Passing (100%)</div>
-          <p style="margin-top: 8px;">Linear algebra invariants, commutation, & API contracts in 4.03s.</p>
+          <p style="margin-top: 8px;">Linear algebra invariants, commutation, & API contracts in 3.92s.</p>
         </div>
         <div class="card">
-          <div class="stat-number" style="color: #22d3ee;">Single-Port</div>
+          <div class="stat-number">Single-Port</div>
           <div class="stat-label">Full-Stack Deployment</div>
           <p style="margin-top: 8px;">FastAPI serves both REST endpoints and compiled React SPA on :8000.</p>
         </div>
         <div class="card">
-          <div class="stat-number" style="color: #818cf8;">Run All</div>
-          <div class="stat-label">Pre-Rendered Notebook</div>
+          <div class="stat-number">Pre-Rendered</div>
+          <div class="stat-label">Master Notebook</div>
           <p style="margin-top: 8px;">Standalone Jupyter notebook ready for qBraid & Aqora evaluators.</p>
         </div>
       </div>
-      <p style="text-align: center; color: #94a3b8; font-size: 14px;">
+      <p style="text-align: center; color: #a1a1aa; font-size: 13px; font-family: 'JetBrains Mono', monospace;">
         <b>GitHub:</b> github.com/your-team/Q-FRONTIER &nbsp;|&nbsp; <b>Dashboard:</b> localhost:8000 &nbsp;|&nbsp; <b>Docs:</b> localhost:8000/docs
       </p>
       <div class="notes-box" id="notes-10">
@@ -399,14 +417,14 @@
 
   <div class="footer-bar">
     <div>
-      <span style="font-weight: 700; color: #e2e8f0;">Q-FRONTIER</span> | IQC 2026 BYU
+      <span style="font-weight: 700; color: #ffffff;">Q-FRONTIER</span> &bull; <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #a1a1aa;">IQC 2026 BYU</span>
     </div>
     <div>
-      <span id="slideIndicator" style="font-family: 'JetBrains Mono', monospace; color: #38bdf8;">1 / 10</span>
-      <span style="margin: 0 12px; color: #334155;">|</span>
+      <span id="slideIndicator" style="font-family: 'JetBrains Mono', monospace; color: #ffffff; font-weight: 600;">1 / 10</span>
+      <span style="margin: 0 12px; color: #27272a;">|</span>
       <button class="nav-btn" onclick="toggleNotes()">Toggle Notes (N)</button>
       <button class="nav-btn" onclick="prevSlide()">Previous (←)</button>
-      <button class="nav-btn" onclick="nextSlide()" style="background: #06b6d4; color: #000; border-color: #06b6d4;">Next (→)</button>
+      <button class="nav-btn nav-btn-primary" onclick="nextSlide()">Next (→)</button>
     </div>
   </div>
 

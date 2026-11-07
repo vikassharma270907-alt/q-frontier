@@ -4,25 +4,77 @@
 
 @layer base {
   body {
+    background-color: #050505;
+    color: #e4e4e7;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
   code, pre {
     font-family: 'JetBrains Mono', monospace;
+  }
+  ::selection {
+    background-color: #3f3f46;
+    color: #ffffff;
   }
 }
 
 /* Custom scrollbars for dashboard views */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #080c14;
+  background: #09090b;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 3px;
+  background: #27272a;
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #3f3f46;
+}
+
+/* Glass & Card Micro-Interactions */
+.obsidian-card {
+  background: linear-gradient(180deg, #111114 0%, #09090b 100%);
+  border: 1px solid #27272a;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.obsidian-card:hover {
+  border-color: #3f3f46;
+  box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 255, 255, 0.03);
+  transform: translateY(-1.5px);
+}
+
+/* Monochromatic Shimmer Effect */
+.shimmer-badge {
+  background: linear-gradient(90deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.02) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite linear;
+}
+
+/* High-Contrast Interactive Buttons */
+.btn-primary {
+  background: #f4f4f5;
+  color: #09090b;
+  font-weight: 700;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-primary:hover {
+  background: #ffffff;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Quantum Pulse and Glow Utilities */
+.quantum-glow {
+  box-shadow: 0 0 20px -3px rgba(255, 255, 255, 0.08);
+}
+
+.metallic-border {
+  border-image: linear-gradient(to bottom, #3f3f46, #18181b) 1;
 }

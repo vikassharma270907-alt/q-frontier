@@ -1,0 +1,1079 @@
+{
+  "health": {
+    "status": "healthy",
+    "workbench": "Q-FRONTIER",
+    "competition": "Intermountain Quantum Competition (IQC) 2026",
+    "organizer": "Brigham Young University (BYU)",
+    "sponsors": [
+      "Nasdaq",
+      "Quantum Rings",
+      "IonQ",
+      "Sandia National Laboratories",
+      "IBM Quantum",
+      "Classiq",
+      "qBraid",
+      "Aqora",
+      "BYU Physics"
+    ],
+    "backends": {
+      "qiskit_aer": true,
+      "quantum_rings_lib": true,
+      "ionq_transpiler": true
+    },
+    "version": "2.0.0",
+    "disclaimer": "RESEARCH PROTOTYPE ONLY \u2014 NOT INVESTMENT ADVICE. NO QUANTUM ADVANTAGE CLAIMED.",
+    "quantum_simulation": {
+      "backend": "Qiskit Aer / Statevector",
+      "quantum_rings_lib": true,
+      "mode": "SIMULATED"
+    },
+    "python_version": "3.14.6"
+  },
+  "datasets": [
+    {
+      "id": "synthetic_nasdaq_12",
+      "name": "Synthetic Nasdaq-12 (Reproducible Demo)",
+      "type": "synthetic",
+      "assets": [
+        "AAPL",
+        "MSFT",
+        "NVDA",
+        "GOOGL",
+        "AMZN",
+        "META",
+        "TSLA",
+        "AVGO",
+        "COST",
+        "CSCO",
+        "NFLX",
+        "AMD"
+      ],
+      "asset_count": 12,
+      "observations": 180,
+      "description": "Standard 12-asset universe under a 3-factor market model. Seeded for reproducible offline execution."
+    },
+    {
+      "id": "synthetic_nasdaq_8",
+      "name": "Synthetic Nasdaq-8 (Balanced Subspace)",
+      "type": "synthetic",
+      "assets": [
+        "AAPL",
+        "MSFT",
+        "NVDA",
+        "GOOGL",
+        "AMZN",
+        "META",
+        "TSLA",
+        "AVGO"
+      ],
+      "asset_count": 8,
+      "observations": 180,
+      "description": "8-asset mega-cap tech universe. Fits exact enumeration and 8-qubit quantum simulation."
+    },
+    {
+      "id": "synthetic_tech_4",
+      "name": "Synthetic Tech-4 (Fast Simulation)",
+      "type": "synthetic",
+      "assets": [
+        "AAPL",
+        "MSFT",
+        "NVDA",
+        "GOOGL"
+      ],
+      "asset_count": 4,
+      "observations": 180,
+      "description": "4-asset subuniverse for near-instant quantum circuit evaluation and statevector verification."
+    }
+  ],
+  "market_clusters": {
+    "tickers": [
+      "AAPL",
+      "MSFT",
+      "NVDA",
+      "GOOGL",
+      "AMZN",
+      "META",
+      "TSLA",
+      "AVGO",
+      "COST",
+      "CSCO",
+      "NFLX",
+      "AMD"
+    ],
+    "expected_returns": [
+      0.391,
+      0.5187,
+      0.0455,
+      -0.0584,
+      0.3914,
+      0.0391,
+      -0.0372,
+      -0.0459,
+      0.1206,
+      0.3541,
+      -0.182,
+      1.4501
+    ],
+    "raw_correlation": [
+      [
+        1.0,
+        0.176,
+        0.026,
+        0.068,
+        0.034,
+        0.113,
+        0.137,
+        0.056,
+        0.142,
+        0.027,
+        0.107,
+        0.058
+      ],
+      [
+        0.176,
+        1.0,
+        0.217,
+        0.211,
+        0.415,
+        0.225,
+        0.19,
+        0.187,
+        -0.064,
+        0.059,
+        0.204,
+        0.163
+      ],
+      [
+        0.026,
+        0.217,
+        1.0,
+        0.205,
+        0.243,
+        0.3,
+        0.443,
+        0.512,
+        -0.295,
+        0.306,
+        -0.145,
+        0.519
+      ],
+      [
+        0.068,
+        0.211,
+        0.205,
+        1.0,
+        0.57,
+        0.275,
+        0.306,
+        0.232,
+        0.006,
+        0.109,
+        0.169,
+        0.227
+      ],
+      [
+        0.034,
+        0.415,
+        0.243,
+        0.57,
+        1.0,
+        0.372,
+        0.309,
+        0.251,
+        -0.03,
+        0.174,
+        0.161,
+        0.237
+      ],
+      [
+        0.113,
+        0.225,
+        0.3,
+        0.275,
+        0.372,
+        1.0,
+        0.33,
+        0.166,
+        -0.115,
+        0.107,
+        0.129,
+        0.231
+      ],
+      [
+        0.137,
+        0.19,
+        0.443,
+        0.306,
+        0.309,
+        0.33,
+        1.0,
+        0.404,
+        -0.198,
+        0.257,
+        -0.07,
+        0.491
+      ],
+      [
+        0.056,
+        0.187,
+        0.512,
+        0.232,
+        0.251,
+        0.166,
+        0.404,
+        1.0,
+        -0.315,
+        0.397,
+        -0.104,
+        0.568
+      ],
+      [
+        0.142,
+        -0.064,
+        -0.295,
+        0.006,
+        -0.03,
+        -0.115,
+        -0.198,
+        -0.315,
+        1.0,
+        -0.087,
+        0.198,
+        -0.336
+      ],
+      [
+        0.027,
+        0.059,
+        0.306,
+        0.109,
+        0.174,
+        0.107,
+        0.257,
+        0.397,
+        -0.087,
+        1.0,
+        -0.134,
+        0.338
+      ],
+      [
+        0.107,
+        0.204,
+        -0.145,
+        0.169,
+        0.161,
+        0.129,
+        -0.07,
+        -0.104,
+        0.198,
+        -0.134,
+        1.0,
+        -0.148
+      ],
+      [
+        0.058,
+        0.163,
+        0.519,
+        0.227,
+        0.237,
+        0.231,
+        0.491,
+        0.568,
+        -0.336,
+        0.338,
+        -0.148,
+        1.0
+      ]
+    ],
+    "denoised_correlation": [
+      [
+        1.0,
+        0.16,
+        0.036,
+        0.17,
+        0.18,
+        0.141,
+        0.079,
+        0.028,
+        0.058,
+        0.004,
+        0.148,
+        0.026
+      ],
+      [
+        0.16,
+        1.0,
+        0.177,
+        0.321,
+        0.344,
+        0.286,
+        0.233,
+        0.166,
+        0.001,
+        0.103,
+        0.185,
+        0.164
+      ],
+      [
+        0.036,
+        0.177,
+        1.0,
+        0.216,
+        0.24,
+        0.245,
+        0.382,
+        0.412,
+        -0.288,
+        0.32,
+        -0.128,
+        0.419
+      ],
+      [
+        0.17,
+        0.321,
+        0.216,
+        1.0,
+        0.378,
+        0.318,
+        0.273,
+        0.205,
+        -0.021,
+        0.132,
+        0.184,
+        0.204
+      ],
+      [
+        0.18,
+        0.344,
+        0.24,
+        0.378,
+        1.0,
+        0.342,
+        0.299,
+        0.229,
+        -0.031,
+        0.149,
+        0.19,
+        0.228
+      ],
+      [
+        0.141,
+        0.286,
+        0.245,
+        0.318,
+        0.342,
+        1.0,
+        0.285,
+        0.237,
+        -0.069,
+        0.162,
+        0.123,
+        0.237
+      ],
+      [
+        0.079,
+        0.233,
+        0.382,
+        0.273,
+        0.299,
+        0.285,
+        1.0,
+        0.381,
+        -0.23,
+        0.288,
+        -0.044,
+        0.386
+      ],
+      [
+        0.028,
+        0.166,
+        0.412,
+        0.205,
+        0.229,
+        0.237,
+        0.381,
+        1.0,
+        -0.297,
+        0.324,
+        -0.142,
+        0.422
+      ],
+      [
+        0.058,
+        0.001,
+        -0.288,
+        -0.021,
+        -0.031,
+        -0.069,
+        -0.23,
+        -0.297,
+        1.0,
+        -0.246,
+        0.229,
+        -0.305
+      ],
+      [
+        0.004,
+        0.103,
+        0.32,
+        0.132,
+        0.149,
+        0.162,
+        0.288,
+        0.324,
+        -0.246,
+        1.0,
+        -0.14,
+        0.331
+      ],
+      [
+        0.148,
+        0.185,
+        -0.128,
+        0.184,
+        0.19,
+        0.123,
+        -0.044,
+        -0.142,
+        0.229,
+        -0.14,
+        1.0,
+        -0.149
+      ],
+      [
+        0.026,
+        0.164,
+        0.419,
+        0.204,
+        0.228,
+        0.237,
+        0.386,
+        0.422,
+        -0.305,
+        0.331,
+        -0.149,
+        1.0
+      ]
+    ],
+    "marchenko_pastur_lambda_plus": 1.116,
+    "clusters": [
+      {
+        "cluster_id": 0,
+        "indices": [
+          1,
+          3,
+          4,
+          5
+        ],
+        "tickers": [
+          "MSFT",
+          "GOOGL",
+          "AMZN",
+          "META"
+        ],
+        "size": 4
+      },
+      {
+        "cluster_id": 1,
+        "indices": [
+          2,
+          6,
+          7,
+          11
+        ],
+        "tickers": [
+          "NVDA",
+          "TSLA",
+          "AVGO",
+          "AMD"
+        ],
+        "size": 4
+      },
+      {
+        "cluster_id": 2,
+        "indices": [
+          0,
+          8,
+          9,
+          10
+        ],
+        "tickers": [
+          "AAPL",
+          "COST",
+          "CSCO",
+          "NFLX"
+        ],
+        "size": 4
+      }
+    ]
+  },
+  "hardware_benchmarks": {
+    "hardware_comparison": {
+      "n_qubits": 4,
+      "two_qubit_interactions": 6,
+      "ionq_trapped_ion": {
+        "topology": "All-to-All Fully Connected (K_n)",
+        "routing_swaps": 0,
+        "two_qubit_gates": 12,
+        "circuit_depth": 15,
+        "decoherence_risk": "Low (Zero routing SWAP overhead)"
+      },
+      "ibm_heavy_hex": {
+        "topology": "Sparse Nearest-Neighbor Grid",
+        "routing_swaps": 3,
+        "two_qubit_gates": 12,
+        "circuit_depth": 18,
+        "decoherence_risk": "High (SWAP overhead scales quadratically)"
+      }
+    },
+    "sandia_volumetric_grid": [
+      {
+        "width": 4,
+        "depth": 1,
+        "gate_volume": 6,
+        "fidelity": 0.982,
+        "approximation_ratio": 0.54,
+        "reachable_quality_qr": 0.786,
+        "status": "Decayed"
+      },
+      {
+        "width": 4,
+        "depth": 2,
+        "gate_volume": 12,
+        "fidelity": 0.965,
+        "approximation_ratio": 0.762,
+        "reachable_quality_qr": 0.893,
+        "status": "Feasible"
+      },
+      {
+        "width": 4,
+        "depth": 3,
+        "gate_volume": 18,
+        "fidelity": 0.947,
+        "approximation_ratio": 0.82,
+        "reachable_quality_qr": 0.929,
+        "status": "Feasible"
+      },
+      {
+        "width": 4,
+        "depth": 4,
+        "gate_volume": 24,
+        "fidelity": 0.931,
+        "approximation_ratio": 0.839,
+        "reachable_quality_qr": 0.946,
+        "status": "Feasible"
+      },
+      {
+        "width": 4,
+        "depth": 5,
+        "gate_volume": 30,
+        "fidelity": 0.914,
+        "approximation_ratio": 0.844,
+        "reachable_quality_qr": 0.957,
+        "status": "Feasible"
+      },
+      {
+        "width": 6,
+        "depth": 1,
+        "gate_volume": 15,
+        "fidelity": 0.956,
+        "approximation_ratio": 0.526,
+        "reachable_quality_qr": 0.812,
+        "status": "Decayed"
+      },
+      {
+        "width": 6,
+        "depth": 2,
+        "gate_volume": 30,
+        "fidelity": 0.914,
+        "approximation_ratio": 0.722,
+        "reachable_quality_qr": 0.906,
+        "status": "Feasible"
+      },
+      {
+        "width": 6,
+        "depth": 3,
+        "gate_volume": 45,
+        "fidelity": 0.874,
+        "approximation_ratio": 0.756,
+        "reachable_quality_qr": 0.938,
+        "status": "Feasible"
+      },
+      {
+        "width": 6,
+        "depth": 4,
+        "gate_volume": 60,
+        "fidelity": 0.835,
+        "approximation_ratio": 0.753,
+        "reachable_quality_qr": 0.953,
+        "status": "Feasible"
+      },
+      {
+        "width": 6,
+        "depth": 5,
+        "gate_volume": 75,
+        "fidelity": 0.799,
+        "approximation_ratio": 0.737,
+        "reachable_quality_qr": 0.963,
+        "status": "Feasible"
+      },
+      {
+        "width": 8,
+        "depth": 1,
+        "gate_volume": 28,
+        "fidelity": 0.919,
+        "approximation_ratio": 0.506,
+        "reachable_quality_qr": 0.833,
+        "status": "Decayed"
+      },
+      {
+        "width": 8,
+        "depth": 2,
+        "gate_volume": 56,
+        "fidelity": 0.845,
+        "approximation_ratio": 0.668,
+        "reachable_quality_qr": 0.917,
+        "status": "Feasible"
+      },
+      {
+        "width": 8,
+        "depth": 3,
+        "gate_volume": 84,
+        "fidelity": 0.777,
+        "approximation_ratio": 0.673,
+        "reachable_quality_qr": 0.944,
+        "status": "Feasible"
+      },
+      {
+        "width": 8,
+        "depth": 4,
+        "gate_volume": 112,
+        "fidelity": 0.715,
+        "approximation_ratio": 0.645,
+        "reachable_quality_qr": 0.958,
+        "status": "Feasible"
+      },
+      {
+        "width": 8,
+        "depth": 5,
+        "gate_volume": 140,
+        "fidelity": 0.657,
+        "approximation_ratio": 0.607,
+        "reachable_quality_qr": 0.967,
+        "status": "Feasible"
+      },
+      {
+        "width": 12,
+        "depth": 1,
+        "gate_volume": 66,
+        "fidelity": 0.82,
+        "approximation_ratio": 0.451,
+        "reachable_quality_qr": 0.864,
+        "status": "Decayed"
+      },
+      {
+        "width": 12,
+        "depth": 2,
+        "gate_volume": 132,
+        "fidelity": 0.673,
+        "approximation_ratio": 0.532,
+        "reachable_quality_qr": 0.932,
+        "status": "Decayed"
+      },
+      {
+        "width": 12,
+        "depth": 3,
+        "gate_volume": 198,
+        "fidelity": 0.552,
+        "approximation_ratio": 0.478,
+        "reachable_quality_qr": 0.955,
+        "status": "Decayed"
+      },
+      {
+        "width": 12,
+        "depth": 4,
+        "gate_volume": 264,
+        "fidelity": 0.453,
+        "approximation_ratio": 0.409,
+        "reachable_quality_qr": 0.966,
+        "status": "Decayed"
+      },
+      {
+        "width": 12,
+        "depth": 5,
+        "gate_volume": 330,
+        "fidelity": 0.372,
+        "approximation_ratio": 0.343,
+        "reachable_quality_qr": 0.973,
+        "status": "Decayed"
+      }
+    ]
+  },
+  "quantum_optimize": {
+    "selected_tickers": [
+      "AAPL",
+      "MSFT",
+      "NVDA",
+      "AMZN",
+      "CSCO",
+      "AMD"
+    ],
+    "selected_indices": [
+      0,
+      1,
+      2,
+      4,
+      9,
+      11
+    ],
+    "weights": [
+      {
+        "ticker": "AAPL",
+        "weight": 0.4
+      },
+      {
+        "ticker": "MSFT",
+        "weight": 0.2673
+      },
+      {
+        "ticker": "NVDA",
+        "weight": 0.02
+      },
+      {
+        "ticker": "AMZN",
+        "weight": 0.0235
+      },
+      {
+        "ticker": "CSCO",
+        "weight": 0.045
+      },
+      {
+        "ticker": "AMD",
+        "weight": 0.2442
+      }
+    ],
+    "regime_sensor": {
+      "features_encoded": [
+        0.22,
+        0.295,
+        0.0,
+        0.542
+      ],
+      "predicted_volatility": 12.0,
+      "dynamic_q_risk": 0.2,
+      "sensor_active": true
+    },
+    "caf_metrics": {
+      "static_energy": -2.06463,
+      "caf_energy": -2.06463,
+      "risk_reduction_pct": 0.0,
+      "energy_trajectory": [
+        -2.06463
+      ]
+    },
+    "quantum_solver_benchmark": {
+      "depth": 1,
+      "ccd_qaoa": {
+        "approximation_ratio": 0.9464287749720635,
+        "optimal_probability": 0.8981436611911396,
+        "feasibility": 0.9999999999999976
+      },
+      "xy_qaoa": {
+        "approximation_ratio": 0.6612370763509299,
+        "optimal_probability": 0.32588781206850725,
+        "feasibility": 0.9999999999999997
+      },
+      "penalty_qaoa": {
+        "approximation_ratio": 0.48930757605129355,
+        "optimal_probability": 0.05614339300208478,
+        "feasibility": 0.35044203945166
+      },
+      "state_distribution": [
+        {
+          "bitstring": "0011",
+          "energy": -0.13855668319648584,
+          "p_ccd": 0.0029516981744097353,
+          "p_xy": 0.14583990841788674,
+          "p_penalty": 0.058051894172349364,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "0101",
+          "energy": 0.21495368626651162,
+          "p_ccd": 0.017599857820932034,
+          "p_xy": 0.02298449614008398,
+          "p_penalty": 0.06324105956988575,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "0110",
+          "energy": -0.09135325794679644,
+          "p_ccd": 0.005873601393955115,
+          "p_xy": 0.12489153880991259,
+          "p_penalty": 0.0585227391226824,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "1001",
+          "energy": -0.26024691352664336,
+          "p_ccd": 0.055277949491706176,
+          "p_xy": 0.2010449039115479,
+          "p_penalty": 0.05706535129607299,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "1010",
+          "energy": -0.5663170424076622,
+          "p_ccd": 0.8981436611911396,
+          "p_xy": 0.32588781206850725,
+          "p_penalty": 0.05614339300208478,
+          "is_optimal": true
+        },
+        {
+          "bitstring": "1100",
+          "energy": -0.2124244383979372,
+          "p_ccd": 0.020153231927854866,
+          "p_xy": 0.17935134065206118,
+          "p_penalty": 0.0574176022885847,
+          "is_optimal": false
+        }
+      ]
+    },
+    "backtest": {
+      "final_portfolio_value": 147.77,
+      "benchmark_final_value": 117.38,
+      "annualized_return_pct": 59.41,
+      "annualized_volatility_pct": 29.56,
+      "net_sharpe_ratio": 1.87,
+      "max_drawdown_pct": -16.0,
+      "total_turnover": 1.0,
+      "transaction_costs_paid": 0.05,
+      "equity_curve": [
+        {
+          "date": "2026-02-24",
+          "q_frontier": 100.0,
+          "benchmark_ew": 100.0
+        },
+        {
+          "date": "2026-02-27",
+          "q_frontier": 101.65,
+          "benchmark_ew": 102.27
+        },
+        {
+          "date": "2026-03-05",
+          "q_frontier": 102.93,
+          "benchmark_ew": 103.54
+        },
+        {
+          "date": "2026-03-11",
+          "q_frontier": 101.91,
+          "benchmark_ew": 103.5
+        },
+        {
+          "date": "2026-03-17",
+          "q_frontier": 101.49,
+          "benchmark_ew": 101.79
+        },
+        {
+          "date": "2026-03-23",
+          "q_frontier": 101.02,
+          "benchmark_ew": 99.91
+        },
+        {
+          "date": "2026-03-27",
+          "q_frontier": 99.89,
+          "benchmark_ew": 95.85
+        },
+        {
+          "date": "2026-04-02",
+          "q_frontier": 103.01,
+          "benchmark_ew": 100.33
+        },
+        {
+          "date": "2026-04-09",
+          "q_frontier": 109.73,
+          "benchmark_ew": 105.44
+        },
+        {
+          "date": "2026-04-15",
+          "q_frontier": 113.84,
+          "benchmark_ew": 111.89
+        },
+        {
+          "date": "2026-04-21",
+          "q_frontier": 120.61,
+          "benchmark_ew": 112.7
+        },
+        {
+          "date": "2026-04-27",
+          "q_frontier": 125.54,
+          "benchmark_ew": 116.09
+        },
+        {
+          "date": "2026-05-01",
+          "q_frontier": 130.59,
+          "benchmark_ew": 117.46
+        },
+        {
+          "date": "2026-05-07",
+          "q_frontier": 135.61,
+          "benchmark_ew": 120.42
+        },
+        {
+          "date": "2026-05-13",
+          "q_frontier": 144.25,
+          "benchmark_ew": 124.25
+        },
+        {
+          "date": "2026-05-19",
+          "q_frontier": 148.63,
+          "benchmark_ew": 123.61
+        },
+        {
+          "date": "2026-05-26",
+          "q_frontier": 157.74,
+          "benchmark_ew": 126.4
+        },
+        {
+          "date": "2026-06-01",
+          "q_frontier": 160.26,
+          "benchmark_ew": 127.31
+        },
+        {
+          "date": "2026-06-05",
+          "q_frontier": 154.7,
+          "benchmark_ew": 121.17
+        },
+        {
+          "date": "2026-06-11",
+          "q_frontier": 154.57,
+          "benchmark_ew": 119.93
+        },
+        {
+          "date": "2026-06-17",
+          "q_frontier": 153.19,
+          "benchmark_ew": 119.31
+        },
+        {
+          "date": "2026-06-24",
+          "q_frontier": 154.01,
+          "benchmark_ew": 116.69
+        },
+        {
+          "date": "2026-06-30",
+          "q_frontier": 157.16,
+          "benchmark_ew": 119.16
+        },
+        {
+          "date": "2026-07-07",
+          "q_frontier": 153.33,
+          "benchmark_ew": 120.35
+        },
+        {
+          "date": "2026-07-13",
+          "q_frontier": 159.26,
+          "benchmark_ew": 121.99
+        },
+        {
+          "date": "2026-07-17",
+          "q_frontier": 153.97,
+          "benchmark_ew": 119.69
+        },
+        {
+          "date": "2026-07-23",
+          "q_frontier": 154.63,
+          "benchmark_ew": 117.0
+        },
+        {
+          "date": "2026-07-29",
+          "q_frontier": 147.37,
+          "benchmark_ew": 114.55
+        },
+        {
+          "date": "2026-08-04",
+          "q_frontier": 166.52,
+          "benchmark_ew": 125.25
+        },
+        {
+          "date": "2026-08-10",
+          "q_frontier": 164.05,
+          "benchmark_ew": 125.1
+        },
+        {
+          "date": "2026-08-14",
+          "q_frontier": 159.21,
+          "benchmark_ew": 124.2
+        },
+        {
+          "date": "2026-08-20",
+          "q_frontier": 154.77,
+          "benchmark_ew": 120.89
+        },
+        {
+          "date": "2026-08-26",
+          "q_frontier": 157.47,
+          "benchmark_ew": 122.28
+        },
+        {
+          "date": "2026-09-01",
+          "q_frontier": 154.79,
+          "benchmark_ew": 122.6
+        },
+        {
+          "date": "2026-09-08",
+          "q_frontier": 157.42,
+          "benchmark_ew": 123.85
+        },
+        {
+          "date": "2026-09-14",
+          "q_frontier": 157.67,
+          "benchmark_ew": 124.52
+        },
+        {
+          "date": "2026-09-18",
+          "q_frontier": 161.72,
+          "benchmark_ew": 125.35
+        },
+        {
+          "date": "2026-09-24",
+          "q_frontier": 163.78,
+          "benchmark_ew": 128.08
+        },
+        {
+          "date": "2026-09-30",
+          "q_frontier": 163.4,
+          "benchmark_ew": 126.81
+        },
+        {
+          "date": "2026-10-06",
+          "q_frontier": 173.4,
+          "benchmark_ew": 131.64
+        },
+        {
+          "date": "2026-10-12",
+          "q_frontier": 169.69,
+          "benchmark_ew": 130.6
+        },
+        {
+          "date": "2026-10-16",
+          "q_frontier": 159.58,
+          "benchmark_ew": 125.46
+        },
+        {
+          "date": "2026-10-22",
+          "q_frontier": 157.03,
+          "benchmark_ew": 123.56
+        },
+        {
+          "date": "2026-10-28",
+          "q_frontier": 165.21,
+          "benchmark_ew": 125.82
+        },
+        {
+          "date": "2026-11-03",
+          "q_frontier": 153.76,
+          "benchmark_ew": 120.87
+        }
+      ]
+    }
+  }
+}

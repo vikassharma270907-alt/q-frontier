@@ -99,3 +99,4 @@
 
 ### Q3: "How is Quantum Rings integrated into your pipeline?"
 - **Answer:** *"We integrated the `QuantumRingsLib` Python SDK via `QuantumRingsProvider`. It enables accelerated CPU/GPU simulation of our parameterized CCD-QAOA circuits with native Qiskit interoperability, bypassing cloud QPU queue latencies while maintaining exact equivalence with physical execution."*
+

@@ -37,3 +37,8 @@ venv/
 ENV/
 .idea/
 .DS_Store
+
+# Temporary benchmark artifacts
+backend/app/run_history/run_*.json
+scripts/sample_*.json
+
