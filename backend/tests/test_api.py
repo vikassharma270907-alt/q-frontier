@@ -58,3 +58,9 @@ def test_hardware_benchmarks_endpoint():
     assert data["hardware_comparison"]["ionq_trapped_ion"]["routing_swaps"] == 0
     assert "sandia_volumetric_grid" in data
     assert len(data["sandia_volumetric_grid"]) == 20
+
+    # Test query validation bounds (2 <= n_qubits <= 12)
+    res_under = client.get("/api/hardware/benchmarks?n_qubits=1")
+    assert res_under.status_code == 422
+    res_over = client.get("/api/hardware/benchmarks?n_qubits=20")
+    assert res_over.status_code == 422

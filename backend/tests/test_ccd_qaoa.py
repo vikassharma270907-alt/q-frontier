@@ -29,6 +29,12 @@ def test_dicke_state_properties():
         else:
             assert np.isclose(amp, 0.0)
 
+    # Boundary checks: invalid k_weight raises ValueError
+    with pytest.raises(ValueError):
+        prepare_dicke_statevector(4, 5)
+    with pytest.raises(ValueError):
+        prepare_dicke_statevector(4, -1)
+
 
 def test_xy_mixer_commutation():
     """Verify [H_M^{XY}, sum_i Z_i] = 0 strictly preserving Hamming weight."""

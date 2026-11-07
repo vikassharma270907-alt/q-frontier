@@ -41,7 +41,9 @@ def optimize_continuous_weights_slsqp(
         return -(port_ret - risk_free_rate) / port_vol
         
     init_w = np.ones(k) / float(k)
-    bounds = [(min_weight, max_weight) for _ in range(k)]
+    effective_min = min(min_weight, 1.0 / k)
+    effective_max = max(max_weight, 1.0 / k)
+    bounds = [(effective_min, effective_max) for _ in range(k)]
     constraints = [{"type": "eq", "fun": lambda w: np.sum(w) - 1.0}]
     
     res = minimize(

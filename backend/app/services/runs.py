@@ -3,6 +3,7 @@ Run management and benchmark orchestration service.
 """
 
 from __future__ import annotations
+from collections import OrderedDict
 import uuid
 import hashlib
 import time
@@ -50,13 +51,31 @@ def sanitize_for_json(obj: Any) -> Any:
 class RunService:
     """Orchestrates benchmark runs, comparisons, and persistence."""
 
-    def __init__(self, storage_dir: Optional[Path] = None):
+    def __init__(self, storage_dir: Optional[Path] = None, max_cached_runs: int = 50):
         if storage_dir is None:
             self.storage_dir = Path(__file__).resolve().parent.parent / "run_history"
         else:
             self.storage_dir = Path(storage_dir)
         self.storage_dir.mkdir(parents=True, exist_ok=True)
-        self._runs: Dict[str, Dict[str, Any]] = {}
+        self._runs: OrderedDict[str, Dict[str, Any]] = OrderedDict()
+        self.max_cached_runs = max_cached_runs
+        self._hydrate_existing_runs()
+
+    def _hydrate_existing_runs(self) -> None:
+        """Hydrates previous run records from disk on startup."""
+        try:
+            for p in sorted(self.storage_dir.glob("*.json"), key=lambda f: f.stat().st_mtime):
+                try:
+                    with open(p, "r") as f:
+                        data = json.load(f)
+                        run_id = data.get("run_id") or p.stem
+                        self._runs[run_id] = data
+                        if len(self._runs) > self.max_cached_runs:
+                            self._runs.popitem(last=False)
+                except Exception:
+                    pass
+        except Exception:
+            pass
 
     def execute_run(
         self,
@@ -269,9 +288,13 @@ class RunService:
             "backtest": backtest,
         }
 
-        # Persist run
+        # Persist run with bounded LRU cache
         run_record = sanitize_for_json(run_record)
         self._runs[run_id] = run_record
+        self._runs.move_to_end(run_id)
+        if len(self._runs) > self.max_cached_runs:
+            self._runs.popitem(last=False)
+
         try:
             run_file = self.storage_dir / f"{run_id}.json"
             with open(run_file, "w") as f:
@@ -284,6 +307,7 @@ class RunService:
     def get_run(self, run_id: str) -> Optional[Dict[str, Any]]:
         """Retrieves run record by ID."""
         if run_id in self._runs:
+            self._runs.move_to_end(run_id)
             return self._runs[run_id]
 
         run_file = self.storage_dir / f"{run_id}.json"
@@ -292,6 +316,9 @@ class RunService:
                 with open(run_file, "r") as f:
                     data = json.load(f)
                     self._runs[run_id] = data
+                    self._runs.move_to_end(run_id)
+                    if len(self._runs) > self.max_cached_runs:
+                        self._runs.popitem(last=False)
                     return data
             except Exception:
                 pass

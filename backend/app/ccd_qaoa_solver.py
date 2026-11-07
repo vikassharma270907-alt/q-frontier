@@ -36,6 +36,9 @@ def prepare_dicke_statevector(n_qubits: int, k_weight: int) -> np.ndarray:
     Constructs exact Dicke state |D_k^n> as uniform superposition over
     all binom(n, k) computational basis states of Hamming weight k.
     """
+    if not (0 <= k_weight <= n_qubits):
+        raise ValueError(f"k_weight ({k_weight}) must be between 0 and n_qubits ({n_qubits})")
+
     dim = 2 ** n_qubits
     state = np.zeros(dim, dtype=complex)
     valid_indices = []

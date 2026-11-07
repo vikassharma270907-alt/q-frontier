@@ -60,8 +60,8 @@ def generate_hardware_comparison(n_qubits: int = 4) -> dict[str, Any]:
         },
         "ibm_heavy_hex": {
             "topology": "Sparse Nearest-Neighbor Grid",
-            "routing_swaps": max(1, ibm_swaps),
-            "two_qubit_gates": ibm_cx + 3 * max(1, ibm_swaps),
+            "routing_swaps": ibm_swaps,
+            "two_qubit_gates": ibm_cx,
             "circuit_depth": ibm_depth,
             "decoherence_risk": "High (SWAP overhead scales quadratically)"
         }

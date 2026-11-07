@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Dict, Any, List, Optional
 import numpy as np
 
-from fastapi import FastAPI, HTTPException, UploadFile, File
+from fastapi import FastAPI, HTTPException, UploadFile, File, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
@@ -40,7 +40,14 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:8000",
+        "http://127.0.0.1:8000"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -270,7 +277,7 @@ def run_optimization(req: OptimizationRequest) -> Dict[str, Any]:
 
 
 @app.get("/api/hardware/benchmarks")
-def get_hardware_benchmarks(n_qubits: int = 4) -> Dict[str, Any]:
+def get_hardware_benchmarks(n_qubits: int = Query(4, ge=2, le=12, description="Number of qubits (2 to 12)")) -> Dict[str, Any]:
     """Returns IonQ all-to-all vs IBM heavy-hex SWAP routing and Sandia 2D volumetric grid."""
     try:
         hw_comp = generate_hardware_comparison(n_qubits=n_qubits)
