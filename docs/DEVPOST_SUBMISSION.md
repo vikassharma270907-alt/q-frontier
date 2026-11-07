@@ -4,8 +4,8 @@
 **Tagline:** A hybrid quantum-classical portfolio optimization platform combining RMT spectral clustering, 4-qubit QCL rough-volatility sensing, and Constrained Counterdiabatic QAOA (CCD-QAOA).  
 **Target Tracks:** Fintech & Real-Data Optimization, Quantum Machine Learning, Hardware Benchmarking  
 **GitHub Repository:** https://github.com/vikassharma270907-alt/q-frontier  
-**Live Demo:** https://q-frontier.vercel.app (Render Blueprint: render.yaml)  
-**Demo Video (YouTube):** `https://youtu.be/YOUR_VIDEO_ID` (2:46 Full HD Walkthrough — Strictly under 3 minutes)  
+**Live Demo:** https://q-frontier.vercel.app (Render App: https://q-frontier.onrender.com)  
+**Demo Video (YouTube):** https://youtu.be/lFh2yWlSShY (2:46 Full HD Walkthrough — Strictly under 3 minutes)  
 **Publishing Guide & Thumbnail:** [`docs/YOUTUBE_PUBLISH_GUIDE.md`](docs/YOUTUBE_PUBLISH_GUIDE.md) | [`docs/YOUTUBE_THUMBNAIL.png`](docs/YOUTUBE_THUMBNAIL.png)  
 
 ---

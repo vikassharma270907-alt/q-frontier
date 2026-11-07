@@ -101,6 +101,7 @@ Watch the pre-rendered Full HD MP4 video demo with studio neural voiceover (Marc
 # Or run via Python
 python scripts/launch_demo_video.py
 ```
+- **YouTube Demo Video:** [https://youtu.be/lFh2yWlSShY](https://youtu.be/lFh2yWlSShY) (2m 46s Full HD Narration)
 - **Pre-Rendered Master Video:** [`docs/Q_FRONTIER_DEMO_VIDEO.mp4`](docs/Q_FRONTIER_DEMO_VIDEO.mp4) (1920x1080 Full HD, 4.27 MB, strictly under 3:00)
 - **YouTube Thumbnail:** [`docs/YOUTUBE_THUMBNAIL.png`](docs/YOUTUBE_THUMBNAIL.png) (1280x720, 16:9, High-Contrast)
 - **YouTube Publishing Guide:** [`docs/YOUTUBE_PUBLISH_GUIDE.md`](docs/YOUTUBE_PUBLISH_GUIDE.md) (Complete titles, chapters, description, tags & steps)
