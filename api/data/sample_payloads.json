@@ -83,6 +83,46 @@
       "asset_count": 4,
       "observations": 180,
       "description": "4-asset subuniverse for near-instant quantum circuit evaluation and statevector verification."
+    },
+    {
+      "id": "synthetic_crisis_2026",
+      "name": "\ud83d\udea8 2026 Liquidity Crisis Shock (Stress Scenario)",
+      "type": "stress_scenario",
+      "assets": [
+        "AAPL",
+        "MSFT",
+        "NVDA",
+        "GOOGL",
+        "AMZN",
+        "META",
+        "TSLA",
+        "AVGO",
+        "COST",
+        "CSCO",
+        "NFLX",
+        "AMD"
+      ],
+      "asset_count": 12,
+      "observations": 180,
+      "description": "High-stress regime with systemic correlation breakdown (rho -> 0.85) and rough-volatility spikes."
+    },
+    {
+      "id": "synthetic_flash_crash",
+      "name": "\u26a1 Flash Crash & Sector Dispersion (Stress Scenario)",
+      "type": "stress_scenario",
+      "assets": [
+        "AAPL",
+        "MSFT",
+        "NVDA",
+        "GOOGL",
+        "AMZN",
+        "META",
+        "TSLA",
+        "AVGO"
+      ],
+      "asset_count": 8,
+      "observations": 180,
+      "description": "Acute liquidity vacuum shock testing instantaneous QCL risk detection and CCD-QAOA drawdown limits."
     }
   ],
   "market_clusters": {

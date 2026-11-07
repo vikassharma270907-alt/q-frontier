@@ -1,0 +1,1319 @@
+{
+  "scenario": "CRISIS_2026_LIQUIDITY",
+  "description": "Stress-tested under CRISIS_2026_LIQUIDITY with regime-switching correlation breakdown.",
+  "assets_tested": [
+    "AAPL",
+    "MSFT",
+    "NVDA",
+    "GOOGL",
+    "AMZN",
+    "META",
+    "TSLA",
+    "AVGO"
+  ],
+  "k_cardinality": 3,
+  "qcl_regime_sensor": {
+    "detected_volatility": 22.79,
+    "adapted_q_risk": 0.524,
+    "risk_regime": "ELEVATED VOLATILITY"
+  },
+  "selected_portfolio": {
+    "tickers": [
+      "AAPL",
+      "AMZN",
+      "TSLA"
+    ],
+    "weights": [
+      {
+        "ticker": "AAPL",
+        "weight": 0.2
+      },
+      {
+        "ticker": "AMZN",
+        "weight": 0.0
+      },
+      {
+        "ticker": "TSLA",
+        "weight": 0.0
+      }
+    ],
+    "gnn_cnot_reduction_pct": 71.4
+  },
+  "comparison": {
+    "classical_markowitz": {
+      "final_value": 0.88,
+      "total_return_pct": -99.12,
+      "max_drawdown_pct": -99.22,
+      "annual_volatility_pct": 87.48,
+      "var_95_pct": 16.56,
+      "cvar_95_pct": 18.41,
+      "sharpe_ratio": -1.16
+    },
+    "q_frontier": {
+      "final_value": 42.69,
+      "total_return_pct": -57.29,
+      "max_drawdown_pct": -58.58,
+      "annual_volatility_pct": 17.06,
+      "var_95_pct": 3.09,
+      "cvar_95_pct": 3.54,
+      "sharpe_ratio": -3.48
+    },
+    "drawdown_mitigation_advantage_pct": 40.64,
+    "tail_risk_cvar_savings_pct": 14.87
+  },
+  "time_series_trajectory": [
+    {
+      "date": "2026-03-03",
+      "classical_markowitz": 98.99,
+      "q_frontier_ccd": 99.82,
+      "classical_drawdown": -0.96,
+      "qfrontier_drawdown": -0.13
+    },
+    {
+      "date": "2026-03-04",
+      "classical_markowitz": 99.65,
+      "q_frontier_ccd": 99.87,
+      "classical_drawdown": -0.3,
+      "qfrontier_drawdown": -0.08
+    },
+    {
+      "date": "2026-03-05",
+      "classical_markowitz": 100.96,
+      "q_frontier_ccd": 100.31,
+      "classical_drawdown": 0.0,
+      "qfrontier_drawdown": 0.0
+    },
+    {
+      "date": "2026-03-06",
+      "classical_markowitz": 98.51,
+      "q_frontier_ccd": 100.07,
+      "classical_drawdown": -2.43,
+      "qfrontier_drawdown": -0.24
+    },
+    {
+      "date": "2026-03-09",
+      "classical_markowitz": 97.98,
+      "q_frontier_ccd": 100.21,
+      "classical_drawdown": -2.95,
+      "qfrontier_drawdown": -0.1
+    },
+    {
+      "date": "2026-03-10",
+      "classical_markowitz": 98.15,
+      "q_frontier_ccd": 100.29,
+      "classical_drawdown": -2.78,
+      "qfrontier_drawdown": -0.02
+    },
+    {
+      "date": "2026-03-11",
+      "classical_markowitz": 97.41,
+      "q_frontier_ccd": 99.95,
+      "classical_drawdown": -3.51,
+      "qfrontier_drawdown": -0.36
+    },
+    {
+      "date": "2026-03-12",
+      "classical_markowitz": 97.37,
+      "q_frontier_ccd": 99.63,
+      "classical_drawdown": -3.56,
+      "qfrontier_drawdown": -0.68
+    },
+    {
+      "date": "2026-03-13",
+      "classical_markowitz": 96.56,
+      "q_frontier_ccd": 99.88,
+      "classical_drawdown": -4.36,
+      "qfrontier_drawdown": -0.44
+    },
+    {
+      "date": "2026-03-16",
+      "classical_markowitz": 97.95,
+      "q_frontier_ccd": 100.46,
+      "classical_drawdown": -2.98,
+      "qfrontier_drawdown": 0.0
+    },
+    {
+      "date": "2026-03-17",
+      "classical_markowitz": 99.51,
+      "q_frontier_ccd": 100.57,
+      "classical_drawdown": -1.44,
+      "qfrontier_drawdown": 0.0
+    },
+    {
+      "date": "2026-03-18",
+      "classical_markowitz": 99.96,
+      "q_frontier_ccd": 100.5,
+      "classical_drawdown": -0.99,
+      "qfrontier_drawdown": -0.07
+    },
+    {
+      "date": "2026-03-19",
+      "classical_markowitz": 101.89,
+      "q_frontier_ccd": 101.07,
+      "classical_drawdown": 0.0,
+      "qfrontier_drawdown": 0.0
+    },
+    {
+      "date": "2026-03-20",
+      "classical_markowitz": 102.63,
+      "q_frontier_ccd": 100.89,
+      "classical_drawdown": 0.0,
+      "qfrontier_drawdown": -0.17
+    },
+    {
+      "date": "2026-03-23",
+      "classical_markowitz": 102.21,
+      "q_frontier_ccd": 100.53,
+      "classical_drawdown": -0.41,
+      "qfrontier_drawdown": -0.53
+    },
+    {
+      "date": "2026-03-24",
+      "classical_markowitz": 103.5,
+      "q_frontier_ccd": 100.76,
+      "classical_drawdown": 0.0,
+      "qfrontier_drawdown": -0.3
+    },
+    {
+      "date": "2026-03-25",
+      "classical_markowitz": 102.43,
+      "q_frontier_ccd": 100.5,
+      "classical_drawdown": -1.04,
+      "qfrontier_drawdown": -0.56
+    },
+    {
+      "date": "2026-03-26",
+      "classical_markowitz": 104.04,
+      "q_frontier_ccd": 100.66,
+      "classical_drawdown": 0.0,
+      "qfrontier_drawdown": -0.4
+    },
+    {
+      "date": "2026-03-27",
+      "classical_markowitz": 103.38,
+      "q_frontier_ccd": 100.62,
+      "classical_drawdown": -0.64,
+      "qfrontier_drawdown": -0.44
+    },
+    {
+      "date": "2026-03-30",
+      "classical_markowitz": 103.88,
+      "q_frontier_ccd": 100.68,
+      "classical_drawdown": -0.16,
+      "qfrontier_drawdown": -0.38
+    },
+    {
+      "date": "2026-03-31",
+      "classical_markowitz": 103.29,
+      "q_frontier_ccd": 100.9,
+      "classical_drawdown": -0.72,
+      "qfrontier_drawdown": -0.16
+    },
+    {
+      "date": "2026-04-01",
+      "classical_markowitz": 104.1,
+      "q_frontier_ccd": 101.16,
+      "classical_drawdown": 0.0,
+      "qfrontier_drawdown": 0.0
+    },
+    {
+      "date": "2026-04-02",
+      "classical_markowitz": 103.65,
+      "q_frontier_ccd": 101.29,
+      "classical_drawdown": -0.43,
+      "qfrontier_drawdown": 0.0
+    },
+    {
+      "date": "2026-04-03",
+      "classical_markowitz": 102.75,
+      "q_frontier_ccd": 100.73,
+      "classical_drawdown": -1.3,
+      "qfrontier_drawdown": -0.55
+    },
+    {
+      "date": "2026-04-06",
+      "classical_markowitz": 102.95,
+      "q_frontier_ccd": 100.66,
+      "classical_drawdown": -1.1,
+      "qfrontier_drawdown": -0.62
+    },
+    {
+      "date": "2026-04-07",
+      "classical_markowitz": 103.19,
+      "q_frontier_ccd": 100.56,
+      "classical_drawdown": -0.87,
+      "qfrontier_drawdown": -0.72
+    },
+    {
+      "date": "2026-04-08",
+      "classical_markowitz": 103.28,
+      "q_frontier_ccd": 100.34,
+      "classical_drawdown": -0.78,
+      "qfrontier_drawdown": -0.94
+    },
+    {
+      "date": "2026-04-09",
+      "classical_markowitz": 104.03,
+      "q_frontier_ccd": 100.21,
+      "classical_drawdown": -0.07,
+      "qfrontier_drawdown": -1.06
+    },
+    {
+      "date": "2026-04-10",
+      "classical_markowitz": 104.22,
+      "q_frontier_ccd": 100.22,
+      "classical_drawdown": 0.0,
+      "qfrontier_drawdown": -1.06
+    },
+    {
+      "date": "2026-04-13",
+      "classical_markowitz": 106.73,
+      "q_frontier_ccd": 100.84,
+      "classical_drawdown": 0.0,
+      "qfrontier_drawdown": -0.44
+    },
+    {
+      "date": "2026-04-14",
+      "classical_markowitz": 106.16,
+      "q_frontier_ccd": 100.46,
+      "classical_drawdown": -0.54,
+      "qfrontier_drawdown": -0.82
+    },
+    {
+      "date": "2026-04-15",
+      "classical_markowitz": 105.33,
+      "q_frontier_ccd": 100.38,
+      "classical_drawdown": -1.31,
+      "qfrontier_drawdown": -0.9
+    },
+    {
+      "date": "2026-04-16",
+      "classical_markowitz": 104.11,
+      "q_frontier_ccd": 100.13,
+      "classical_drawdown": -2.45,
+      "qfrontier_drawdown": -1.15
+    },
+    {
+      "date": "2026-04-17",
+      "classical_markowitz": 105.36,
+      "q_frontier_ccd": 100.17,
+      "classical_drawdown": -1.29,
+      "qfrontier_drawdown": -1.11
+    },
+    {
+      "date": "2026-04-20",
+      "classical_markowitz": 107.15,
+      "q_frontier_ccd": 100.62,
+      "classical_drawdown": 0.0,
+      "qfrontier_drawdown": -0.66
+    },
+    {
+      "date": "2026-04-21",
+      "classical_markowitz": 107.43,
+      "q_frontier_ccd": 100.74,
+      "classical_drawdown": 0.0,
+      "qfrontier_drawdown": -0.55
+    },
+    {
+      "date": "2026-04-22",
+      "classical_markowitz": 106.62,
+      "q_frontier_ccd": 100.92,
+      "classical_drawdown": -0.76,
+      "qfrontier_drawdown": -0.37
+    },
+    {
+      "date": "2026-04-23",
+      "classical_markowitz": 105.73,
+      "q_frontier_ccd": 100.74,
+      "classical_drawdown": -1.58,
+      "qfrontier_drawdown": -0.55
+    },
+    {
+      "date": "2026-04-24",
+      "classical_markowitz": 106.59,
+      "q_frontier_ccd": 100.7,
+      "classical_drawdown": -0.78,
+      "qfrontier_drawdown": -0.59
+    },
+    {
+      "date": "2026-04-27",
+      "classical_markowitz": 107.51,
+      "q_frontier_ccd": 100.78,
+      "classical_drawdown": 0.0,
+      "qfrontier_drawdown": -0.5
+    },
+    {
+      "date": "2026-04-28",
+      "classical_markowitz": 108.13,
+      "q_frontier_ccd": 100.95,
+      "classical_drawdown": 0.0,
+      "qfrontier_drawdown": -0.34
+    },
+    {
+      "date": "2026-04-29",
+      "classical_markowitz": 107.66,
+      "q_frontier_ccd": 100.88,
+      "classical_drawdown": -0.44,
+      "qfrontier_drawdown": -0.41
+    },
+    {
+      "date": "2026-04-30",
+      "classical_markowitz": 108.03,
+      "q_frontier_ccd": 100.67,
+      "classical_drawdown": -0.1,
+      "qfrontier_drawdown": -0.62
+    },
+    {
+      "date": "2026-05-01",
+      "classical_markowitz": 108.6,
+      "q_frontier_ccd": 100.72,
+      "classical_drawdown": 0.0,
+      "qfrontier_drawdown": -0.57
+    },
+    {
+      "date": "2026-05-04",
+      "classical_markowitz": 108.33,
+      "q_frontier_ccd": 100.82,
+      "classical_drawdown": -0.25,
+      "qfrontier_drawdown": -0.47
+    },
+    {
+      "date": "2026-05-05",
+      "classical_markowitz": 110.04,
+      "q_frontier_ccd": 101.61,
+      "classical_drawdown": 0.0,
+      "qfrontier_drawdown": 0.0
+    },
+    {
+      "date": "2026-05-06",
+      "classical_markowitz": 110.09,
+      "q_frontier_ccd": 102.12,
+      "classical_drawdown": 0.0,
+      "qfrontier_drawdown": 0.0
+    },
+    {
+      "date": "2026-05-07",
+      "classical_markowitz": 109.99,
+      "q_frontier_ccd": 102.04,
+      "classical_drawdown": -0.08,
+      "qfrontier_drawdown": -0.08
+    },
+    {
+      "date": "2026-05-08",
+      "classical_markowitz": 109.46,
+      "q_frontier_ccd": 101.99,
+      "classical_drawdown": -0.57,
+      "qfrontier_drawdown": -0.12
+    },
+    {
+      "date": "2026-05-11",
+      "classical_markowitz": 108.77,
+      "q_frontier_ccd": 101.7,
+      "classical_drawdown": -1.2,
+      "qfrontier_drawdown": -0.41
+    },
+    {
+      "date": "2026-05-12",
+      "classical_markowitz": 109.57,
+      "q_frontier_ccd": 101.68,
+      "classical_drawdown": -0.47,
+      "qfrontier_drawdown": -0.44
+    },
+    {
+      "date": "2026-05-13",
+      "classical_markowitz": 107.82,
+      "q_frontier_ccd": 101.5,
+      "classical_drawdown": -2.06,
+      "qfrontier_drawdown": -0.61
+    },
+    {
+      "date": "2026-05-14",
+      "classical_markowitz": 107.67,
+      "q_frontier_ccd": 101.74,
+      "classical_drawdown": -2.19,
+      "qfrontier_drawdown": -0.37
+    },
+    {
+      "date": "2026-05-15",
+      "classical_markowitz": 106.67,
+      "q_frontier_ccd": 101.48,
+      "classical_drawdown": -3.11,
+      "qfrontier_drawdown": -0.62
+    },
+    {
+      "date": "2026-05-18",
+      "classical_markowitz": 106.36,
+      "q_frontier_ccd": 101.22,
+      "classical_drawdown": -3.38,
+      "qfrontier_drawdown": -0.89
+    },
+    {
+      "date": "2026-05-19",
+      "classical_markowitz": 105.61,
+      "q_frontier_ccd": 100.66,
+      "classical_drawdown": -4.07,
+      "qfrontier_drawdown": -1.43
+    },
+    {
+      "date": "2026-05-20",
+      "classical_markowitz": 108.15,
+      "q_frontier_ccd": 100.9,
+      "classical_drawdown": -1.76,
+      "qfrontier_drawdown": -1.2
+    },
+    {
+      "date": "2026-05-21",
+      "classical_markowitz": 106.84,
+      "q_frontier_ccd": 100.5,
+      "classical_drawdown": -2.95,
+      "qfrontier_drawdown": -1.59
+    },
+    {
+      "date": "2026-05-22",
+      "classical_markowitz": 107.82,
+      "q_frontier_ccd": 100.55,
+      "classical_drawdown": -2.06,
+      "qfrontier_drawdown": -1.54
+    },
+    {
+      "date": "2026-05-25",
+      "classical_markowitz": 106.05,
+      "q_frontier_ccd": 100.05,
+      "classical_drawdown": -3.67,
+      "qfrontier_drawdown": -2.03
+    },
+    {
+      "date": "2026-05-26",
+      "classical_markowitz": 104.91,
+      "q_frontier_ccd": 99.97,
+      "classical_drawdown": -4.71,
+      "qfrontier_drawdown": -2.1
+    },
+    {
+      "date": "2026-05-27",
+      "classical_markowitz": 105.01,
+      "q_frontier_ccd": 99.59,
+      "classical_drawdown": -4.61,
+      "qfrontier_drawdown": -2.48
+    },
+    {
+      "date": "2026-05-28",
+      "classical_markowitz": 105.06,
+      "q_frontier_ccd": 99.36,
+      "classical_drawdown": -4.56,
+      "qfrontier_drawdown": -2.71
+    },
+    {
+      "date": "2026-05-29",
+      "classical_markowitz": 106.09,
+      "q_frontier_ccd": 100.01,
+      "classical_drawdown": -3.63,
+      "qfrontier_drawdown": -2.07
+    },
+    {
+      "date": "2026-06-01",
+      "classical_markowitz": 107.12,
+      "q_frontier_ccd": 99.85,
+      "classical_drawdown": -2.7,
+      "qfrontier_drawdown": -2.22
+    },
+    {
+      "date": "2026-06-02",
+      "classical_markowitz": 106.57,
+      "q_frontier_ccd": 99.53,
+      "classical_drawdown": -3.2,
+      "qfrontier_drawdown": -2.53
+    },
+    {
+      "date": "2026-06-03",
+      "classical_markowitz": 106.22,
+      "q_frontier_ccd": 99.9,
+      "classical_drawdown": -3.51,
+      "qfrontier_drawdown": -2.17
+    },
+    {
+      "date": "2026-06-04",
+      "classical_markowitz": 107.77,
+      "q_frontier_ccd": 100.78,
+      "classical_drawdown": -2.11,
+      "qfrontier_drawdown": -1.32
+    },
+    {
+      "date": "2026-06-05",
+      "classical_markowitz": 107.83,
+      "q_frontier_ccd": 100.47,
+      "classical_drawdown": -2.05,
+      "qfrontier_drawdown": -1.62
+    },
+    {
+      "date": "2026-06-08",
+      "classical_markowitz": 105.48,
+      "q_frontier_ccd": 100.16,
+      "classical_drawdown": -4.18,
+      "qfrontier_drawdown": -1.92
+    },
+    {
+      "date": "2026-06-09",
+      "classical_markowitz": 104.18,
+      "q_frontier_ccd": 100.04,
+      "classical_drawdown": -5.37,
+      "qfrontier_drawdown": -2.03
+    },
+    {
+      "date": "2026-06-10",
+      "classical_markowitz": 103.58,
+      "q_frontier_ccd": 100.3,
+      "classical_drawdown": -5.91,
+      "qfrontier_drawdown": -1.78
+    },
+    {
+      "date": "2026-06-11",
+      "classical_markowitz": 103.67,
+      "q_frontier_ccd": 100.16,
+      "classical_drawdown": -5.83,
+      "qfrontier_drawdown": -1.92
+    },
+    {
+      "date": "2026-06-12",
+      "classical_markowitz": 103.35,
+      "q_frontier_ccd": 100.14,
+      "classical_drawdown": -6.12,
+      "qfrontier_drawdown": -1.94
+    },
+    {
+      "date": "2026-06-15",
+      "classical_markowitz": 104.23,
+      "q_frontier_ccd": 100.46,
+      "classical_drawdown": -5.32,
+      "qfrontier_drawdown": -1.63
+    },
+    {
+      "date": "2026-06-16",
+      "classical_markowitz": 104.15,
+      "q_frontier_ccd": 100.49,
+      "classical_drawdown": -5.4,
+      "qfrontier_drawdown": -1.59
+    },
+    {
+      "date": "2026-06-17",
+      "classical_markowitz": 104.85,
+      "q_frontier_ccd": 100.44,
+      "classical_drawdown": -4.76,
+      "qfrontier_drawdown": -1.65
+    },
+    {
+      "date": "2026-06-18",
+      "classical_markowitz": 105.38,
+      "q_frontier_ccd": 100.53,
+      "classical_drawdown": -4.27,
+      "qfrontier_drawdown": -1.56
+    },
+    {
+      "date": "2026-06-19",
+      "classical_markowitz": 104.66,
+      "q_frontier_ccd": 100.15,
+      "classical_drawdown": -4.93,
+      "qfrontier_drawdown": -1.93
+    },
+    {
+      "date": "2026-06-22",
+      "classical_markowitz": 104.56,
+      "q_frontier_ccd": 100.18,
+      "classical_drawdown": -5.02,
+      "qfrontier_drawdown": -1.9
+    },
+    {
+      "date": "2026-06-23",
+      "classical_markowitz": 103.0,
+      "q_frontier_ccd": 100.01,
+      "classical_drawdown": -6.44,
+      "qfrontier_drawdown": -2.07
+    },
+    {
+      "date": "2026-06-24",
+      "classical_markowitz": 102.83,
+      "q_frontier_ccd": 100.0,
+      "classical_drawdown": -6.59,
+      "qfrontier_drawdown": -2.07
+    },
+    {
+      "date": "2026-06-25",
+      "classical_markowitz": 102.28,
+      "q_frontier_ccd": 99.81,
+      "classical_drawdown": -7.09,
+      "qfrontier_drawdown": -2.26
+    },
+    {
+      "date": "2026-06-26",
+      "classical_markowitz": 100.89,
+      "q_frontier_ccd": 99.72,
+      "classical_drawdown": -8.35,
+      "qfrontier_drawdown": -2.36
+    },
+    {
+      "date": "2026-06-29",
+      "classical_markowitz": 102.02,
+      "q_frontier_ccd": 100.06,
+      "classical_drawdown": -7.33,
+      "qfrontier_drawdown": -2.02
+    },
+    {
+      "date": "2026-06-30",
+      "classical_markowitz": 102.02,
+      "q_frontier_ccd": 100.02,
+      "classical_drawdown": -7.33,
+      "qfrontier_drawdown": -2.06
+    },
+    {
+      "date": "2026-07-01",
+      "classical_markowitz": 102.3,
+      "q_frontier_ccd": 100.11,
+      "classical_drawdown": -7.08,
+      "qfrontier_drawdown": -1.97
+    },
+    {
+      "date": "2026-07-02",
+      "classical_markowitz": 102.6,
+      "q_frontier_ccd": 100.22,
+      "classical_drawdown": -6.8,
+      "qfrontier_drawdown": -1.87
+    },
+    {
+      "date": "2026-07-03",
+      "classical_markowitz": 102.85,
+      "q_frontier_ccd": 100.3,
+      "classical_drawdown": -6.57,
+      "qfrontier_drawdown": -1.78
+    },
+    {
+      "date": "2026-07-06",
+      "classical_markowitz": 103.79,
+      "q_frontier_ccd": 100.26,
+      "classical_drawdown": -5.72,
+      "qfrontier_drawdown": -1.82
+    },
+    {
+      "date": "2026-07-07",
+      "classical_markowitz": 104.22,
+      "q_frontier_ccd": 100.32,
+      "classical_drawdown": -5.33,
+      "qfrontier_drawdown": -1.76
+    },
+    {
+      "date": "2026-07-08",
+      "classical_markowitz": 104.24,
+      "q_frontier_ccd": 100.23,
+      "classical_drawdown": -5.31,
+      "qfrontier_drawdown": -1.85
+    },
+    {
+      "date": "2026-07-09",
+      "classical_markowitz": 104.4,
+      "q_frontier_ccd": 100.73,
+      "classical_drawdown": -5.17,
+      "qfrontier_drawdown": -1.36
+    },
+    {
+      "date": "2026-07-10",
+      "classical_markowitz": 103.11,
+      "q_frontier_ccd": 100.82,
+      "classical_drawdown": -6.33,
+      "qfrontier_drawdown": -1.28
+    },
+    {
+      "date": "2026-07-13",
+      "classical_markowitz": 101.27,
+      "q_frontier_ccd": 100.65,
+      "classical_drawdown": -8.01,
+      "qfrontier_drawdown": -1.44
+    },
+    {
+      "date": "2026-07-14",
+      "classical_markowitz": 99.79,
+      "q_frontier_ccd": 100.24,
+      "classical_drawdown": -9.36,
+      "qfrontier_drawdown": -1.84
+    },
+    {
+      "date": "2026-07-15",
+      "classical_markowitz": 97.99,
+      "q_frontier_ccd": 99.81,
+      "classical_drawdown": -10.99,
+      "qfrontier_drawdown": -2.27
+    },
+    {
+      "date": "2026-07-16",
+      "classical_markowitz": 98.72,
+      "q_frontier_ccd": 100.17,
+      "classical_drawdown": -10.33,
+      "qfrontier_drawdown": -1.91
+    },
+    {
+      "date": "2026-07-17",
+      "classical_markowitz": 98.04,
+      "q_frontier_ccd": 100.08,
+      "classical_drawdown": -10.94,
+      "qfrontier_drawdown": -2.0
+    },
+    {
+      "date": "2026-07-20",
+      "classical_markowitz": 97.2,
+      "q_frontier_ccd": 100.14,
+      "classical_drawdown": -11.71,
+      "qfrontier_drawdown": -1.94
+    },
+    {
+      "date": "2026-07-21",
+      "classical_markowitz": 98.94,
+      "q_frontier_ccd": 99.96,
+      "classical_drawdown": -10.12,
+      "qfrontier_drawdown": -2.12
+    },
+    {
+      "date": "2026-07-22",
+      "classical_markowitz": 98.22,
+      "q_frontier_ccd": 100.13,
+      "classical_drawdown": -10.78,
+      "qfrontier_drawdown": -1.95
+    },
+    {
+      "date": "2026-07-23",
+      "classical_markowitz": 98.9,
+      "q_frontier_ccd": 100.38,
+      "classical_drawdown": -10.16,
+      "qfrontier_drawdown": -1.71
+    },
+    {
+      "date": "2026-07-24",
+      "classical_markowitz": 97.38,
+      "q_frontier_ccd": 99.95,
+      "classical_drawdown": -11.55,
+      "qfrontier_drawdown": -2.12
+    },
+    {
+      "date": "2026-07-27",
+      "classical_markowitz": 96.91,
+      "q_frontier_ccd": 99.81,
+      "classical_drawdown": -11.97,
+      "qfrontier_drawdown": -2.26
+    },
+    {
+      "date": "2026-07-28",
+      "classical_markowitz": 95.61,
+      "q_frontier_ccd": 99.71,
+      "classical_drawdown": -13.15,
+      "qfrontier_drawdown": -2.36
+    },
+    {
+      "date": "2026-07-29",
+      "classical_markowitz": 95.38,
+      "q_frontier_ccd": 99.67,
+      "classical_drawdown": -13.36,
+      "qfrontier_drawdown": -2.4
+    },
+    {
+      "date": "2026-07-30",
+      "classical_markowitz": 97.15,
+      "q_frontier_ccd": 99.76,
+      "classical_drawdown": -11.76,
+      "qfrontier_drawdown": -2.32
+    },
+    {
+      "date": "2026-07-31",
+      "classical_markowitz": 94.9,
+      "q_frontier_ccd": 99.43,
+      "classical_drawdown": -13.79,
+      "qfrontier_drawdown": -2.63
+    },
+    {
+      "date": "2026-08-03",
+      "classical_markowitz": 95.38,
+      "q_frontier_ccd": 99.46,
+      "classical_drawdown": -13.36,
+      "qfrontier_drawdown": -2.61
+    },
+    {
+      "date": "2026-08-04",
+      "classical_markowitz": 96.22,
+      "q_frontier_ccd": 99.54,
+      "classical_drawdown": -12.6,
+      "qfrontier_drawdown": -2.53
+    },
+    {
+      "date": "2026-08-05",
+      "classical_markowitz": 95.72,
+      "q_frontier_ccd": 99.8,
+      "classical_drawdown": -13.05,
+      "qfrontier_drawdown": -2.28
+    },
+    {
+      "date": "2026-08-06",
+      "classical_markowitz": 93.23,
+      "q_frontier_ccd": 98.95,
+      "classical_drawdown": -15.31,
+      "qfrontier_drawdown": -3.11
+    },
+    {
+      "date": "2026-08-07",
+      "classical_markowitz": 93.32,
+      "q_frontier_ccd": 98.91,
+      "classical_drawdown": -15.23,
+      "qfrontier_drawdown": -3.14
+    },
+    {
+      "date": "2026-08-10",
+      "classical_markowitz": 92.78,
+      "q_frontier_ccd": 98.87,
+      "classical_drawdown": -15.72,
+      "qfrontier_drawdown": -3.19
+    },
+    {
+      "date": "2026-08-11",
+      "classical_markowitz": 92.92,
+      "q_frontier_ccd": 98.99,
+      "classical_drawdown": -15.6,
+      "qfrontier_drawdown": -3.07
+    },
+    {
+      "date": "2026-08-12",
+      "classical_markowitz": 81.98,
+      "q_frontier_ccd": 96.7,
+      "classical_drawdown": -25.53,
+      "qfrontier_drawdown": -5.31
+    },
+    {
+      "date": "2026-08-13",
+      "classical_markowitz": 79.5,
+      "q_frontier_ccd": 95.95,
+      "classical_drawdown": -27.78,
+      "qfrontier_drawdown": -6.05
+    },
+    {
+      "date": "2026-08-14",
+      "classical_markowitz": 69.21,
+      "q_frontier_ccd": 93.53,
+      "classical_drawdown": -37.13,
+      "qfrontier_drawdown": -8.41
+    },
+    {
+      "date": "2026-08-17",
+      "classical_markowitz": 57.51,
+      "q_frontier_ccd": 90.56,
+      "classical_drawdown": -47.76,
+      "qfrontier_drawdown": -11.32
+    },
+    {
+      "date": "2026-08-18",
+      "classical_markowitz": 51.13,
+      "q_frontier_ccd": 88.53,
+      "classical_drawdown": -53.56,
+      "qfrontier_drawdown": -13.31
+    },
+    {
+      "date": "2026-08-19",
+      "classical_markowitz": 45.68,
+      "q_frontier_ccd": 86.74,
+      "classical_drawdown": -58.51,
+      "qfrontier_drawdown": -15.06
+    },
+    {
+      "date": "2026-08-20",
+      "classical_markowitz": 43.56,
+      "q_frontier_ccd": 85.95,
+      "classical_drawdown": -60.43,
+      "qfrontier_drawdown": -15.84
+    },
+    {
+      "date": "2026-08-21",
+      "classical_markowitz": 40.19,
+      "q_frontier_ccd": 84.7,
+      "classical_drawdown": -63.49,
+      "qfrontier_drawdown": -17.06
+    },
+    {
+      "date": "2026-08-24",
+      "classical_markowitz": 36.08,
+      "q_frontier_ccd": 82.98,
+      "classical_drawdown": -67.23,
+      "qfrontier_drawdown": -18.74
+    },
+    {
+      "date": "2026-08-25",
+      "classical_markowitz": 34.59,
+      "q_frontier_ccd": 82.32,
+      "classical_drawdown": -68.58,
+      "qfrontier_drawdown": -19.39
+    },
+    {
+      "date": "2026-08-26",
+      "classical_markowitz": 28.46,
+      "q_frontier_ccd": 79.55,
+      "classical_drawdown": -74.15,
+      "qfrontier_drawdown": -22.1
+    },
+    {
+      "date": "2026-08-27",
+      "classical_markowitz": 24.18,
+      "q_frontier_ccd": 77.25,
+      "classical_drawdown": -78.04,
+      "qfrontier_drawdown": -24.36
+    },
+    {
+      "date": "2026-08-28",
+      "classical_markowitz": 20.18,
+      "q_frontier_ccd": 74.87,
+      "classical_drawdown": -81.67,
+      "qfrontier_drawdown": -26.69
+    },
+    {
+      "date": "2026-08-31",
+      "classical_markowitz": 17.42,
+      "q_frontier_ccd": 72.92,
+      "classical_drawdown": -84.17,
+      "qfrontier_drawdown": -28.59
+    },
+    {
+      "date": "2026-09-01",
+      "classical_markowitz": 14.18,
+      "q_frontier_ccd": 70.3,
+      "classical_drawdown": -87.12,
+      "qfrontier_drawdown": -31.16
+    },
+    {
+      "date": "2026-09-02",
+      "classical_markowitz": 12.97,
+      "q_frontier_ccd": 69.23,
+      "classical_drawdown": -88.22,
+      "qfrontier_drawdown": -32.21
+    },
+    {
+      "date": "2026-09-03",
+      "classical_markowitz": 11.28,
+      "q_frontier_ccd": 67.51,
+      "classical_drawdown": -89.75,
+      "qfrontier_drawdown": -33.89
+    },
+    {
+      "date": "2026-09-04",
+      "classical_markowitz": 9.1,
+      "q_frontier_ccd": 65.04,
+      "classical_drawdown": -91.74,
+      "qfrontier_drawdown": -36.31
+    },
+    {
+      "date": "2026-09-07",
+      "classical_markowitz": 7.56,
+      "q_frontier_ccd": 62.88,
+      "classical_drawdown": -93.14,
+      "qfrontier_drawdown": -38.43
+    },
+    {
+      "date": "2026-09-08",
+      "classical_markowitz": 6.78,
+      "q_frontier_ccd": 61.63,
+      "classical_drawdown": -93.84,
+      "qfrontier_drawdown": -39.65
+    },
+    {
+      "date": "2026-09-09",
+      "classical_markowitz": 6.27,
+      "q_frontier_ccd": 60.71,
+      "classical_drawdown": -94.3,
+      "qfrontier_drawdown": -40.56
+    },
+    {
+      "date": "2026-09-10",
+      "classical_markowitz": 6.2,
+      "q_frontier_ccd": 60.65,
+      "classical_drawdown": -94.37,
+      "qfrontier_drawdown": -40.61
+    },
+    {
+      "date": "2026-09-11",
+      "classical_markowitz": 6.47,
+      "q_frontier_ccd": 61.11,
+      "classical_drawdown": -94.12,
+      "qfrontier_drawdown": -40.16
+    },
+    {
+      "date": "2026-09-14",
+      "classical_markowitz": 5.85,
+      "q_frontier_ccd": 60.0,
+      "classical_drawdown": -94.68,
+      "qfrontier_drawdown": -41.25
+    },
+    {
+      "date": "2026-09-15",
+      "classical_markowitz": 4.87,
+      "q_frontier_ccd": 58.03,
+      "classical_drawdown": -95.57,
+      "qfrontier_drawdown": -43.18
+    },
+    {
+      "date": "2026-09-16",
+      "classical_markowitz": 3.8,
+      "q_frontier_ccd": 55.57,
+      "classical_drawdown": -96.55,
+      "qfrontier_drawdown": -45.59
+    },
+    {
+      "date": "2026-09-17",
+      "classical_markowitz": 3.4,
+      "q_frontier_ccd": 54.47,
+      "classical_drawdown": -96.92,
+      "qfrontier_drawdown": -46.66
+    },
+    {
+      "date": "2026-09-18",
+      "classical_markowitz": 2.85,
+      "q_frontier_ccd": 52.86,
+      "classical_drawdown": -97.41,
+      "qfrontier_drawdown": -48.24
+    },
+    {
+      "date": "2026-09-21",
+      "classical_markowitz": 2.45,
+      "q_frontier_ccd": 51.45,
+      "classical_drawdown": -97.78,
+      "qfrontier_drawdown": -49.62
+    },
+    {
+      "date": "2026-09-22",
+      "classical_markowitz": 2.08,
+      "q_frontier_ccd": 49.89,
+      "classical_drawdown": -98.11,
+      "qfrontier_drawdown": -51.14
+    },
+    {
+      "date": "2026-09-23",
+      "classical_markowitz": 1.82,
+      "q_frontier_ccd": 48.67,
+      "classical_drawdown": -98.35,
+      "qfrontier_drawdown": -52.34
+    },
+    {
+      "date": "2026-09-24",
+      "classical_markowitz": 1.7,
+      "q_frontier_ccd": 48.04,
+      "classical_drawdown": -98.45,
+      "qfrontier_drawdown": -52.96
+    },
+    {
+      "date": "2026-09-25",
+      "classical_markowitz": 1.52,
+      "q_frontier_ccd": 46.98,
+      "classical_drawdown": -98.62,
+      "qfrontier_drawdown": -53.99
+    },
+    {
+      "date": "2026-09-28",
+      "classical_markowitz": 1.32,
+      "q_frontier_ccd": 45.88,
+      "classical_drawdown": -98.8,
+      "qfrontier_drawdown": -55.07
+    },
+    {
+      "date": "2026-09-29",
+      "classical_markowitz": 1.09,
+      "q_frontier_ccd": 44.38,
+      "classical_drawdown": -99.01,
+      "qfrontier_drawdown": -56.54
+    },
+    {
+      "date": "2026-09-30",
+      "classical_markowitz": 0.87,
+      "q_frontier_ccd": 42.63,
+      "classical_drawdown": -99.21,
+      "qfrontier_drawdown": -58.26
+    },
+    {
+      "date": "2026-10-01",
+      "classical_markowitz": 0.87,
+      "q_frontier_ccd": 42.49,
+      "classical_drawdown": -99.21,
+      "qfrontier_drawdown": -58.39
+    },
+    {
+      "date": "2026-10-02",
+      "classical_markowitz": 0.87,
+      "q_frontier_ccd": 42.49,
+      "classical_drawdown": -99.21,
+      "qfrontier_drawdown": -58.39
+    },
+    {
+      "date": "2026-10-05",
+      "classical_markowitz": 0.88,
+      "q_frontier_ccd": 42.51,
+      "classical_drawdown": -99.2,
+      "qfrontier_drawdown": -58.38
+    },
+    {
+      "date": "2026-10-06",
+      "classical_markowitz": 0.88,
+      "q_frontier_ccd": 42.45,
+      "classical_drawdown": -99.2,
+      "qfrontier_drawdown": -58.43
+    },
+    {
+      "date": "2026-10-07",
+      "classical_markowitz": 0.9,
+      "q_frontier_ccd": 42.56,
+      "classical_drawdown": -99.19,
+      "qfrontier_drawdown": -58.32
+    },
+    {
+      "date": "2026-10-08",
+      "classical_markowitz": 0.9,
+      "q_frontier_ccd": 42.65,
+      "classical_drawdown": -99.19,
+      "qfrontier_drawdown": -58.24
+    },
+    {
+      "date": "2026-10-09",
+      "classical_markowitz": 0.89,
+      "q_frontier_ccd": 42.62,
+      "classical_drawdown": -99.19,
+      "qfrontier_drawdown": -58.27
+    },
+    {
+      "date": "2026-10-12",
+      "classical_markowitz": 0.88,
+      "q_frontier_ccd": 42.32,
+      "classical_drawdown": -99.2,
+      "qfrontier_drawdown": -58.56
+    },
+    {
+      "date": "2026-10-13",
+      "classical_markowitz": 0.87,
+      "q_frontier_ccd": 42.3,
+      "classical_drawdown": -99.21,
+      "qfrontier_drawdown": -58.58
+    },
+    {
+      "date": "2026-10-14",
+      "classical_markowitz": 0.9,
+      "q_frontier_ccd": 42.47,
+      "classical_drawdown": -99.18,
+      "qfrontier_drawdown": -58.41
+    },
+    {
+      "date": "2026-10-15",
+      "classical_markowitz": 0.89,
+      "q_frontier_ccd": 42.45,
+      "classical_drawdown": -99.19,
+      "qfrontier_drawdown": -58.43
+    },
+    {
+      "date": "2026-10-16",
+      "classical_markowitz": 0.9,
+      "q_frontier_ccd": 42.69,
+      "classical_drawdown": -99.18,
+      "qfrontier_drawdown": -58.2
+    },
+    {
+      "date": "2026-10-19",
+      "classical_markowitz": 0.89,
+      "q_frontier_ccd": 42.42,
+      "classical_drawdown": -99.19,
+      "qfrontier_drawdown": -58.46
+    },
+    {
+      "date": "2026-10-20",
+      "classical_markowitz": 0.9,
+      "q_frontier_ccd": 42.43,
+      "classical_drawdown": -99.18,
+      "qfrontier_drawdown": -58.45
+    },
+    {
+      "date": "2026-10-21",
+      "classical_markowitz": 0.91,
+      "q_frontier_ccd": 42.52,
+      "classical_drawdown": -99.18,
+      "qfrontier_drawdown": -58.36
+    },
+    {
+      "date": "2026-10-22",
+      "classical_markowitz": 0.9,
+      "q_frontier_ccd": 42.36,
+      "classical_drawdown": -99.18,
+      "qfrontier_drawdown": -58.52
+    },
+    {
+      "date": "2026-10-23",
+      "classical_markowitz": 0.9,
+      "q_frontier_ccd": 42.51,
+      "classical_drawdown": -99.18,
+      "qfrontier_drawdown": -58.38
+    },
+    {
+      "date": "2026-10-26",
+      "classical_markowitz": 0.9,
+      "q_frontier_ccd": 42.5,
+      "classical_drawdown": -99.18,
+      "qfrontier_drawdown": -58.39
+    },
+    {
+      "date": "2026-10-27",
+      "classical_markowitz": 0.9,
+      "q_frontier_ccd": 42.62,
+      "classical_drawdown": -99.18,
+      "qfrontier_drawdown": -58.26
+    },
+    {
+      "date": "2026-10-28",
+      "classical_markowitz": 0.89,
+      "q_frontier_ccd": 42.53,
+      "classical_drawdown": -99.19,
+      "qfrontier_drawdown": -58.35
+    },
+    {
+      "date": "2026-10-29",
+      "classical_markowitz": 0.88,
+      "q_frontier_ccd": 42.52,
+      "classical_drawdown": -99.2,
+      "qfrontier_drawdown": -58.36
+    },
+    {
+      "date": "2026-10-30",
+      "classical_markowitz": 0.86,
+      "q_frontier_ccd": 42.54,
+      "classical_drawdown": -99.22,
+      "qfrontier_drawdown": -58.35
+    },
+    {
+      "date": "2026-11-02",
+      "classical_markowitz": 0.86,
+      "q_frontier_ccd": 42.58,
+      "classical_drawdown": -99.22,
+      "qfrontier_drawdown": -58.31
+    },
+    {
+      "date": "2026-11-03",
+      "classical_markowitz": 0.88,
+      "q_frontier_ccd": 42.73,
+      "classical_drawdown": -99.2,
+      "qfrontier_drawdown": -58.16
+    },
+    {
+      "date": "2026-11-04",
+      "classical_markowitz": 0.88,
+      "q_frontier_ccd": 42.77,
+      "classical_drawdown": -99.2,
+      "qfrontier_drawdown": -58.12
+    },
+    {
+      "date": "2026-11-05",
+      "classical_markowitz": 0.88,
+      "q_frontier_ccd": 42.68,
+      "classical_drawdown": -99.2,
+      "qfrontier_drawdown": -58.21
+    },
+    {
+      "date": "2026-11-06",
+      "classical_markowitz": 0.88,
+      "q_frontier_ccd": 42.69,
+      "classical_drawdown": -99.2,
+      "qfrontier_drawdown": -58.2
+    }
+  ]
+}

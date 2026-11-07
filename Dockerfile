@@ -11,10 +11,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy backend application, test configuration, and pre-compiled frontend distribution
+# Copy backend application, test configuration, docs, notebooks, and pre-compiled frontend distribution
 COPY backend /app/backend
 COPY pytest.ini /app/pytest.ini
 COPY frontend/dist /app/frontend/dist
+COPY docs /app/docs
+COPY notebooks /app/notebooks
 
 ENV PYTHONPATH=/app/backend
 ENV PYTHONUNBUFFERED=1
