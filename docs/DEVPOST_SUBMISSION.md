@@ -5,6 +5,8 @@
 **Target Tracks:** Fintech & Real-Data Optimization, Quantum Machine Learning, Hardware Benchmarking  
 **GitHub Repository:** https://github.com/vikassharma270907-alt/q-frontier  
 **Live Demo:** https://q-frontier.vercel.app (Render Blueprint: render.yaml)  
+**Demo Video (YouTube):** `https://youtu.be/YOUR_VIDEO_ID` (2:46 Full HD Walkthrough — Strictly under 3 minutes)  
+**Publishing Guide & Thumbnail:** [`docs/YOUTUBE_PUBLISH_GUIDE.md`](docs/YOUTUBE_PUBLISH_GUIDE.md) | [`docs/YOUTUBE_THUMBNAIL.png`](docs/YOUTUBE_THUMBNAIL.png)  
 
 ---
 

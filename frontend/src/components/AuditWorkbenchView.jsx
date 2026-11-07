@@ -4,7 +4,7 @@ import {
   LineChart, Line, CartesianGrid
 } from 'recharts';
 import {
-  Play, Download, ShieldCheck, CheckCircle2, AlertTriangle, Cpu, Database,
+  Play, Download, ShieldCheck, ShieldAlert, CheckCircle2, AlertTriangle, Cpu, Database,
   Sliders, RefreshCw, FileText, Check, Award, BarChart3, HelpCircle
 } from 'lucide-react';
 
