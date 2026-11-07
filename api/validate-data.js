@@ -10,17 +10,17 @@ module.exports = (req, res) => {
   const csvContent = body.csv_content || '';
   const lines = csvContent.trim().split('\n').filter(l => l.trim().length > 0);
 
-  if (lines.length < 5) {
+  if (lines.length < 11) {
     return res.status(200).json({
       is_valid: false,
-      num_observations: lines.length,
+      num_observations: lines.length - 1,
       num_assets: 0,
       assets: [],
       start_date: null,
       end_date: null,
       missing_values_count: 0,
       warnings: [],
-      errors: ['CSV must have at least 5 price rows.']
+      errors: [`Dataset must contain at least 10 observations. Found: ${Math.max(0, lines.length - 1)}`]
     });
   }
 
