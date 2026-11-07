@@ -1,0 +1,81 @@
+{
+  "run_id": "run_20261108_011533_7065f0",
+  "timestamp": "2026-11-08T01:15:33.680772",
+  "scientific_disclaimer": "RESEARCH PROTOTYPE ONLY. NOT INVESTMENT ADVICE. NO QUANTUM ADVANTAGE CLAIMED. ALL QUANTUM EXECUTIONS ARE SIMULATED.",
+  "data_fingerprint": {
+    "sha256": "c576ba2c31f01a45",
+    "dataset_id": "synthetic_tech_4",
+    "asset_count": 4,
+    "observations": 180,
+    "tickers": [
+      "AAPL",
+      "MSFT",
+      "NVDA",
+      "GOOGL"
+    ]
+  },
+  "parameters": {
+    "asset_count": 4,
+    "k_cardinality": 2,
+    "lambda_risk": 0.5,
+    "covariance_method": "ledoit_wolf",
+    "covariance_description": "Ledoit-Wolf Shrinkage (alpha = 0.029)",
+    "circuit_depth": 1,
+    "seeds": [
+      42
+    ],
+    "transaction_cost_bps": 5.0
+  },
+  "ground_truth": {
+    "e_min": -0.07373080083069428,
+    "e_max": 0.16917584443599568,
+    "optimal_tickers": [
+      "MSFT",
+      "NVDA"
+    ],
+    "optimal_indices": [
+      1,
+      2
+    ]
+  },
+  "solver_results": [
+    {
+      "solver_name": "Exact Classical Enumeration",
+      "solver_type": "CLASSICAL_EXACT",
+      "selected_indices": [
+        1,
+        2
+      ],
+      "selection_vector": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "selected_tickers": [
+        "MSFT",
+        "NVDA"
+      ],
+      "objective_value": -0.07373080083069428,
+      "is_feasible": true,
+      "feasibility_rate": 1.0,
+      "approximation_ratio": 1.0,
+      "optimal_probability": 1.0,
+      "runtime_ms": 0.122,
+      "qubits_used": null,
+      "circuit_depth": null,
+      "two_qubit_gates": null,
+      "classical_evaluations": 6,
+      "state_distribution": null,
+      "metadata": {
+        "total_combinations_checked": 6,
+        "e_min": -0.07373080083069428,
+        "e_max": 0.16917584443599568,
+        "e_range": 0.24290664526668995
+      }
+    },
+    {
+      "solver_name": "Simulated Annealing Heuristic",
+      "solver_type": "CLASSICAL_HEURISTIC",
+      "selected_indices": [
+        

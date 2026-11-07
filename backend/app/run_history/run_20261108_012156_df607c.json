@@ -1,0 +1,519 @@
+{
+  "run_id": "run_20261108_012156_df607c",
+  "timestamp": "2026-11-08T01:21:56.470929",
+  "scientific_disclaimer": "RESEARCH PROTOTYPE ONLY. NOT INVESTMENT ADVICE. NO QUANTUM ADVANTAGE CLAIMED. ALL QUANTUM EXECUTIONS ARE SIMULATED.",
+  "data_fingerprint": {
+    "sha256": "c576ba2c31f01a45",
+    "dataset_id": "synthetic_tech_4",
+    "asset_count": 4,
+    "observations": 180,
+    "tickers": [
+      "AAPL",
+      "MSFT",
+      "NVDA",
+      "GOOGL"
+    ]
+  },
+  "parameters": {
+    "asset_count": 4,
+    "k_cardinality": 2,
+    "lambda_risk": 0.5,
+    "covariance_method": "ledoit_wolf",
+    "covariance_description": "Ledoit-Wolf Shrinkage (alpha = 0.029)",
+    "circuit_depth": 1,
+    "seeds": [
+      42
+    ],
+    "transaction_cost_bps": 5.0
+  },
+  "ground_truth": {
+    "e_min": -0.07373080083069428,
+    "e_max": 0.16917584443599568,
+    "optimal_tickers": [
+      "MSFT",
+      "NVDA"
+    ],
+    "optimal_indices": [
+      1,
+      2
+    ]
+  },
+  "solver_results": [
+    {
+      "solver_name": "Exact Classical Enumeration",
+      "solver_type": "CLASSICAL_EXACT",
+      "selected_indices": [
+        1,
+        2
+      ],
+      "selection_vector": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "selected_tickers": [
+        "MSFT",
+        "NVDA"
+      ],
+      "objective_value": -0.07373080083069428,
+      "is_feasible": true,
+      "feasibility_rate": 1.0,
+      "approximation_ratio": 1.0,
+      "optimal_probability": 1.0,
+      "runtime_ms": 0.137,
+      "qubits_used": null,
+      "circuit_depth": null,
+      "two_qubit_gates": null,
+      "classical_evaluations": 6,
+      "state_distribution": null,
+      "metadata": {
+        "total_combinations_checked": 6,
+        "e_min": -0.07373080083069428,
+        "e_max": 0.16917584443599568,
+        "e_range": 0.24290664526668995
+      }
+    },
+    {
+      "solver_name": "Simulated Annealing Heuristic",
+      "solver_type": "CLASSICAL_HEURISTIC",
+      "selected_indices": [
+        1,
+        2
+      ],
+      "selection_vector": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "selected_tickers": [
+        "MSFT",
+        "NVDA"
+      ],
+      "objective_value": -0.07373080083069428,
+      "is_feasible": true,
+      "feasibility_rate": 1.0,
+      "approximation_ratio": 1.0,
+      "optimal_probability": 1.0,
+      "runtime_ms": 52.524,
+      "qubits_used": null,
+      "circuit_depth": null,
+      "two_qubit_gates": null,
+      "classical_evaluations": 1001,
+      "state_distribution": null,
+      "metadata": {
+        "seed": 42,
+        "iterations": 1000,
+        "multi_seed_stats": {
+          "median": -0.0737,
+          "q1": -0.0737,
+          "q3": -0.0737,
+          "iqr": 0.0,
+          "min": -0.0737,
+          "max": -0.0737,
+          "std": 0.0,
+          "count": 1
+        }
+      }
+    },
+    {
+      "solver_name": "XY-QAOA (Simulated)",
+      "solver_type": "SIMULATED_QUANTUM",
+      "selected_indices": [
+        1,
+        2
+      ],
+      "selection_vector": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "selected_tickers": [
+        "MSFT",
+        "NVDA"
+      ],
+      "objective_value": -0.07373080083069428,
+      "is_feasible": true,
+      "feasibility_rate": 1.0,
+      "approximation_ratio": 0.6763,
+      "optimal_probability": 0.2527,
+      "runtime_ms": 76.189,
+      "qubits_used": 4,
+      "circuit_depth": 4,
+      "two_qubit_gates": 12,
+      "classical_evaluations": 40,
+      "state_distribution": [
+        {
+          "bitstring": "0011",
+          "energy": -0.07264,
+          "probability": 0.24689,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "0101",
+          "energy": 0.06808,
+          "probability": 0.14524,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "0110",
+          "energy": -0.07373,
+          "probability": 0.25274,
+          "is_optimal": true
+        },
+        {
+          "bitstring": "1001",
+          "energy": 0.16918,
+          "probability": 0.08602,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "1010",
+          "energy": 0.01645,
+          "probability": 0.18158,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "1100",
+          "energy": 0.16032,
+          "probability": 0.08752,
+          "is_optimal": false
+        }
+      ],
+      "metadata": {
+        "depth": 1,
+        "expected_energy": 0.00489029291766134,
+        "gamma": [
+          2.136645708172322
+        ],
+        "beta": [
+          -0.9793536878916727
+        ],
+        "backend": "statevector_exact_simulated"
+      }
+    }
+  ],
+  "selected_portfolio": {
+    "solver_used": "Exact Classical Enumeration",
+    "selected_tickers": [
+      "MSFT",
+      "NVDA"
+    ],
+    "selected_indices": [
+      1,
+      2
+    ],
+    "continuous_weights": [
+      {
+        "ticker": "MSFT",
+        "weight": 0.5
+      },
+      {
+        "ticker": "NVDA",
+        "weight": 0.5
+      }
+    ],
+    "expected_return_pct": 26.43,
+    "annualized_vol_pct": 30.87,
+    "theoretical_sharpe": 0.73
+  },
+  "diagnostics": {
+    "expected_returns": [
+      -0.1784,
+      0.0761,
+      0.4526,
+      0.0062
+    ],
+    "correlation_matrix": [
+      [
+        1.0,
+        0.557,
+        0.598,
+        0.475
+      ],
+      [
+        0.557,
+        1.0,
+        0.668,
+        0.527
+      ],
+      [
+        0.598,
+        0.668,
+        1.0,
+        0.606
+      ],
+      [
+        0.475,
+        0.527,
+        0.606,
+        1.0
+      ]
+    ],
+    "covariance_matrix": [
+      [
+        0.05504,
+        0.03841,
+        0.05348,
+        0.02676
+      ],
+      [
+        0.03841,
+        0.08644,
+        0.07482,
+        0.0372
+      ],
+      [
+        0.05348,
+        0.07482,
+        0.14513,
+        0.0554
+      ],
+      [
+        0.02676,
+        0.0372,
+        0.0554,
+        0.05758
+      ]
+    ]
+  },
+  "backtest": {
+    "final_portfolio_value": 116.51,
+    "benchmark_final_value": 104.35,
+    "annualized_return_pct": 26.36,
+    "annualized_volatility_pct": 31.12,
+    "net_sharpe_ratio": 0.72,
+    "max_drawdown_pct": -22.14,
+    "total_turnover": 1.0,
+    "transaction_costs_paid": 0.05,
+    "equity_curve": [
+      {
+        "date": "2026-03-03",
+        "q_frontier": 100.0,
+        "benchmark_ew": 100.0
+      },
+      {
+        "date": "2026-03-06",
+        "q_frontier": 99.24,
+        "benchmark_ew": 99.56
+      },
+      {
+        "date": "2026-03-12",
+        "q_frontier": 97.54,
+        "benchmark_ew": 97.12
+      },
+      {
+        "date": "2026-03-18",
+        "q_frontier": 104.47,
+        "benchmark_ew": 102.94
+      },
+      {
+        "date": "2026-03-24",
+        "q_frontier": 111.26,
+        "benchmark_ew": 108.25
+      },
+      {
+        "date": "2026-03-30",
+        "q_frontier": 109.21,
+        "benchmark_ew": 107.25
+      },
+      {
+        "date": "2026-04-03",
+        "q_frontier": 106.12,
+        "benchmark_ew": 105.88
+      },
+      {
+        "date": "2026-04-09",
+        "q_frontier": 106.61,
+        "benchmark_ew": 105.72
+      },
+      {
+        "date": "2026-04-15",
+        "q_frontier": 105.68,
+        "benchmark_ew": 105.5
+      },
+      {
+        "date": "2026-04-21",
+        "q_frontier": 112.87,
+        "benchmark_ew": 110.23
+      },
+      {
+        "date": "2026-04-27",
+        "q_frontier": 116.24,
+        "benchmark_ew": 111.55
+      },
+      {
+        "date": "2026-05-01",
+        "q_frontier": 120.17,
+        "benchmark_ew": 112.77
+      },
+      {
+        "date": "2026-05-07",
+        "q_frontier": 125.59,
+        "benchmark_ew": 118.46
+      },
+      {
+        "date": "2026-05-13",
+        "q_frontier": 118.28,
+        "benchmark_ew": 112.94
+      },
+      {
+        "date": "2026-05-19",
+        "q_frontier": 113.35,
+        "benchmark_ew": 108.72
+      },
+      {
+        "date": "2026-05-25",
+        "q_frontier": 113.52,
+        "benchmark_ew": 108.55
+      },
+      {
+        "date": "2026-05-29",
+        "q_frontier": 112.4,
+        "benchmark_ew": 106.43
+      },
+      {
+        "date": "2026-06-04",
+        "q_frontier": 117.13,
+        "benchmark_ew": 110.83
+      },
+      {
+        "date": "2026-06-10",
+        "q_frontier": 111.62,
+        "benchmark_ew": 106.93
+      },
+      {
+        "date": "2026-06-16",
+        "q_frontier": 111.72,
+        "benchmark_ew": 107.19
+      },
+      {
+        "date": "2026-06-22",
+        "q_frontier": 109.77,
+        "benchmark_ew": 105.12
+      },
+      {
+        "date": "2026-06-26",
+        "q_frontier": 107.63,
+        "benchmark_ew": 102.32
+      },
+      {
+        "date": "2026-07-02",
+        "q_frontier": 110.78,
+        "benchmark_ew": 105.51
+      },
+      {
+        "date": "2026-07-08",
+        "q_frontier": 115.15,
+        "benchmark_ew": 107.55
+      },
+      {
+        "date": "2026-07-14",
+        "q_frontier": 116.47,
+        "benchmark_ew": 106.04
+      },
+      {
+        "date": "2026-07-20",
+        "q_frontier": 115.05,
+        "benchmark_ew": 104.41
+      },
+      {
+        "date": "2026-07-24",
+        "q_frontier": 108.44,
+        "benchmark_ew": 101.6
+      },
+      {
+        "date": "2026-07-30",
+        "q_frontier": 110.21,
+        "benchmark_ew": 101.86
+      },
+      {
+        "date": "2026-08-05",
+        "q_frontier": 108.26,
+        "benchmark_ew": 101.96
+      },
+      {
+        "date": "2026-08-11",
+        "q_frontier": 100.84,
+        "benchmark_ew": 97.66
+      },
+      {
+        "date": "2026-08-17",
+        "q_frontier": 105.51,
+        "benchmark_ew": 99.76
+      },
+      {
+        "date": "2026-08-21",
+        "q_frontier": 110.34,
+        "benchmark_ew": 102.71
+      },
+      {
+        "date": "2026-08-27",
+        "q_frontier": 111.4,
+        "benchmark_ew": 102.55
+      },
+      {
+        "date": "2026-09-02",
+        "q_frontier": 119.53,
+        "benchmark_ew": 107.13
+      },
+      {
+        "date": "2026-09-08",
+        "q_frontier": 118.18,
+        "benchmark_ew": 104.68
+      },
+      {
+        "date": "2026-09-14",
+        "q_frontier": 126.3,
+        "benchmark_ew": 111.13
+      },
+      {
+        "date": "2026-09-18",
+        "q_frontier": 122.57,
+        "benchmark_ew": 109.39
+      },
+      {
+        "date": "2026-09-24",
+        "q_frontier": 118.88,
+        "benchmark_ew": 107.89
+      },
+      {
+        "date": "2026-09-30",
+        "q_frontier": 115.0,
+        "benchmark_ew": 104.69
+      },
+      {
+        "date": "2026-10-06",
+        "q_frontier": 113.89,
+        "benchmark_ew": 102.4
+      },
+      {
+        "date": "2026-10-12",
+        "q_frontier": 112.44,
+        "benchmark_ew": 101.89
+      },
+      {
+        "date": "2026-10-16",
+        "q_frontier": 119.73,
+        "benchmark_ew": 107.4
+      },
+      {
+        "date": "2026-10-22",
+        "q_frontier": 115.59,
+        "benchmark_ew": 103.53
+      },
+      {
+        "date": "2026-10-28",
+        "q_frontier": 115.24,
+        "benchmark_ew": 104.1
+      },
+      {
+        "date": "2026-11-03",
+        "q_frontier": 117.06,
+        "benchmark_ew": 104.67
+      }
+    ]
+  }
+}

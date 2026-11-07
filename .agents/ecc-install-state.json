@@ -1,0 +1,25 @@
+﻿{
+    "version":  5,
+    "installedAt":  "2026-11-08T01:09:00.0940990+05:30",
+    "sourceVersion":  "2.13.0",
+    "mode":  "full-power",
+    "plugins":  [
+                    "everything-claude-code",
+                    "coderabbit",
+                    "firebase",
+                    "wispr-flow",
+                    "ralph",
+                    "graphify",
+                    "laya",
+                    "get-shit-done",
+                    "armorantigravity",
+                    "ponytail",
+                    "agent-reach",
+                    "lemo-opuscar",
+                    "agent-skills",
+                    "context7",
+                    "skillspector",
+                    "strix"
+                ],
+    "target":  "antigravity"
+}

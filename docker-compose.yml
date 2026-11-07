@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  q-frontier:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app/backend
+    volumes:
+      - ./data_cache:/app/backend/app/data_cache
+      - ./run_history:/app/backend/app/run_history
+    restart: unless-stopped

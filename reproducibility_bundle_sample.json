@@ -1,0 +1,1336 @@
+{
+  "bundle_title": "Q-FRONTIER Auditable Reproducibility Package",
+  "run_id": "run_20261108_012047_39989d",
+  "generated_at": "2026-11-08T01:20:47.411381",
+  "disclaimer": "RESEARCH PROTOTYPE ONLY. NOT INVESTMENT ADVICE. NO QUANTUM ADVANTAGE CLAIMED. ALL QUANTUM EXECUTIONS ARE SIMULATED.",
+  "environment": {
+    "python_version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "os_name": "Windows",
+    "numpy_version": "2.5.4",
+    "qiskit_version": "2.6.2",
+    "scikit_learn_version": "1.9.1"
+  },
+  "input_data_fingerprint": {
+    "sha256": "4f71a5af79246963",
+    "dataset_id": "synthetic_nasdaq_8",
+    "asset_count": 8,
+    "observations": 180,
+    "tickers": [
+      "AAPL",
+      "MSFT",
+      "NVDA",
+      "GOOGL",
+      "AMZN",
+      "META",
+      "TSLA",
+      "AVGO"
+    ]
+  },
+  "hyperparameters": {
+    "asset_count": 8,
+    "k_cardinality": 3,
+    "lambda_risk": 0.5,
+    "covariance_method": "ledoit_wolf",
+    "covariance_description": "Ledoit-Wolf Shrinkage (alpha = 0.025)",
+    "circuit_depth": 1,
+    "seeds": [
+      42,
+      101,
+      777
+    ],
+    "transaction_cost_bps": 5.0
+  },
+  "ground_truth_reference": {
+    "e_min": 0.005682400518822073,
+    "e_max": 0.5760418737441438,
+    "optimal_tickers": [
+      "NVDA",
+      "GOOGL",
+      "AMZN"
+    ],
+    "optimal_indices": [
+      2,
+      3,
+      4
+    ]
+  },
+  "solvers_benchmark": [
+    {
+      "solver_name": "Exact Classical Enumeration",
+      "solver_type": "CLASSICAL_EXACT",
+      "selected_indices": [
+        2,
+        3,
+        4
+      ],
+      "selection_vector": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "selected_tickers": [
+        "NVDA",
+        "GOOGL",
+        "AMZN"
+      ],
+      "objective_value": 0.005682400518822073,
+      "is_feasible": true,
+      "feasibility_rate": 1.0,
+      "approximation_ratio": 1.0,
+      "optimal_probability": 1.0,
+      "runtime_ms": 0.222,
+      "qubits_used": null,
+      "circuit_depth": null,
+      "two_qubit_gates": null,
+      "classical_evaluations": 56,
+      "state_distribution": null,
+      "metadata": {
+        "total_combinations_checked": 56,
+        "e_min": 0.005682400518822073,
+        "e_max": 0.5760418737441438,
+        "e_range": 0.5703594732253218
+      }
+    },
+    {
+      "solver_name": "Simulated Annealing Heuristic",
+      "solver_type": "CLASSICAL_HEURISTIC",
+      "selected_indices": [
+        2,
+        3,
+        4
+      ],
+      "selection_vector": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "selected_tickers": [
+        "NVDA",
+        "GOOGL",
+        "AMZN"
+      ],
+      "objective_value": 0.005682400518822073,
+      "is_feasible": true,
+      "feasibility_rate": 1.0,
+      "approximation_ratio": 1.0,
+      "optimal_probability": 1.0,
+      "runtime_ms": 13.812,
+      "qubits_used": null,
+      "circuit_depth": null,
+      "two_qubit_gates": null,
+      "classical_evaluations": 1001,
+      "state_distribution": null,
+      "metadata": {
+        "seed": 42,
+        "iterations": 1000,
+        "multi_seed_stats": {
+          "median": 0.0057,
+          "q1": 0.0057,
+          "q3": 0.0057,
+          "iqr": 0.0,
+          "min": 0.0057,
+          "max": 0.0057,
+          "std": 0.0,
+          "count": 3
+        }
+      }
+    },
+    {
+      "solver_name": "XY-QAOA (Simulated)",
+      "solver_type": "SIMULATED_QUANTUM",
+      "selected_indices": [
+        2,
+        3,
+        4
+      ],
+      "selection_vector": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "selected_tickers": [
+        "NVDA",
+        "GOOGL",
+        "AMZN"
+      ],
+      "objective_value": 0.005682400518822073,
+      "is_feasible": true,
+      "feasibility_rate": 1.0,
+      "approximation_ratio": 0.5356,
+      "optimal_probability": 0.0249,
+      "runtime_ms": 2162.507,
+      "qubits_used": 8,
+      "circuit_depth": 4,
+      "two_qubit_gates": 56,
+      "classical_evaluations": 40,
+      "state_distribution": [
+        {
+          "bitstring": "00000111",
+          "energy": 0.57408,
+          "probability": 0.01083,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00001011",
+          "energy": 0.41741,
+          "probability": 0.01468,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00001101",
+          "energy": 0.45749,
+          "probability": 0.01372,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00001110",
+          "energy": 0.33558,
+          "probability": 0.01689,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00010011",
+          "energy": 0.45481,
+          "probability": 0.01389,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00010101",
+          "energy": 0.4967,
+          "probability": 0.01296,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00010110",
+          "energy": 0.3659,
+          "probability": 0.01602,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00011001",
+          "energy": 0.34092,
+          "probability": 0.01698,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00011010",
+          "energy": 0.20385,
+          "probability": 0.02003,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00011100",
+          "energy": 0.24902,
+          "probability": 0.01912,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00100011",
+          "energy": 0.35355,
+          "probability": 0.01667,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00100101",
+          "energy": 0.38951,
+          "probability": 0.01564,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00100110",
+          "energy": 0.26671,
+          "probability": 0.01888,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00101001",
+          "energy": 0.23101,
+          "probability": 0.01974,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00101010",
+          "energy": 0.10193,
+          "probability": 0.02288,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00101100",
+          "energy": 0.14118,
+          "probability": 0.0219,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00110001",
+          "energy": 0.26648,
+          "probability": 0.01892,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00110010",
+          "energy": 0.12851,
+          "probability": 0.02193,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00110100",
+          "energy": 0.16957,
+          "probability": 0.02097,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00111000",
+          "energy": 0.00568,
+          "probability": 0.0249,
+          "is_optimal": true
+        },
+        {
+          "bitstring": "01000011",
+          "energy": 0.46257,
+          "probability": 0.0136,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01000101",
+          "energy": 0.50186,
+          "probability": 0.01266,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01000110",
+          "energy": 0.38369,
+          "probability": 0.01582,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01001001",
+          "energy": 0.3446,
+          "probability": 0.01663,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01001010",
+          "energy": 0.22016,
+          "probability": 0.01983,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01001100",
+          "energy": 0.26274,
+          "probability": 0.01888,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01010001",
+          "energy": 0.37979,
+          "probability": 0.01581,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01010010",
+          "energy": 0.24646,
+          "probability": 0.01889,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01010100",
+          "energy": 0.29085,
+          "probability": 0.01797,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01011000",
+          "energy": 0.1282,
+          "probability": 0.02198,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01100001",
+          "energy": 0.27332,
+          "probability": 0.01858,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01100010",
+          "energy": 0.14799,
+          "probability": 0.02179,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01100100",
+          "energy": 0.18645,
+          "probability": 0.02079,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01101000",
+          "energy": 0.02108,
+          "probability": 0.02472,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01110000",
+          "energy": 0.04545,
+          "probability": 0.02373,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10000011",
+          "energy": 0.54064,
+          "probability": 0.01184,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10000101",
+          "energy": 0.57604,
+          "probability": 0.0109,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10000110",
+          "energy": 0.45356,
+          "probability": 0.01393,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10001001",
+          "energy": 0.42037,
+          "probability": 0.01478,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10001010",
+          "energy": 0.29162,
+          "probability": 0.0179,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10001100",
+          "energy": 0.33032,
+          "probability": 0.01691,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10010001",
+          "energy": 0.46623,
+          "probability": 0.01407,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10010010",
+          "energy": 0.32859,
+          "probability": 0.0171,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10010100",
+          "energy": 0.36909,
+          "probability": 0.01613,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10011000",
+          "energy": 0.20803,
+          "probability": 0.02018,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10100001",
+          "energy": 0.34881,
+          "probability": 0.0167,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10100010",
+          "energy": 0.21916,
+          "probability": 0.01985,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10100100",
+          "energy": 0.25374,
+          "probability": 0.01879,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10101000",
+          "energy": 0.08996,
+          "probability": 0.02277,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10110000",
+          "energy": 0.125,
+          "probability": 0.02196,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "11000001",
+          "energy": 0.46527,
+          "probability": 0.0137,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "11000010",
+          "energy": 0.34025,
+          "probability": 0.01684,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "11000100",
+          "energy": 0.37817,
+          "probability": 0.01584,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "11001000",
+          "energy": 0.21563,
+          "probability": 0.01985,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "11010000",
+          "energy": 0.25038,
+          "probability": 0.01903,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "11100000",
+          "energy": 0.13576,
+          "probability": 0.02169,
+          "is_optimal": false
+        }
+      ],
+      "metadata": {
+        "depth": 1,
+        "expected_energy": 0.27052887167245737,
+        "gamma": [
+          0.7062349632919279
+        ],
+        "beta": [
+          0.6913598207178943
+        ],
+        "backend": "statevector_exact_simulated"
+      }
+    },
+    {
+      "solver_name": "CCD-QAOA (Counterdiabatic AGP, Simulated)",
+      "solver_type": "SIMULATED_QUANTUM",
+      "selected_indices": [
+        2,
+        3,
+        4
+      ],
+      "selection_vector": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "selected_tickers": [
+        "NVDA",
+        "GOOGL",
+        "AMZN"
+      ],
+      "objective_value": 0.005682400518822073,
+      "is_feasible": true,
+      "feasibility_rate": 1.0,
+      "approximation_ratio": 0.8633,
+      "optimal_probability": 0.2274,
+      "runtime_ms": 6383.853,
+      "qubits_used": 8,
+      "circuit_depth": 6,
+      "two_qubit_gates": 112,
+      "classical_evaluations": 60,
+      "state_distribution": [
+        {
+          "bitstring": "00000111",
+          "energy": 0.57408,
+          "probability": 0.00021,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00001011",
+          "energy": 0.41741,
+          "probability": 0.00138,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00001101",
+          "energy": 0.45749,
+          "probability": 0.00125,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00001110",
+          "energy": 0.33558,
+          "probability": 7e-05,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00010011",
+          "energy": 0.45481,
+          "probability": 0.00189,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00010101",
+          "energy": 0.4967,
+          "probability": 0.00149,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00010110",
+          "energy": 0.3659,
+          "probability": 6e-05,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00011001",
+          "energy": 0.34092,
+          "probability": 0.00627,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00011010",
+          "energy": 0.20385,
+          "probability": 0.0089,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00011100",
+          "energy": 0.24902,
+          "probability": 0.00191,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00100011",
+          "energy": 0.35355,
+          "probability": 0.00181,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00100101",
+          "energy": 0.38951,
+          "probability": 0.00135,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00100110",
+          "energy": 0.26671,
+          "probability": 0.00109,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00101001",
+          "energy": 0.23101,
+          "probability": 0.00585,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00101010",
+          "energy": 0.10193,
+          "probability": 0.05671,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00101100",
+          "energy": 0.14118,
+          "probability": 0.02443,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00110001",
+          "energy": 0.26648,
+          "probability": 0.00663,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00110010",
+          "energy": 0.12851,
+          "probability": 0.03708,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00110100",
+          "energy": 0.16957,
+          "probability": 0.01389,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00111000",
+          "energy": 0.00568,
+          "probability": 0.22742,
+          "is_optimal": true
+        },
+        {
+          "bitstring": "01000011",
+          "energy": 0.46257,
+          "probability": 0.00117,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01000101",
+          "energy": 0.50186,
+          "probability": 0.00102,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01000110",
+          "energy": 0.38369,
+          "probability": 0.00015,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01001001",
+          "energy": 0.3446,
+          "probability": 0.00373,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01001010",
+          "energy": 0.22016,
+          "probability": 0.00616,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01001100",
+          "energy": 0.26274,
+          "probability": 0.00135,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01010001",
+          "energy": 0.37979,
+          "probability": 0.00441,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01010010",
+          "energy": 0.24646,
+          "probability": 0.00342,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01010100",
+          "energy": 0.29085,
+          "probability": 0.00053,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01011000",
+          "energy": 0.1282,
+          "probability": 0.03557,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01100001",
+          "energy": 0.27332,
+          "probability": 0.00432,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01100010",
+          "energy": 0.14799,
+          "probability": 0.02521,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01100100",
+          "energy": 0.18645,
+          "probability": 0.00958,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01101000",
+          "energy": 0.02108,
+          "probability": 0.19025,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01110000",
+          "energy": 0.04545,
+          "probability": 0.13785,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10000011",
+          "energy": 0.54064,
+          "probability": 0.00068,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10000101",
+          "energy": 0.57604,
+          "probability": 0.00031,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10000110",
+          "energy": 0.45356,
+          "probability": 0.00024,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10001001",
+          "energy": 0.42037,
+          "probability": 0.00248,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10001010",
+          "energy": 0.29162,
+          "probability": 0.00076,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10001100",
+          "energy": 0.33032,
+          "probability": 0.0001,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10010001",
+          "energy": 0.46623,
+          "probability": 0.00309,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10010010",
+          "energy": 0.32859,
+          "probability": 8e-05,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10010100",
+          "energy": 0.36909,
+          "probability": 0.00027,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10011000",
+          "energy": 0.20803,
+          "probability": 0.00577,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10100001",
+          "energy": 0.34881,
+          "probability": 0.00275,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10100010",
+          "energy": 0.21916,
+          "probability": 0.0058,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10100100",
+          "energy": 0.25374,
+          "probability": 0.00223,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10101000",
+          "energy": 0.08996,
+          "probability": 0.07098,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10110000",
+          "energy": 0.125,
+          "probability": 0.03628,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "11000001",
+          "energy": 0.46527,
+          "probability": 0.00193,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "11000010",
+          "energy": 0.34025,
+          "probability": 4e-05,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "11000100",
+          "energy": 0.37817,
+          "probability": 0.00016,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "11001000",
+          "energy": 0.21563,
+          "probability": 0.00624,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "11010000",
+          "energy": 0.25038,
+          "probability": 0.00195,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "11100000",
+          "energy": 0.13576,
+          "probability": 0.03345,
+          "is_optimal": false
+        }
+      ],
+      "metadata": {
+        "depth": 1,
+        "agp_commutator_active": true,
+        "expected_energy": 0.08365379653212958,
+        "backend": "statevector_exact_simulated"
+      }
+    },
+    {
+      "solver_name": "Penalty-QAOA (Transverse Mixer)",
+      "solver_type": "SIMULATED_QUANTUM",
+      "selected_indices": [
+        2,
+        3,
+        4
+      ],
+      "selection_vector": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "selected_tickers": [
+        "NVDA",
+        "GOOGL",
+        "AMZN"
+      ],
+      "objective_value": 0.005682400518822073,
+      "is_feasible": true,
+      "feasibility_rate": 0.0457,
+      "approximation_ratio": 0.5375,
+      "optimal_probability": 0.0012,
+      "runtime_ms": 105.989,
+      "qubits_used": 8,
+      "circuit_depth": 2,
+      "two_qubit_gates": 0,
+      "classical_evaluations": 1,
+      "state_distribution": [
+        {
+          "bitstring": "00000111",
+          "energy": 0.57408,
+          "probability": 0.00053,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00001011",
+          "energy": 0.41741,
+          "probability": 0.00067,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00001101",
+          "energy": 0.45749,
+          "probability": 0.00063,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00001110",
+          "energy": 0.33558,
+          "probability": 0.00075,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00010011",
+          "energy": 0.45481,
+          "probability": 0.00064,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00010101",
+          "energy": 0.4967,
+          "probability": 0.0006,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00010110",
+          "energy": 0.3659,
+          "probability": 0.00073,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00011001",
+          "energy": 0.34092,
+          "probability": 0.00076,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00011010",
+          "energy": 0.20385,
+          "probability": 0.00093,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00011100",
+          "energy": 0.24902,
+          "probability": 0.00086,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00100011",
+          "energy": 0.35355,
+          "probability": 0.00073,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00100101",
+          "energy": 0.38951,
+          "probability": 0.0007,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00100110",
+          "energy": 0.26671,
+          "probability": 0.00082,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00101001",
+          "energy": 0.23101,
+          "probability": 0.00088,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00101010",
+          "energy": 0.10193,
+          "probability": 0.00105,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00101100",
+          "energy": 0.14118,
+          "probability": 0.00099,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00110001",
+          "energy": 0.26648,
+          "probability": 0.00084,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00110010",
+          "energy": 0.12851,
+          "probability": 0.00102,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00110100",
+          "energy": 0.16957,
+          "probability": 0.00096,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "00111000",
+          "energy": 0.00568,
+          "probability": 0.00121,
+          "is_optimal": true
+        },
+        {
+          "bitstring": "01000011",
+          "energy": 0.46257,
+          "probability": 0.00063,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01000101",
+          "energy": 0.50186,
+          "probability": 0.00059,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01000110",
+          "energy": 0.38369,
+          "probability": 0.0007,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01001001",
+          "energy": 0.3446,
+          "probability": 0.00075,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01001010",
+          "energy": 0.22016,
+          "probability": 0.00089,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01001100",
+          "energy": 0.26274,
+          "probability": 0.00084,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01010001",
+          "energy": 0.37979,
+          "probability": 0.00072,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01010010",
+          "energy": 0.24646,
+          "probability": 0.00087,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01010100",
+          "energy": 0.29085,
+          "probability": 0.00081,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01011000",
+          "energy": 0.1282,
+          "probability": 0.00103,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01100001",
+          "energy": 0.27332,
+          "probability": 0.00083,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01100010",
+          "energy": 0.14799,
+          "probability": 0.00098,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01100100",
+          "energy": 0.18645,
+          "probability": 0.00092,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01101000",
+          "energy": 0.02108,
+          "probability": 0.00117,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "01110000",
+          "energy": 0.04545,
+          "probability": 0.00115,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10000011",
+          "energy": 0.54064,
+          "probability": 0.00056,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10000101",
+          "energy": 0.57604,
+          "probability": 0.00053,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10000110",
+          "energy": 0.45356,
+          "probability": 0.00063,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10001001",
+          "energy": 0.42037,
+          "probability": 0.00067,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10001010",
+          "energy": 0.29162,
+          "probability": 0.00081,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10001100",
+          "energy": 0.33032,
+          "probability": 0.00077,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10010001",
+          "energy": 0.46623,
+          "probability": 0.00063,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10010010",
+          "energy": 0.32859,
+          "probability": 0.00077,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10010100",
+          "energy": 0.36909,
+          "probability": 0.00073,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10011000",
+          "energy": 0.20803,
+          "probability": 0.00093,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10100001",
+          "energy": 0.34881,
+          "probability": 0.00075,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10100010",
+          "energy": 0.21916,
+          "probability": 0.00089,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10100100",
+          "energy": 0.25374,
+          "probability": 0.00085,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10101000",
+          "energy": 0.08996,
+          "probability": 0.00108,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "10110000",
+          "energy": 0.125,
+          "probability": 0.00104,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "11000001",
+          "energy": 0.46527,
+          "probability": 0.00063,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "11000010",
+          "energy": 0.34025,
+          "probability": 0.00075,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "11000100",
+          "energy": 0.37817,
+          "probability": 0.00071,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "11001000",
+          "energy": 0.21563,
+          "probability": 0.00091,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "11010000",
+          "energy": 0.25038,
+          "probability": 0.00087,
+          "is_optimal": false
+        },
+        {
+          "bitstring": "11100000",
+          "energy": 0.13576,
+          "probability": 0.00101,
+          "is_optimal": false
+        }
+      ],
+      "metadata": {
+        "penalty_weight": 2.0,
+        "shot_leakage_pct": 95.43,
+        "backend": "statevector_exact_simulated"
+      }
+    }
+  ],
+  "selected_portfolio": {
+    "solver_used": "Exact Classical Enumeration",
+    "selected_tickers": [
+      "NVDA",
+      "GOOGL",
+      "AMZN"
+    ],
+    "selected_indices": [
+      2,
+      3,
+      4
+    ],
+    "continuous_weights": [
+      {
+        "ticker": "NVDA",
+        "weight": 0.4
+      },
+      {
+        "ticker": "GOOGL",
+        "weight": 0.2
+      },
+      {
+        "ticker": "AMZN",
+        "weight": 0.4
+      }
+    ],
+    "expected_return_pct": 24.62,
+    "annualized_vol_pct": 28.02,
+    "theoretical_sharpe": 0.74
+  },
+  "backtest_summary": {
+    "final_portfolio_value": 113.49,
+    "benchmark_final_value": 97.65,
+    "net_sharpe_ratio": 0.65,
+    "annualized_return_pct": 21.48,
+    "annualized_volatility_pct": 27.04,
+    "max_drawdown_pct": -19.02,
+    "transaction_costs_paid": 0.05
+  },
+  "instructions_to_reproduce": [
+    "1. Select dataset: 'synthetic_nasdaq_8' with SHA-256 fingerprint '4f71a5af79246963'.",
+    "2. Set asset universe to 8 assets: ['AAPL', 'MSFT', 'NVDA', 'GOOGL', 'AMZN', 'META', 'TSLA', 'AVGO'].",
+    "3. Set cardinality constraint K=3.",
+    "4. Set risk aversion lambda=0.5.",
+    "5. Apply covariance method: ledoit_wolf.",
+    "6. Execute exact enumeration and quantum simulation (depth p=1).",
+    "7. Compare objective values and approximation ratios against ground truth."
+  ]
+}
