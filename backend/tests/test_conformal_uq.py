@@ -49,3 +49,4 @@ def test_conformal_shot_noise_scaling():
     bounds_high_shots = compute_conformal_portfolio_bounds(returns_df, np.array([1.0]), [0], shots=8192)
 
     assert bounds_high_shots["quantum_shot_noise_bps"] < bounds_low_shots["quantum_shot_noise_bps"]
+

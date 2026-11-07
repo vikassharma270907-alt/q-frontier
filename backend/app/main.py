@@ -9,9 +9,12 @@ from pathlib import Path
 from typing import Dict, Any, List, Optional
 import numpy as np
 
-from fastapi import FastAPI, HTTPException, UploadFile, File, Query
+from fastapi import FastAPI, HTTPException, UploadFile, File, Query, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse, HTMLResponse
+from fastapi.staticfiles import StaticFiles
+
+from app.views.health_html import generate_health_dashboard_html
 
 from app.schemas import RunRequest, CSVValidateRequest, OptimizationRequest, StressTestRequest
 from app.hardware.models import QPUExecuteRequest
@@ -51,10 +54,21 @@ app.add_middleware(
         "http://localhost:8000",
         "http://127.0.0.1:8000"
     ],
+    allow_origin_regex=r"^https://.*(onrender\.com|vercel\.app)$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.middleware("http")
+async def add_security_headers(request, call_next):
+    response = await call_next(request)
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    response.headers["X-XSS-Protection"] = "1; mode=block"
+    return response
 
 volatility_sensor = QCLVolatilitySensor()
 
@@ -63,8 +77,8 @@ volatility_sensor = QCLVolatilitySensor()
 # Core Standardized API Endpoints (as defined in Master Prompt)
 # ---------------------------------------------------------------------------
 
-@app.get("/api/health")
-def health_check() -> Dict[str, Any]:
+@app.get("/api/health", response_model=None)
+def health_check(request: Request, format: Optional[str] = None):
     """Returns platform health, simulation status, and environment capabilities."""
     qr_available = False
     try:
@@ -80,7 +94,7 @@ def health_check() -> Dict[str, Any]:
     except Exception:
         pass
 
-    return {
+    payload = {
         "status": "healthy",
         "workbench": "Q-FRONTIER",
         "competition": "Intermountain Quantum Competition (IQC) 2026",
@@ -103,6 +117,13 @@ def health_check() -> Dict[str, Any]:
         },
         "python_version": sys.version.split(" ")[0],
     }
+
+    if request is not None:
+        accept = request.headers.get("accept", "")
+        if "text/html" in accept and format != "json":
+            return HTMLResponse(generate_health_dashboard_html(payload))
+
+    return JSONResponse(content=payload)
 
 
 @app.get("/api/datasets")
@@ -347,9 +368,6 @@ def execute_qpu_job(req: QPUExecuteRequest) -> Dict[str, Any]:
 # Static SPA Frontend & Interactive Demo Video Serving
 # ---------------------------------------------------------------------------
 
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
-
 docs_dir = Path(__file__).resolve().parent.parent.parent / "docs"
 if docs_dir.exists():
     app.mount("/demo-assets", StaticFiles(directory=docs_dir), name="demo-assets")
@@ -372,8 +390,19 @@ if frontend_dist.exists():
         # Don't intercept API calls
         if full_path == "api" or full_path.startswith("api/"):
             raise HTTPException(status_code=404, detail="API endpoint not found")
-        file_path = frontend_dist / full_path
-        if file_path.exists() and file_path.is_file():
-            return FileResponse(file_path)
+        resolved_base = frontend_dist.resolve()
+        candidate_file = (frontend_dist / full_path).resolve()
+        if candidate_file.is_relative_to(resolved_base) and candidate_file.is_file():
+            return FileResponse(candidate_file)
         return FileResponse(frontend_dist / "index.html")
+else:
+    @app.get("/", include_in_schema=False)
+    def root_fallback():
+        return JSONResponse({
+            "workbench": "Q-FRONTIER API",
+            "status": "running",
+            "version": "2.0.0",
+            "docs_url": "/docs",
+            "message": "Frontend distribution not detected. Build frontend with 'npm run build' to serve the SPA."
+        })
 

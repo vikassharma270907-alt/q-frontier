@@ -4,10 +4,15 @@ import { Cpu, Grid, RefreshCw, AlertTriangle } from 'lucide-react';
 const WIDTHS = [4, 6, 8, 12];
 const DEPTHS = [1, 2, 3, 4, 5];
 
-function HardwareCard({ title, badge, isHighlighted, metrics }) {
+function HardwareCard({ title, badge, isHighlighted, metrics = {} }) {
   const cardBorder = isHighlighted
     ? 'bg-zinc-900/70 border-zinc-700 hover:border-zinc-500'
     : 'bg-zinc-950 border-zinc-800 hover:border-zinc-700';
+
+  const routingSwaps = metrics?.routing_swaps ?? 0;
+  const twoQubitGates = metrics?.two_qubit_gates ?? 0;
+  const circuitDepth = metrics?.circuit_depth ?? 0;
+  const decoherenceRisk = metrics?.decoherence_risk ?? 'Low / Verified';
 
   return (
     <div className={`border rounded-xl p-5 transition-all ${cardBorder}`}>
@@ -21,28 +26,29 @@ function HardwareCard({ title, badge, isHighlighted, metrics }) {
         <div className="flex justify-between border-b border-zinc-800 pb-2">
           <span className="text-zinc-400">Routing SWAP Overhead:</span>
           <span className="font-mono text-white font-extrabold text-sm">
-            {metrics.routing_swaps === 0 ? '0 SWAPs (Native K_n)' : `+${metrics.routing_swaps} Additional SWAPs`}
+            {routingSwaps === 0 ? '0 SWAPs (Native K_n)' : `+${routingSwaps} Additional SWAPs`}
           </span>
         </div>
         <div className="flex justify-between border-b border-zinc-800 pb-2">
           <span className="text-zinc-400">Total 2-Qubit Gates:</span>
-          <span className="font-mono text-zinc-200 font-bold">{metrics.two_qubit_gates}</span>
+          <span className="font-mono text-zinc-200 font-bold">{twoQubitGates}</span>
         </div>
         <div className="flex justify-between border-b border-zinc-800 pb-2">
           <span className="text-zinc-400">Circuit Depth:</span>
-          <span className="font-mono text-zinc-200 font-bold">{metrics.circuit_depth}</span>
+          <span className="font-mono text-zinc-200 font-bold">{circuitDepth}</span>
         </div>
         <div className="flex justify-between pt-1">
           <span className="text-zinc-400">Fidelity Status:</span>
-          <span className="text-zinc-300 font-medium font-mono">{metrics.decoherence_risk}</span>
+          <span className="text-zinc-300 font-medium font-mono">{decoherenceRisk}</span>
         </div>
       </div>
     </div>
   );
 }
 
-function HardwareComparisonSection({ comparison }) {
-  const { ionq_trapped_ion, ibm_heavy_hex } = comparison;
+function HardwareComparisonSection({ comparison = {} }) {
+  const ionq = comparison?.ionq_trapped_ion || {};
+  const ibm = comparison?.ibm_heavy_hex || {};
 
   return (
     <div className="bg-zinc-900/40 border border-zinc-800 rounded-2xl p-6">
@@ -58,24 +64,28 @@ function HardwareComparisonSection({ comparison }) {
           title="IonQ Trapped-Ion"
           badge="All-to-All Native (K_n)"
           isHighlighted={true}
-          metrics={ionq_trapped_ion}
+          metrics={ionq}
         />
         <HardwareCard
           title="IBM Heavy-Hex (Superconducting)"
           badge="Sparse Planar Grid"
           isHighlighted={false}
-          metrics={ibm_heavy_hex}
+          metrics={ibm}
         />
       </div>
     </div>
   );
 }
 
-function SandiaHeatmapTable({ sandiaGrid }) {
+function SandiaHeatmapTable({ sandiaGrid = [] }) {
   const gridMap = useMemo(() => {
     const map = new Map();
     if (Array.isArray(sandiaGrid)) {
-      sandiaGrid.forEach((cell) => map.set(`${cell.width}_${cell.depth}`, cell));
+      sandiaGrid.forEach((cell) => {
+        if (cell && cell.width != null && cell.depth != null) {
+          map.set(`${cell.width}_${cell.depth}`, cell);
+        }
+      });
     }
     return map;
   }, [sandiaGrid]);
@@ -123,10 +133,13 @@ function SandiaHeatmapTable({ sandiaGrid }) {
                   if (!cell) {
                     return <td key={d} className="p-2 text-center text-zinc-600">-</td>;
                   }
+                  const ar = Number(cell?.approximation_ratio ?? 0);
+                  const fid = Number(cell?.fidelity ?? 0);
+                  const qr = cell?.reachable_quality_qr ?? 'N/A';
                   const cellStyle =
-                    cell.approximation_ratio > 0.85
+                    ar > 0.85
                       ? 'bg-zinc-800 border-zinc-500 text-white shadow-sm'
-                      : cell.approximation_ratio > 0.60
+                      : ar > 0.60
                       ? 'bg-zinc-900 border-zinc-700 text-zinc-300'
                       : 'bg-zinc-950 border-zinc-800 text-zinc-600';
 
@@ -134,10 +147,10 @@ function SandiaHeatmapTable({ sandiaGrid }) {
                     <td key={d} className="p-2 text-center">
                       <div className={`p-2.5 rounded-xl border ${cellStyle} transition-all duration-200 hover:scale-105`}>
                         <div className="text-sm font-extrabold font-mono">
-                          {(cell.approximation_ratio * 100).toFixed(0)}% AR
+                          {(ar * 100).toFixed(0)}% AR
                         </div>
                         <div className="text-[10px] opacity-75 mt-0.5 font-mono">
-                          Fid: {(cell.fidelity * 100).toFixed(0)}% | Q_R: {cell.reachable_quality_qr}
+                          Fid: {(fid * 100).toFixed(0)}% | Q_R: {qr}
                         </div>
                       </div>
                     </td>

@@ -5,7 +5,7 @@ Data contracts and provenance records for QPU hardware execution.
 from __future__ import annotations
 from typing import Dict, Any, List, Optional, Union
 from dataclasses import dataclass, asdict
-from pydantic import BaseModel, Field, SecretStr
+from pydantic import BaseModel, Field, SecretStr, model_validator
 
 
 @dataclass
@@ -60,3 +60,11 @@ class QPUExecuteRequest(BaseModel):
     circuit_depth: int = Field(1, ge=1, le=2, description="QAOA Trotter depth p.")
     shots: int = Field(1024, ge=100, le=10000, description="Measurement shot count.")
     api_token: Optional[Union[SecretStr, str]] = Field(None, description="Optional live cloud QPU provider API token.")
+
+    @model_validator(mode="after")
+    def validate_qpu_cardinality(self) -> QPUExecuteRequest:
+        if self.k_cardinality >= self.n_qubits:
+            raise ValueError(
+                f"k_cardinality ({self.k_cardinality}) must be strictly less than n_qubits ({self.n_qubits})."
+            )
+        return self

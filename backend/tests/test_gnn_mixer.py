@@ -84,3 +84,4 @@ def test_gnn_solver_execution_feasibility():
     assert res.feasibility_rate == pytest.approx(1.0, abs=1e-5)
     assert res.metadata["subspace_preserved"] is True
     assert res.metadata["cnot_reduction_pct"] > 0
+

@@ -233,16 +233,25 @@ class QPUDriver:
         swap_count = ops_count.get("swap", 0)
 
         # Execute on Aer calibrated simulator or pure Qiskit Statevector fallback
+        raw_counts = None
         if AER_AVAILABLE and AerSimulator is not None:
-            sim = AerSimulator(noise_model=noise_model) if noise_model else AerSimulator()
-            job = sim.run(transpiled_qc, shots=shots)
-            result = job.result()
-            raw_counts = result.get_counts()
-        else:
+            try:
+                sim = AerSimulator(noise_model=noise_model) if noise_model else AerSimulator()
+                job = sim.run(transpiled_qc, shots=shots)
+                result = job.result()
+                raw_counts = result.get_counts()
+            except Exception:
+                raw_counts = None
+
+        if raw_counts is None:
             from qiskit.quantum_info import Statevector
             qc_no_meas = qc.remove_final_measurements(inplace=False)
             sv = Statevector.from_instruction(qc_no_meas)
             raw_counts = {str(k): int(v) for k, v in sv.sample_counts(shots).items()}
+
+        # Normalize Qiskit little-endian bitstrings (q_{n-1}...q_0) to big-endian (q_0...q_{n-1})
+        # so character index i corresponds to qubit i (asset i)
+        normalized_counts = {k[::-1]: v for k, v in raw_counts.items()}
 
         # Compute energies and feasibility
         energy_vec, all_bitstrings = compute_all_bitstring_energies(cov, mu, lambda_risk)
@@ -256,7 +265,7 @@ class QPUDriver:
 
         quasi_dist: Dict[str, float] = {}
 
-        for b_str, count in raw_counts.items():
+        for b_str, count in normalized_counts.items():
             prob = float(count) / float(shots)
             quasi_dist[b_str] = round(prob, 4)
 
@@ -309,7 +318,7 @@ class QPUDriver:
             transpiled_two_qubit_gates=cx_count,
             routing_swaps=swap_count,
             calibration_snapshot=cal.to_dict(),
-            raw_shot_counts=raw_counts,
+            raw_shot_counts=normalized_counts,
             quasi_distribution=quasi_dist,
             measured_feasibility=round(feasibility_rate, 4),
             measured_approximation_ratio=round(ar, 4),

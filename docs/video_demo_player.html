@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Q-FRONTIER | Animated Video Demo & Narration Walkthrough</title>
+  <title>Q-FRONTIER | 3-Minute Animated Video Demo & Narration Walkthrough</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -66,6 +66,36 @@
       font-size: 12px;
       color: var(--text-muted);
     }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .mode-switch {
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      border-radius: 20px;
+      padding: 3px;
+      display: flex;
+      gap: 2px;
+    }
+    .mode-btn {
+      background: transparent;
+      border: none;
+      color: #a1a1aa;
+      font-size: 11px;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 5px 12px;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .mode-btn.active {
+      background: #0284c7;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);
+    }
     .timer-badge {
       font-family: 'JetBrains Mono', monospace;
       font-size: 14px;
@@ -96,12 +126,12 @@
     .player-container {
       max-width: 1280px;
       width: 100%;
-      margin: 24px auto;
+      margin: 20px auto;
       padding: 0 20px;
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 16px;
     }
     .screen-stage {
       background: radial-gradient(circle at 50% 20%, #171822 0%, #0d0e14 100%);
@@ -115,11 +145,26 @@
       align-items: center;
       justify-content: center;
     }
+
+    /* Video Embed Mode */
+    #mp4-video-container {
+      display: none;
+      width: 100%;
+      height: 100%;
+      background: #000;
+    }
+    #mp4-video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Interactive Animation Mode */
     .scene {
       display: none;
       width: 100%;
       height: 100%;
-      padding: 40px;
+      padding: 36px 40px;
       animation: sceneFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     .scene.active {
@@ -136,7 +181,7 @@
     .tag-row {
       display: flex;
       gap: 10px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       flex-wrap: wrap;
     }
     .pill {
@@ -155,23 +200,23 @@
     .pill-purple { background: rgba(139, 92, 246, 0.15); color: #c084fc; border: 1px solid rgba(139, 92, 246, 0.3); }
 
     h2.scene-title {
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 800;
       color: #ffffff;
       letter-spacing: -0.02em;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     p.scene-subtitle {
-      font-size: 14px;
+      font-size: 13.5px;
       color: var(--text-muted);
-      line-height: 1.5;
+      line-height: 1.4;
     }
     .scene-content {
       flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 16px 0;
+      margin: 12px 0;
     }
 
     /* Grid Layouts */
@@ -185,7 +230,7 @@
       background: rgba(24, 24, 30, 0.7);
       border: 1px solid rgba(63, 63, 70, 0.6);
       border-radius: 14px;
-      padding: 18px;
+      padding: 16px;
       transition: all 0.25s ease;
     }
     .card-box:hover {
@@ -217,7 +262,7 @@
     /* SVG Animations */
     svg.visual-chart {
       width: 100%;
-      height: 240px;
+      height: 230px;
     }
     .pulse-line {
       stroke-dasharray: 600;
@@ -233,7 +278,7 @@
       background: rgba(18, 18, 24, 0.95);
       border: 1px solid #27272a;
       border-radius: 14px;
-      padding: 16px 24px;
+      padding: 14px 22px;
       display: flex;
       flex-direction: column;
       gap: 6px;
@@ -248,21 +293,21 @@
       font-family: 'JetBrains Mono', monospace;
     }
     .spoken-text {
-      font-size: 15px;
+      font-size: 14.5px;
       line-height: 1.5;
       color: #e4e4e7;
       font-weight: 500;
     }
 
-    /* Player Controls Bar */
+    /* Controls Bar */
     .controls-bar {
       background: #121217;
       border: 1px solid var(--card-border);
       border-radius: 16px;
-      padding: 14px 24px;
+      padding: 12px 22px;
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 18px;
     }
     .play-btn {
       background: linear-gradient(135deg, #0284c7, #06b6d4);
@@ -332,7 +377,7 @@
       background: rgba(16, 185, 129, 0.15);
       border: 1px solid rgba(16, 185, 129, 0.3);
       color: #34d399;
-      font-size: 12px;
+      font-size: 11.5px;
       padding: 6px 14px;
       border-radius: 8px;
       display: flex;
@@ -356,9 +401,16 @@
         <p>Intermountain Quantum Competition (IQC) 2026 — Brigham Young University</p>
       </div>
     </div>
-    <div class="timer-badge">
-      <div class="pulse-dot"></div>
-      <span id="time-display">0:00 / 2:46</span>
+    <div class="header-actions">
+      <!-- Player Mode Switch -->
+      <div class="mode-switch">
+        <button class="mode-btn active" id="btn-mode-interactive" onclick="switchPlayerMode('interactive')">Interactive Stage</button>
+        <button class="mode-btn" id="btn-mode-mp4" onclick="switchPlayerMode('mp4')">1080p MP4 Video</button>
+      </div>
+      <div class="timer-badge">
+        <div class="pulse-dot"></div>
+        <span id="time-display">0:00 / 2:46</span>
+      </div>
     </div>
   </header>
 
@@ -366,6 +418,15 @@
   <div class="player-container">
     <div class="screen-stage">
       
+      <!-- MODE: MP4 VIDEO EMBED -->
+      <div id="mp4-video-container">
+        <video id="master-mp4-video" controls preload="metadata">
+          <source src="Q_FRONTIER_DEMO_VIDEO.mp4" type="video/mp4">
+          Your browser does not support HTML5 MP4 video.
+        </video>
+      </div>
+
+      <!-- MODE: INTERACTIVE ANIMATION STAGE -->
       <!-- SCENE 1: Intro & Context -->
       <div class="scene active" id="scene-0">
         <div>
@@ -403,7 +464,7 @@
 
         <div style="font-size: 11px; color: #71717a; font-family: 'JetBrains Mono', monospace; display: flex; gap: 16px;">
           <span>Sponsors: Nasdaq • Quantum Rings • IonQ • Sandia • IBM • Classiq</span>
-          <span style="margin-left: auto;">43/43 Passing Tests</span>
+          <span style="margin-left: auto;">52/52 Passing Tests</span>
         </div>
       </div>
 
@@ -504,6 +565,17 @@
               <div style="width: 100%; background: linear-gradient(90deg, #06b6d4, #10b981);"></div>
             </div>
           </div>
+
+          <!-- GNN-Sparsified XY Mixer -->
+          <div class="card-box" style="flex: 1; border-color: rgba(139, 92, 246, 0.6); background: rgba(139, 92, 246, 0.05);">
+            <h3 style="color: #c084fc;">GNN-Sparse XY Mixer</h3>
+            <p>Correlation MST backbone avoids IBM heavy-hex SWAPs.</p>
+            <div class="metric-val text-purple">-57.1% CNOTs</div>
+            <div style="font-size: 12px; color: #c4b5fd; margin-bottom: 8px;">100% Subspace Feasible ✔</div>
+            <div style="height: 12px; background: #27272a; border-radius: 6px; overflow: hidden;">
+              <div style="width: 100%; background: #a855f7;"></div>
+            </div>
+          </div>
         </div>
 
         <div style="font-size: 11px; color: #71717a; font-family: 'JetBrains Mono', monospace;">
@@ -517,10 +589,11 @@
           <div class="tag-row">
             <span class="pill pill-cyan">Stage 4: Portfolio Allocation</span>
             <span class="pill pill-emerald">SLSQP Sharpe Optimization</span>
+            <span class="pill pill-purple">95% Conformal UQ Bounds</span>
             <span class="pill pill-amber">Net 5 bps Transaction Fees</span>
           </div>
-          <h2 class="scene-title">Continuous SLSQP Allocation & Walk-Forward Backtest</h2>
-          <p class="scene-subtitle">Monthly walk-forward backtest evaluated strictly net of 5 bps execution costs and turnover regularization.</p>
+          <h2 class="scene-title">Continuous SLSQP Allocation & Conformal Walk-Forward Backtest</h2>
+          <p class="scene-subtitle">Monthly walk-forward backtest evaluated strictly net of 5 bps execution costs with certified 95% conformal prediction bands.</p>
         </div>
 
         <div class="scene-content" style="width: 100%; display: flex; gap: 24px; align-items: center;">
@@ -640,7 +713,7 @@
         <span id="scene-tag">Scene 1 / 5 [0:00 - 0:29]</span>
       </div>
       <div class="spoken-text" id="teleprompter-text">
-        Click Play to start the animated video demo and audio presentation...
+        Click Play below to begin the synchronized walkthrough...
       </div>
     </div>
 
@@ -671,8 +744,6 @@
   </div>
 
   <script>
-    // Precise Scene Timestamps from Synthesized Studio Audio Tracks:
-    // Total Runtime: 166.05 seconds (2:46) - Strictly under 3:00 minutes!
     const SCENES = [
       {
         id: 0,
@@ -697,27 +768,27 @@
         startSec: 57.33,
         endSec: 104.54,
         audioFile: "audio/scene3.mp3",
-        title: "Stages 2 & 3: QCL Sensor & CCD-QAOA Engine",
+        title: "Stages 2 & 3: QCL Sensor, CCD-QAOA & GNN Mixer",
         tag: "Scene 3 / 5 [0:57 - 1:45]",
-        script: "In Stage 2, our 4-qubit data-reuploading QCL sensor encodes four primitive market signals and dynamically calibrates portfolio risk aversion q_t. In Stage 3, we execute our Constrained Counterdiabatic QAOA solver. Look closely at this comparison: standard Penalty-QAOA leaks over 26% of all shots into illegal portfolio sizes. By initializing registers in exact Dicke states with complete-graph XY mixers, Q-FRONTIER mathematically guarantees 100% feasibility with zero leakage. Adding 3-body Adiabatic Gauge Potential driving boosts the approximation ratio to 95.7% at single depth, and over 99.7% at depth two."
+        script: "In Stage 2, our 4-qubit data-reuploading QCL sensor encodes four primitive market signals and dynamically calibrates portfolio risk aversion q_t. In Stage 3, we execute our Constrained Counterdiabatic QAOA solver. Look closely at this comparison: standard Penalty-QAOA leaks over 26% of all shots into illegal portfolio sizes. By initializing registers in exact Dicke states with complete-graph or GNN-sparsified XY mixers, Q-FRONTIER mathematically guarantees 100% feasibility with zero leakage while cutting CNOT gates by over 57%. Adding 3-body Adiabatic Gauge Potential driving boosts the approximation ratio to 95.7% at single depth, and over 99.7% at depth two."
       },
       {
         id: 3,
         startSec: 104.54,
         endSec: 134.06,
         audioFile: "audio/scene4.mp3",
-        title: "Stage 4: SLSQP Continuous Weights & Net Backtest",
+        title: "Stage 4: SLSQP Allocation & Conformal UQ Backtest",
         tag: "Scene 4 / 5 [1:45 - 2:14]",
-        script: "Stage 4 takes the quantum-selected asset subset and optimizes continuous weights for maximum Sharpe ratio using SLSQP. In our monthly walk-forward simulation, all returns are evaluated strictly net of five basis points transaction costs. By incorporating our turnover continuity parameter kappa, Q-FRONTIER suppresses costly portfolio churning, outperforming the benchmark by over 24% cumulative return with less than half the maximum drawdown."
+        script: "Stage 4 takes the quantum-selected asset subset and optimizes continuous weights for maximum Sharpe ratio using SLSQP. We evaluate walk-forward returns strictly net of 5 basis points execution costs, supplemented by Conformal Uncertainty Quantification providing certified 95% confidence intervals under quantum shot noise. By incorporating our turnover continuity parameter kappa, Q-FRONTIER suppresses costly portfolio churning, outperforming the benchmark by over 24% cumulative return."
       },
       {
         id: 4,
         startSec: 134.06,
         endSec: 166.05,
         audioFile: "audio/scene5.mp3",
-        title: "Hardware Topologies & Sandia Volumetric Heatmap",
+        title: "Hardware Topologies, Crisis Stress & Sandia Heatmap",
         tag: "Scene 5 / 5 [2:14 - 2:46]",
-        script: "Finally, we benchmark physical hardware topologies. On IonQ's trapped-ion architecture, all-to-all connectivity compiles our complete-graph mixers with zero routing SWAPs, while heavy-hex grids require 18 additional SWAPs. Following Sandia National Laboratories' volumetric benchmarking framework, our 2D heatmap maps circuit capability under noise. Q-FRONTIER is fully verifiable, backed by 43 automated tests and one-click reproducibility. Thank you!"
+        script: "Finally, we benchmark physical hardware topologies and simulate systemic shocks. On IonQ's trapped-ion architecture, all-to-all connectivity compiles our mixers with zero routing SWAPs. Under our 2026 Crisis Stress-Test, Q-FRONTIER delivers a +31.4% drawdown mitigation advantage over classical Markowitz. Following Sandia National Laboratories' volumetric benchmarking framework, our 2D heatmap maps circuit capability under noise. Q-FRONTIER is fully verifiable, backed by 52 automated tests and one-click reproducibility. Thank you!"
       }
     ];
 
@@ -726,6 +797,7 @@
     let isPlaying = false;
     let playInterval = null;
     let currentSceneIndex = 0;
+    let currentMode = 'interactive'; // 'interactive' or 'mp4'
 
     const audioElement = document.getElementById('audio-player');
     const playPauseBtn = document.getElementById('play-pause-btn');
@@ -737,6 +809,37 @@
     const sceneTag = document.getElementById('scene-tag');
     const sceneButtons = document.querySelectorAll('.scene-pill-btn');
 
+    const mp4Container = document.getElementById('mp4-video-container');
+    const masterVideo = document.getElementById('master-mp4-video');
+    const interactiveScenes = document.querySelectorAll('.scene');
+    const btnModeInteractive = document.getElementById('btn-mode-interactive');
+    const btnModeMp4 = document.getElementById('btn-mode-mp4');
+
+    function switchPlayerMode(mode) {
+      currentMode = mode;
+      pause();
+
+      if (mode === 'mp4') {
+        btnModeMp4.classList.add('active');
+        btnModeInteractive.classList.remove('active');
+        mp4Container.style.display = 'block';
+        interactiveScenes.forEach(s => s.style.display = 'none');
+        document.querySelector('.controls-bar').style.opacity = '0.4';
+        document.querySelector('.controls-bar').style.pointerEvents = 'none';
+        teleprompterText.innerHTML = "Currently playing Master 1080p MP4 Video with built-in H.264/AAC audio track.";
+        sceneTag.innerText = "Full HD Master Video (1920x1080)";
+        masterVideo.play().catch(e => console.log("MP4 play:", e));
+      } else {
+        btnModeInteractive.classList.add('active');
+        btnModeMp4.classList.remove('active');
+        masterVideo.pause();
+        mp4Container.style.display = 'none';
+        document.querySelector('.controls-bar').style.opacity = '1';
+        document.querySelector('.controls-bar').style.pointerEvents = 'auto';
+        updateView();
+      }
+    }
+
     function formatTime(seconds) {
       const mins = Math.floor(seconds / 60);
       const secs = Math.floor(seconds % 60);
@@ -744,31 +847,30 @@
     }
 
     function updateView() {
-      // Find active scene
+      if (currentMode === 'mp4') return;
+
       const scene = SCENES.find(s => currentTime >= s.startSec && currentTime < s.endSec) || SCENES[SCENES.length - 1];
       const sceneIndex = scene.id;
 
       if (sceneIndex !== currentSceneIndex) {
         currentSceneIndex = sceneIndex;
-        // Switch DOM scene
-        document.querySelectorAll('.scene').forEach((el, idx) => {
+        interactiveScenes.forEach((el, idx) => {
           el.classList.toggle('active', idx === currentSceneIndex);
+          el.style.display = (idx === currentSceneIndex) ? 'flex' : 'none';
         });
         sceneButtons.forEach((btn, idx) => {
           btn.classList.toggle('active', idx === currentSceneIndex);
         });
 
-        // Switch Audio Track if playing
         if (isPlaying) {
           playSceneAudio(currentSceneIndex, currentTime - scene.startSec);
         }
+      } else {
+        interactiveScenes[currentSceneIndex].style.display = 'flex';
       }
 
-      // Update teleprompter & status tag
       sceneTag.innerText = scene.tag;
       teleprompterText.innerHTML = scene.script;
-
-      // Update timer & scrubber
       timeDisplay.innerText = `${formatTime(currentTime)} / 2:46`;
       const pct = (currentTime / TOTAL_DURATION) * 100;
       scrubberFill.style.width = `${pct}%`;
@@ -781,7 +883,7 @@
       }
       audioElement.currentTime = Math.max(0, offsetSec);
       audioElement.play().catch(err => {
-        console.warn("Audio autoplay policy fallback:", err);
+        console.warn("Audio policy:", err);
       });
     }
 
@@ -829,7 +931,6 @@
       }
     }
 
-    // Scrubber click handler
     scrubberBar.addEventListener('click', (e) => {
       const rect = scrubberBar.getBoundingClientRect();
       const clickX = e.clientX - rect.left;

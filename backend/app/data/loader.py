@@ -4,8 +4,10 @@ Data loader service managing synthetic presets and custom cached CSV datasets.
 
 from __future__ import annotations
 from typing import Dict, Any, List, Optional
+from collections import OrderedDict
 from pathlib import Path
 import re
+import os
 import time
 import pandas as pd
 
@@ -15,13 +17,14 @@ from app.data.synthetic import generate_synthetic_prices, generate_crisis_prices
 class DatasetManager:
     """Manages synthetic datasets, custom uploads, and caching."""
 
-    def __init__(self, cache_dir: Optional[Path] = None):
+    def __init__(self, cache_dir: Optional[Path] = None, max_custom_datasets: int = 25):
         if cache_dir is None:
             self.cache_dir = Path(__file__).resolve().parent.parent / "data_cache"
         else:
             self.cache_dir = Path(cache_dir)
         self.cache_dir.mkdir(parents=True, exist_ok=True)
-        self._custom_datasets: Dict[str, pd.DataFrame] = {}
+        self._custom_datasets: OrderedDict[str, pd.DataFrame] = OrderedDict()
+        self.max_custom_datasets = max_custom_datasets
 
     def list_datasets(self) -> List[Dict[str, Any]]:
         """Lists all available datasets (presets + custom uploads)."""
@@ -110,10 +113,25 @@ class DatasetManager:
         if not clean_id:
             clean_id = f"custom_{int(time.time())}"
         self._custom_datasets[clean_id] = df
+        self._custom_datasets.move_to_end(clean_id)
+
+        # Evict oldest in memory if exceeding limit
+        if len(self._custom_datasets) > self.max_custom_datasets:
+            self._custom_datasets.popitem(last=False)
+
         try:
             cache_file = (self.cache_dir / f"{clean_id}.csv").resolve()
             if cache_file.is_relative_to(self.cache_dir.resolve()):
                 df.to_csv(cache_file)
+
+            # Bound disk cache to 30 files max
+            csv_files = sorted(self.cache_dir.glob("custom_*.csv"), key=os.path.getmtime)
+            if len(csv_files) > 30:
+                for old_csv in csv_files[:-30]:
+                    try:
+                        old_csv.unlink()
+                    except Exception:
+                        pass
         except Exception:
             pass
         return clean_id
