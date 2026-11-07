@@ -325,11 +325,22 @@ def execute_qpu_job(req: QPUExecuteRequest) -> Dict[str, Any]:
 
 
 # ---------------------------------------------------------------------------
-# Static SPA Frontend Serving (Zero-Configuration Single-Port Deployment)
+# Static SPA Frontend & Interactive Demo Video Serving
 # ---------------------------------------------------------------------------
 
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+
+docs_dir = Path(__file__).resolve().parent.parent.parent / "docs"
+if docs_dir.exists():
+    app.mount("/demo-assets", StaticFiles(directory=docs_dir), name="demo-assets")
+
+    @app.get("/demo", include_in_schema=False)
+    def serve_demo_video():
+        demo_file = docs_dir / "video_demo_player.html"
+        if demo_file.exists():
+            return FileResponse(demo_file)
+        raise HTTPException(status_code=404, detail="Demo video player not found")
 
 frontend_dist = Path(__file__).resolve().parent.parent.parent / "frontend" / "dist"
 if frontend_dist.exists():
