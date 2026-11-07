@@ -10,3 +10,4 @@ module.exports = (req, res) => {
 
   res.status(200).json(samplePayloads.market_clusters);
 };
+

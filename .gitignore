@@ -42,3 +42,5 @@ ENV/
 backend/app/run_history/run_*.json
 scripts/sample_*.json
 
+
+.vercel
