@@ -34,7 +34,7 @@ We built **Q-FRONTIER** to prove that by grounding quantum algorithms in recent 
 - **Backend & Quantum Core:** Python 3.11+, Qiskit 2.6.2, Qiskit Aer, and Quantum Rings (`QuantumRingsLib`), orchestrated via FastAPI.
 - **Financial Optimization:** Scipy SLSQP, Scikit-learn (Ledoit-Wolf shrinkage), Pandas, and NumPy.
 - **Frontend Dashboard:** React 18, Vite, Tailwind CSS, Lucide icons, and Recharts, packaged into a single-port deployment served directly by FastAPI.
-- **Testing & Verification:** 32 comprehensive unit and integration tests across 10 modules covering linear algebra invariants, commutation proofs, monotonic descent, and API schema boundaries.
+- **Testing & Verification:** 37 comprehensive unit and integration tests across 11 modules covering linear algebra invariants, commutation proofs, monotonic descent, QPU device calibration, and API schema boundaries.
 - **Notebook:** Standalone Jupyter notebook (`IQC_Q_FRONTIER_Master.ipynb`) runnable on Aqora, qBraid, or local environments with a single "Run All".
 
 ---
@@ -50,7 +50,7 @@ We built **Q-FRONTIER** to prove that by grounding quantum algorithms in recent 
 - **100% Subspace Feasibility:** Zero measurement shots leaked outside the cardinality budget, contrasting sharply with penalty QAOA's 26.7% leakage.
 - **Near-Unitary Approximation at $p=1$:** Achieving an approximation ratio of 95.68% at single-layer depth using AGP counterdiabatic shortcuts.
 - **Multi-Sponsor SDK Integration:** Seamlessly integrating tools from **Nasdaq, Quantum Rings (`QuantumRingsLib`), IonQ (0-SWAP routing), Sandia (Volumetric Benchmarking), and IBM Quantum**.
-- **100% Green Test Suite:** 32 passing tests verifying all algebraic, statistical, and API invariants in under 6 seconds.
+- **100% Green Test Suite:** 37 passing tests verifying all algebraic, statistical, QPU driver, and API invariants in ~4 seconds.
 
 ---
 

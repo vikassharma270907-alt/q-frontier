@@ -86,7 +86,11 @@ $$\min_{x \in \{0, 1\}^N} \quad f(x) = \lambda \cdot x^T \Sigma x - (1 - \lambda
 Runs the FastAPI REST API and serves the production React dashboard on a single port:
 
 ```bash
-# Launch unified server (FastAPI + React Dashboard)
+# Windows 1-Click Launchers (opens browser automatically)
+.\scripts\launch.ps1    # PowerShell
+scripts\launch.bat      # CMD
+
+# Or Python direct launch
 python scripts/run_app.py
 ```
 Open **[http://localhost:8000](http://localhost:8000)** in your browser.
@@ -95,7 +99,7 @@ Open **[http://localhost:8000](http://localhost:8000)** in your browser.
 ```bash
 pytest
 ```
-Executes all 32 unit and integration tests across data validation, covariance estimators, objective correctness, Dicke state properties, XY mixer commutation, and REST API endpoints.
+Executes all 37 unit and integration tests across data validation, covariance estimators, objective correctness, Dicke state properties, XY mixer commutation, QPU device calibration, and REST API endpoints.
 
 ### 3. Docker Compose Deployment
 ```bash
